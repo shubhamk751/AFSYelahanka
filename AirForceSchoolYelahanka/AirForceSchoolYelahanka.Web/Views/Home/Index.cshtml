@@ -1,8 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Dictionary<string, string>
+
+@{
+    ViewData["Title"] = Model.GetValueOrDefault("Title", "Home");
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Model.GetValueOrDefault("Title", "Welcome")</h1>
+    <h4>@Model.GetValueOrDefault("Subtitle", "Your school subtitle")</h4>
+    <p>@Model.GetValueOrDefault("Description", "This is a CMS-driven homepage.")</p>
 </div>

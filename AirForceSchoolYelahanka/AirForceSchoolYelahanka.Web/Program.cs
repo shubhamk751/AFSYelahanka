@@ -1,4 +1,31 @@
+using AirForceSchoolYelahanka.Web.Data;
+using AirForceSchoolYelahanka.Web.Models;
+using AirForceSchoolYelahanka.Web.Services.Implementations;
+using AirForceSchoolYelahanka.Web.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ICmsService, CmsService>();
+// SQL Server DB
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Auth
+//builder.Services.AddAuthentication("BasicAuth")
+//    .AddCookie("BasicAuth", options =>
+//    {
+//        options.LoginPath = "/Admin/Login";
+//    });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -9,7 +36,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // The default HSTS value is 30 days. To change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -23,5 +50,23 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+
+    if (!db.AdminUsers.Any())
+    {
+        var adminUser = new AdminUser
+        {
+            Username = "admin",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("YourStrongPassword123")
+        };
+
+        db.AdminUsers.Add(adminUser);
+        db.SaveChanges();
+    }
+}
 
 app.Run();
