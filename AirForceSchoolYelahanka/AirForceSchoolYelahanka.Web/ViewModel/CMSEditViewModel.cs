@@ -4,8 +4,10 @@ namespace AirForceSchoolYelahanka.Web.ViewModel
 {
     public class CMSEditViewModel
     {
+        public string Page { get; set; } = "Home";
         public List<SingleCmsSectionViewModel> Sections { get; set; } = new();
     }
+
 
     public class SingleCmsSectionViewModel
     {

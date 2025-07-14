@@ -1,11 +1,16 @@
-﻿@model Dictionary<string, string>
+﻿@model Dictionary<string, Dictionary<string, string>>
 
 @{
-    ViewData["Title"] = Model.GetValueOrDefault("Title", "Home");
+    ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">@Model.GetValueOrDefault("Title", "Welcome")</h1>
-    <h4>@Model.GetValueOrDefault("Subtitle", "Your school subtitle")</h4>
-    <p>@Model.GetValueOrDefault("Description", "This is a CMS-driven homepage.")</p>
-</div>
+@foreach (var section in Model)
+{
+    <h3>@(section.Key)</h3>
+    <ul>
+        @foreach (var kv in section.Value)
+        {
+            <li><strong>@kv.Key</strong>: @kv.Value</li>
+        }
+    </ul>
+}

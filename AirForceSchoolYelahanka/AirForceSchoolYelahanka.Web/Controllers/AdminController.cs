@@ -1,5 +1,5 @@
-﻿using AirForceSchoolYelahanka.Web.Data;
-using AirForceSchoolYelahanka.Web.Services.Implementations;
+﻿using AirForceSchoolYelahanka.Web.Config;
+using AirForceSchoolYelahanka.Web.Data;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using AirForceSchoolYelahanka.Web.ViewModel;
 using Microsoft.AspNetCore.Authentication;
@@ -7,30 +7,31 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Text.Json;
 
 namespace AirForceSchoolYelahanka.Web.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly AppDbContext _context;
         private readonly ICmsService _cmsService;
+        private readonly ILogger<AdminController> _logger;
 
-        public AdminController(AppDbContext context, ICmsService cmsService)
+        public AdminController(AppDbContext context, ICmsService cmsService, ILogger<AdminController> logger)
         {
             _context = context;
             _cmsService = cmsService;
+            _logger = logger;
         }
 
-        // GET: /Admin/Login
+        [AllowAnonymous]
         [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        public IActionResult Login() => View();
 
-        // POST: /Admin/Login
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
@@ -49,57 +50,28 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return View();
         }
 
-        // GET: /Admin
-        //[HttpGet]
-        //public async Task<IActionResult> Index()
-        //{
-        //    var section = await _cmsService.GetSectionAsync("HomePageSection1");
-
-        //    string contentJson = "{}";
-
-        //    if (!string.IsNullOrWhiteSpace(section?.ContentJson))
-        //    {
-        //        try
-        //        {
-        //            // Optional: Deserialize and re-serialize to pretty-print (if needed)
-        //            var contentDict = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson)
-        //                              ?? new Dictionary<string, string>();
-
-        //            contentJson = JsonSerializer.Serialize(contentDict, new JsonSerializerOptions
-        //            {
-        //                WriteIndented = true
-        //            });
-        //        }
-        //        catch (JsonException)
-        //        {
-        //            // Log or handle corrupted content
-        //            contentJson = section.ContentJson; // Keep as-is even if invalid
-        //        }
-        //    }
-
-        //    var model = new CMSEditViewModel
-        //    {
-        //        Key = "HomePageSection1",
-        //        ContentJson = contentJson
-        //    };
-
-        //    return View(model);
-        //}
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string page = "Home")
         {
-            var sectionKeys = new[] { "HomePageSection1", "HomePageSection2", "FooterContent" }; // Add more keys as needed
+            if (!CmsPages.PageSections.ContainsKey(page))
+            {
+                return NotFound($"Page '{page}' not configured in CMS.");
+            }
 
-            var model = new CMSEditViewModel();
+            var sectionKeys = CmsPages.PageSections[page];
+            var model = new CMSEditViewModel
+            {
+                Page = page
+            };
 
             foreach (var key in sectionKeys)
             {
-                var section = await _cmsService.GetSectionAsync(key);
                 string contentJson = "{}";
 
-                if (!string.IsNullOrWhiteSpace(section?.ContentJson))
+                try
                 {
-                    try
+                    var section = await _cmsService.GetSectionAsync(key);
+                    if (!string.IsNullOrWhiteSpace(section?.ContentJson))
                     {
                         var contentDict = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson)
                                           ?? new Dictionary<string, string>();
@@ -109,10 +81,10 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                             WriteIndented = true
                         });
                     }
-                    catch (JsonException)
-                    {
-                        contentJson = section.ContentJson; // retain as-is
-                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error loading section {key}");
                 }
 
                 model.Sections.Add(new SingleCmsSectionViewModel
@@ -125,38 +97,15 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return View(model);
         }
 
-
-        //[Authorize]
-        // POST: /Admin/Save
-        //[HttpPost]
-        //public async Task<IActionResult> Save(CMSEditViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View("Index", model);
-
-        //    try
-        //    {
-        //        // Validate JSON
-        //        JsonDocument.Parse(model.ContentJson);
-        //    }
-        //    catch (JsonException)
-        //    {
-        //        ModelState.AddModelError("ContentJson", "Invalid JSON format");
-        //        return View("Index", model);
-        //    }
-
-        //    await _cmsService.UpdateSectionAsync(model.Key, model.ContentJson);
-        //    return RedirectToAction(nameof(Index));
-        //}
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Save(CMSEditViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("Index", model);
 
-            foreach (var section in model.Sections)
+            for (int i = 0; i < model.Sections.Count; i++)
             {
+                var section = model.Sections[i];
                 try
                 {
                     JsonDocument.Parse(section.ContentJson); // Validate
@@ -164,7 +113,13 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                 }
                 catch (JsonException)
                 {
-                    ModelState.AddModelError($"Sections[{model.Sections.IndexOf(section)}].ContentJson", $"Invalid JSON for section: {section.Key}");
+                    ModelState.AddModelError($"Sections[{i}].ContentJson", $"Invalid JSON for section: {section.Key}");
+                    return View("Index", model);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Failed to update section: {section.Key}");
+                    ModelState.AddModelError($"Sections[{i}].ContentJson", $"Unexpected error saving section: {section.Key}");
                     return View("Index", model);
                 }
             }
@@ -173,8 +128,6 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-        // GET: /Admin/Logout
         [HttpGet]
         public async Task<IActionResult> Logout()
         {

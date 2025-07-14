@@ -1,3 +1,4 @@
+using AirForceSchoolYelahanka.Web.Config;
 using AirForceSchoolYelahanka.Web.Models;
 using AirForceSchoolYelahanka.Web.Services;
 using AirForceSchoolYelahanka.Web.Services.Implementations;
@@ -21,23 +22,45 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var pageKey = "Home"; // This can be parameterized later
+
+            var viewModel = new Dictionary<string, Dictionary<string, string>>(); // SectionKey ? Content key-values
+
             try
             {
-                var section = await _cmsService.GetSectionAsync("HomePageSection1");
-                var model = new Dictionary<string, string>();
-
-                if (!string.IsNullOrWhiteSpace(section?.ContentJson))
+                if (!CmsPages.PageSections.TryGetValue(pageKey, out var sectionKeys))
                 {
-                    model = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson)
-                             ?? new Dictionary<string, string>();
+                    _logger.LogWarning($"No CMS config defined for page '{pageKey}'.");
+                    return View(viewModel);
                 }
 
-                return View(model);
+                foreach (var sectionKey in sectionKeys)
+                {
+                    var section = await _cmsService.GetSectionAsync(sectionKey);
+                    var contentDict = new Dictionary<string, string>();
+
+                    if (!string.IsNullOrWhiteSpace(section?.ContentJson))
+                    {
+                        try
+                        {
+                            contentDict = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson)
+                                           ?? new Dictionary<string, string>();
+                        }
+                        catch (JsonException jsonEx)
+                        {
+                            _logger.LogError(jsonEx, $"Failed to deserialize JSON for section '{sectionKey}'.");
+                        }
+                    }
+
+                    viewModel[sectionKey] = contentDict;
+                }
+
+                return View(viewModel);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error loading home content");
-                return View(new Dictionary<string, string>());
+                return View(new Dictionary<string, Dictionary<string, string>>());
             }
         }
 
