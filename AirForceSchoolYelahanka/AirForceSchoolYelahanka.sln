@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36301.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirForceSchoolYelahanka.Web", "AirForceSchoolYelahanka.Web\AirForceSchoolYelahanka.Web.csproj", "{3824CDBA-E529-44B1-A8FB-99955E938059}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirForceSchoolYelahanka.Web", "AirForceSchoolYelahanka.Web\AirForceSchoolYelahanka.Web.csproj", "{0A448266-DDC0-45DB-AF61-F406955FBFBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3824CDBA-E529-44B1-A8FB-99955E938059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3824CDBA-E529-44B1-A8FB-99955E938059}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3824CDBA-E529-44B1-A8FB-99955E938059}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3824CDBA-E529-44B1-A8FB-99955E938059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A448266-DDC0-45DB-AF61-F406955FBFBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A448266-DDC0-45DB-AF61-F406955FBFBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A448266-DDC0-45DB-AF61-F406955FBFBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A448266-DDC0-45DB-AF61-F406955FBFBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {29D8927F-FD75-428C-B8BF-289632EC9367}
+		SolutionGuid = {1044AE00-9F96-4383-A2FC-461F51E7EC0B}
 	EndGlobalSection
 EndGlobal
