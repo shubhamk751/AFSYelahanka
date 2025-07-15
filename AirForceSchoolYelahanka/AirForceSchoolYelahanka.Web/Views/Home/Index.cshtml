@@ -11,12 +11,12 @@
 
 @if (banners.Any())
 {
-    <div id="bannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-aos="fade-up" data-aos-delay="500">
+    <div id="bannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
         <div class="carousel-inner">
             @for (int i = 0; i < banners.Count; i++)
             {
                 <div class="carousel-item @(i == 0 ? "active" : "")">
-                    <img src="@banners[i]" class="d-block w-100" style="height: 500px; object-fit: cover;" />
+                    <img src="@banners[i]" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Banner @(i + 1)" />
                 </div>
             }
         </div>
@@ -30,7 +30,7 @@
 }
 
 <!-- Hero Section -->
-<section class="text-white text-center py-5 bg-primary" data-aos="fade-up">
+<section class="text-white text-center py-5 bg-primary" id="hero">
     <div class="container">
         <h1 class="display-4">@Model.SectionContent["HomePageHero"]["Title"]</h1>
         <p class="lead">@Model.SectionContent["HomePageHero"]["Subtitle"]</p>
@@ -38,13 +38,12 @@
     </div>
 </section>
 
-<!-- Info Cards -->
-<section class="py-5 bg-light">
+<!-- Info Cards Section -->
+<section class="py-5 bg-light" id="academics">
     <div class="container">
-        <div class="row gy-4">
-            <div class="col-md-4" data-aos="flip-left" data-aos-delay="600">
-                <div class="card shadow-sm">
-                    @* <img src="/images/junior.jpg" class="card-img-top" alt="Junior Wing" /> *@
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="flip-left">
+                <div class="card h-100 shadow-sm">
                     <img src="https://picsum.photos/seed/junior/400/250" class="card-img-top" alt="Junior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Junior Wing</h5>
@@ -52,18 +51,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="800">
-                <div class="card shadow-sm">
-                    <img src="https://picsum.photos/seed/junior/400/250" class="card-img-top" alt="Senior Wing" />
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://picsum.photos/seed/senior/400/250" class="card-img-top" alt="Senior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Senior Wing</h5>
                         <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="flip-right" data-aos-delay="1000">
-                <div class="card shadow-sm">
-                    <img src="https://picsum.photos/seed/junior/400/250" class="card-img-top" alt="Facilities" />
+            <div class="col-md-4" data-aos="flip-right">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://picsum.photos/seed/facilities/400/250" class="card-img-top" alt="Facilities" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Facilities</h5>
                         <p class="card-text">Modern labs, smart classrooms, and co-curricular spaces.</p>
@@ -74,45 +73,34 @@
     </div>
 </section>
 
-@* <section class="py-5 bg-white" id="leadership" >
+<!-- Leadership Section -->
+<section class="py-5 bg-white" id="leadership">
     <div class="container">
         <h2 class="text-center mb-5 fw-bold">Leadership</h2>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center g-4">
             <!-- Principal -->
-            <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-delay="800">
+            <div class="col-md-5" data-aos="fade-right">
                 <div class="card shadow h-100">
                     <img src="/images/home/principal.jpg" class="card-img-top" alt="Smt. Shalini Narayan">
                     <div class="card-body text-center">
                         <h5 class="card-title mb-1">Smt. Shalini Narayan</h5>
                         <p class="text-muted small">Principal</p>
-                        <p class="card-text">
-                            Education is about awakening-awakening to the power and beauty that lies within all of us.
-
-                            Education, in my opinion, is about more than simply bricks, mortar, and concrete; it's also about developing character, increasing horizons, and having a lifetime of experiences.
-
-                            The mission of our school is to develop well-rounded individuals with exemplary moral character by empowering students' knowledge and fostering their capacity for creative observation.
-
-                            In order to equip our students to enter the world, leave their mark, and significantly contribute to the society in which they live, I encourage the parents also to join hands with the school.
+                        <p class="card-text text-start">
+                            Education is about awakening—the power and beauty that lies within. It’s about developing character, broadening horizons, and accumulating a lifetime of experiences. Our mission is to empower students with knowledge, creative thinking, and moral integrity.
                         </p>
                     </div>
                 </div>
             </div>
 
             <!-- Executive Director -->
-            <div class="col-md-5 mb-4" data-aos="fade-left" data-aos-delay="800">
+            <div class="col-md-5" data-aos="fade-left">
                 <div class="card shadow h-100">
-                    <img src="images/home/ed.jpg" class="card-img-top" alt="Wg Cdr PS Gujral">
+                    <img src="/images/home/ed.jpg" class="card-img-top" alt="Wg Cdr PS Gujral">
                     <div class="card-body text-center">
                         <h5 class="card-title mb-1">Wg Cdr PS Gujral</h5>
                         <p class="text-muted small">Executive Director</p>
-                        <p class="card-text">
-                            The mind moulds our destiny and right thinking helps a person to determine his quotient in life. In the ever changing global world of today a healthy blend of Intelligent and Emotional Quotient will produce right symmetry for a balanced social & spiritual human being.
-
-                            The child centric curriculum interspersed with sports, music, art and cultural activities is key for the holistic development of a healthy mind and a healthy body.
-
-                            I strongly believe that our students have definite role to perform in society. My advice to each and every air warrior/civilian student is to "Be positive, Think positive and positive Results will follow".
-
-                            Let us take a pledge to strive for a positive mind and attitude and I am sure that success and glory will follow suit. "Wishing and working for your Success". "JAI HIND"
+                        <p class="card-text text-start">
+                            A positive mind fosters a positive life. Our student-centered curriculum blends academics with sports, music, and art to develop well-rounded individuals. I encourage each child to “Think positive, be positive, and positive results will follow.”
                         </p>
                     </div>
                 </div>
@@ -121,9 +109,8 @@
     </div>
 </section>
 
-
-<!-- CMS-driven News & Notices -->
-<section class="py-5" data-aos="zoom-in-right" data-aos-delay="1000">
+@* <!-- CMS: News & Notices -->
+<section class="py-5" id="news-notices">
     <div class="container">
         <div class="row">
             <div class="col-md-6">@await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)</div>
@@ -131,82 +118,184 @@
         </div>
         <div class="mt-5">@await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)</div>
     </div>
-</section>
+</section> *@
 
-<!-- Stats Counter -->
-<section class="py-5 bg-light text-center" data-aos="fade-up" data-aos-delay="1000">
+@* <section class="py-5" id="news-notices">
     <div class="container">
-        <div class="row">
-            <div class="col"><h3 class="display-6">46+</h3><p>Years of Excellence</p></div>
-            <div class="col"><h3 class="display-6">900+</h3><p>Institutions</p></div>
-            <div class="col"><h3 class="display-6">600,000+</h3><p>Students Enrolled</p></div>
+        <div class="row g-4">
+
+            <!-- Latest News -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-primary text-white d-flex align-items-center">
+                        <i class="bi bi-newspaper me-2"></i>
+                        <h5 class="mb-0">Latest News</h5>
+                    </div>
+                    <div class="card-body scroll-box">
+                        @await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice Board -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-warning text-dark d-flex align-items-center">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        <h5 class="mb-0">Notice Board</h5>
+                    </div>
+                    <div class="card-body scroll-box">
+                        @await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="mt-5">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white d-flex align-items-center">
+                    <i class="bi bi-calendar-event me-2"></i>
+                    <h5 class="mb-0">Recent Activities</h5>
+                </div>
+                <div class="card-body scroll-box">
+                    @await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ *@
+
+@* <section class="py-5" id="news-notices">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Latest News -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-primary text-white d-flex align-items-center">
+                        <i class="bi bi-newspaper me-2"></i>
+                        <h5 class="mb-0">Latest News</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="scroll-box p-3">
+                            @await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice Board -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-warning text-dark d-flex align-items-center">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        <h5 class="mb-0">Notice Board</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="scroll-box p-3">
+                            @await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="row g-4 mt-4">
+            <div class="col-12">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-success text-white d-flex align-items-center">
+                        <i class="bi bi-calendar-event me-2"></i>
+                        <h5 class="mb-0">Recent Activities</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="scroll-box p-3">
+                            @await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section> *@
 
-<section class="py-5 bg-white" id="leadership">
+<section class="py-5" id="news-notices">
     <div class="container">
-        <h2 class="text-center mb-5 fw-bold">Leadership</h2>
-        <div class="row justify-content-center">
-            <!-- Principal -->
-            <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-delay="800">
-                <div class="card shadow h-100">
-                    <img src="/images/home/principal.jpg" class="card-img-top" alt="Smt. Shalini Narayan">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-1">Smt. Shalini Narayan</h5>
-                        <p class="text-muted small">Principal</p>
-                        <p class="card-text">
-                            Education is about awakening-awakening to the power and beauty that lies within all of us.
+        <div class="row g-4">
 
-                            Education, in my opinion, is about more than simply bricks, mortar, and concrete; it's also about developing character, increasing horizons, and having a lifetime of experiences.
-
-                            The mission of our school is to develop well-rounded individuals with exemplary moral character by empowering students' knowledge and fostering their capacity for creative observation.
-
-                            In order to equip our students to enter the world, leave their mark, and significantly contribute to the society in which they live, I encourage the parents also to join hands with the school.
-                        </p>
+            <!-- Latest News -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-primary text-white d-flex align-items-center">
+                        <i class="bi bi-newspaper me-2"></i>
+                        <h5 class="mb-0">Latest News</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="scroll-marquee p-3">
+                            <ul class="marquee-list">
+                                @foreach (var item in Model.LatestNews.Concat(Model.LatestNews))
+                                {
+                                    <li>@item.Title – @item.Date.ToString("dd MMM yyyy")</li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Executive Director -->
-            <div class="col-md-5 mb-4" data-aos="fade-left" data-aos-delay="800">
-                <div class="card shadow h-100">
-                    <img src="images/home/ed.jpg" class="card-img-top" alt="Wg Cdr PS Gujral">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-1">Wg Cdr PS Gujral</h5>
-                        <p class="text-muted small">Executive Director</p>
-                        <p class="card-text">
-                            The mind moulds our destiny and right thinking helps a person to determine his quotient in life. In the ever changing global world of today a healthy blend of Intelligent and Emotional Quotient will produce right symmetry for a balanced social & spiritual human being.
-
-                            The child centric curriculum interspersed with sports, music, art and cultural activities is key for the holistic development of a healthy mind and a healthy body.
-
-                            I strongly believe that our students have definite role to perform in society. My advice to each and every air warrior/civilian student is to "Be positive, Think positive and positive Results will follow".
-
-                            Let us take a pledge to strive for a positive mind and attitude and I am sure that success and glory will follow suit. "Wishing and working for your Success". "JAI HIND"
-                        </p>
+            <!-- Notice Board -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-warning text-dark d-flex align-items-center">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        <h5 class="mb-0">Notice Board</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="scroll-marquee p-3">
+                            <ul class="marquee-list">
+                                @foreach (var item in Model.NoticeBoard.Concat(Model.NoticeBoard))
+                                {
+                                    <li>@item.Title – @item.Date.ToString("dd MMM yyyy")</li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Recent Activities -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-success text-white d-flex align-items-center">
+                        <i class="bi bi-calendar-event me-2"></i>
+                        <h5 class="mb-0">Recent Activities</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="scroll-marquee p-3">
+                            <ul class="marquee-list">
+                                @foreach (var activity in Model.RecentActivities.Concat(Model.RecentActivities))
+                                {
+                                    <li><strong>@activity.Caption</strong></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
 
-<!-- CMS-driven News & Notices -->
-<section class="py-5" data-aos="zoom-in-right" data-aos-delay="1000">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">@await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)</div>
-            <div class="col-md-6">@await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)</div>
-        </div>
-        <div class="mt-5">@await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)</div>
-    </div>
-</section>
+
 
 <!-- Stats Counter -->
-<section class="py-5 bg-light text-center" data-aos="fade-up" data-aos-delay="1000">
+<section class="py-5 bg-light text-center" id="stats">
     <div class="container">
-        <div class="row">
+        <div class="row g-4">
             <div class="col"><h3 class="display-6">46+</h3><p>Years of Excellence</p></div>
             <div class="col"><h3 class="display-6">900+</h3><p>Institutions</p></div>
             <div class="col"><h3 class="display-6">600,000+</h3><p>Students Enrolled</p></div>
@@ -214,8 +303,65 @@
     </div>
 </section>
 
-<!-- CTA -->
-<section class="py-5 text-white text-center" style="background:#003366;" data-aos="fade-up" data-aos-delay="1000">
+<!-- Vision, Mission, Objectives as Cards -->
+<section id="vision-mission-objectives" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Core Pillars</h2>
+        <div class="row g-4 justify-content-center">
+
+            <!-- Vision Card -->
+            <div class="col-md-4" data-aos="fade-right" data-aos-delay="400">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h4 class="card-title mb-3">Our Vision</h4>
+                        <p class="card-text">
+                            Envisions a robust, vibrant and holistic school education that will engender excellence in every sphere of human endeavour.
+                            To provide quality education and thus promote intellectual, social and cultural vivacity among its learners.
+                            To provide a stress-free learning environment that will develop competent, confident, enterprising and global citizens, who will promote harmony and peace.
+                            To instil a sense of social justice in the students and sensitize them to the needs of the environment and the community.
+                            To include high moral values, scientific temper and a spirit of enquiry in students to give them the competitive edge.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission Card -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h4 class="card-title mb-3">Our Mission</h4>
+                        <p class="card-text">
+                            To recognize the individuality & creativity in each student.
+                            To provide a learner - friendly environment.
+                            To emphasize the moral, social, emotional, physical and intellectual development.
+                            To emphasize moral values that will allow children to act with thought fulness and compassion towards humanity.
+                            To provide academic excellence, comprehensive development, emotional intelligence, physical fitness, life skills and disaster management skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objectives Card -->
+            <div class="col-md-4" data-aos="fade-left" data-aos-delay="800">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h4 class="card-title mb-3">Our Objectives</h4>
+                        <p>
+                            Continuous Improvement of the Organization
+                            Creation of a learning organization, in which "We teach students and not content".
+                            Developing Synergic Relationships: between the teacher and the taught.
+                            Developing Leadership qualities in the Staff as well as the Students, to empower them to be able to become successful and self-reliant citizens and face life with confidence and poise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 text-white text-center" style="background:#003366;" id="cta">
     <div class="container">
         <h2 class="mb-3">Admissions Open for 2025–26</h2>
         <a href="/apply" class="btn btn-light btn-lg">Apply Now</a>

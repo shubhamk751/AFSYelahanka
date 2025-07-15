@@ -20,3 +20,37 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.scroll-marquee {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: scrollUp 20s linear infinite;
+}
+
+    .marquee-list li {
+        padding: 6px 0;
+        font-size: 0.95rem;
+        border-bottom: 1px solid #eee;
+    }
+
+.scroll-marquee:hover .marquee-list {
+    animation-play-state: paused;
+}
+
+@keyframes scrollUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%); /* use -100% if you have enough items */
+    }
+}
+
