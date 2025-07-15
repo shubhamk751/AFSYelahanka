@@ -42,7 +42,7 @@
 <section class="py-5 bg-light" id="academics">
     <div class="container">
         <div class="row g-4">
-            <div class="col-md-4" data-aos="flip-left">
+            <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
                 <div class="card h-100 shadow-sm">
                     <img src="https://picsum.photos/seed/junior/400/250" class="card-img-top" alt="Junior Wing" />
                     <div class="card-body text-center">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="zoom-in">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                 <div class="card h-100 shadow-sm">
                     <img src="https://picsum.photos/seed/senior/400/250" class="card-img-top" alt="Senior Wing" />
                     <div class="card-body text-center">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="flip-right">
+            <div class="col-md-4" data-aos="flip-right" data-aos-delay="300">
                 <div class="card h-100 shadow-sm">
                     <img src="https://picsum.photos/seed/facilities/400/250" class="card-img-top" alt="Facilities" />
                     <div class="card-body text-center">
@@ -79,7 +79,7 @@
         <h2 class="text-center mb-5 fw-bold">Leadership</h2>
         <div class="row justify-content-center g-4">
             <!-- Principal -->
-            <div class="col-md-5" data-aos="fade-right">
+            <div class="col-md-5" data-aos="fade-right" data-aos-delay="400">
                 <div class="card shadow h-100">
                     <img src="/images/home/principal.jpg" class="card-img-top" alt="Smt. Shalini Narayan">
                     <div class="card-body text-center">
@@ -93,7 +93,7 @@
             </div>
 
             <!-- Executive Director -->
-            <div class="col-md-5" data-aos="fade-left">
+            <div class="col-md-5" data-aos="fade-left" data-aos-delay="500">
                 <div class="card shadow h-100">
                     <img src="/images/home/ed.jpg" class="card-img-top" alt="Wg Cdr PS Gujral">
                     <div class="card-body text-center">
@@ -108,118 +108,6 @@
         </div>
     </div>
 </section>
-
-@* <!-- CMS: News & Notices -->
-<section class="py-5" id="news-notices">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">@await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)</div>
-            <div class="col-md-6">@await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)</div>
-        </div>
-        <div class="mt-5">@await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)</div>
-    </div>
-</section> *@
-
-@* <section class="py-5" id="news-notices">
-    <div class="container">
-        <div class="row g-4">
-
-            <!-- Latest News -->
-            <div class="col-md-6">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-primary text-white d-flex align-items-center">
-                        <i class="bi bi-newspaper me-2"></i>
-                        <h5 class="mb-0">Latest News</h5>
-                    </div>
-                    <div class="card-body scroll-box">
-                        @await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)
-                    </div>
-                </div>
-            </div>
-
-            <!-- Notice Board -->
-            <div class="col-md-6">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-warning text-dark d-flex align-items-center">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
-                        <h5 class="mb-0">Notice Board</h5>
-                    </div>
-                    <div class="card-body scroll-box">
-                        @await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recent Activities -->
-        <div class="mt-5">
-            <div class="card shadow-sm">
-                <div class="card-header bg-success text-white d-flex align-items-center">
-                    <i class="bi bi-calendar-event me-2"></i>
-                    <h5 class="mb-0">Recent Activities</h5>
-                </div>
-                <div class="card-body scroll-box">
-                    @await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
- *@
-
-@* <section class="py-5" id="news-notices">
-    <div class="container">
-        <div class="row g-4">
-
-            <!-- Latest News -->
-            <div class="col-md-6">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-primary text-white d-flex align-items-center">
-                        <i class="bi bi-newspaper me-2"></i>
-                        <h5 class="mb-0">Latest News</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scroll-box p-3">
-                            @await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Notice Board -->
-            <div class="col-md-6">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-warning text-dark d-flex align-items-center">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
-                        <h5 class="mb-0">Notice Board</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scroll-box p-3">
-                            @await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recent Activities -->
-        <div class="row g-4 mt-4">
-            <div class="col-12">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-success text-white d-flex align-items-center">
-                        <i class="bi bi-calendar-event me-2"></i>
-                        <h5 class="mb-0">Recent Activities</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scroll-box p-3">
-                            @await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> *@
 
 <section class="py-5" id="news-notices">
     <div class="container">
@@ -292,7 +180,7 @@
 
 
 
-<!-- Stats Counter -->
+@* <!-- Stats Counter -->
 <section class="py-5 bg-light text-center" id="stats">
     <div class="container">
         <div class="row g-4">
@@ -301,7 +189,7 @@
             <div class="col"><h3 class="display-6">600,000+</h3><p>Students Enrolled</p></div>
         </div>
     </div>
-</section>
+</section> *@
 
 <!-- Vision, Mission, Objectives as Cards -->
 <section id="vision-mission-objectives" class="py-5 bg-light">
@@ -310,7 +198,7 @@
         <div class="row g-4 justify-content-center">
 
             <!-- Vision Card -->
-            <div class="col-md-4" data-aos="fade-right" data-aos-delay="400">
+            <div class="col-md-4" data-aos="fade-right" data-aos-delay="600">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="card-body text-center">
                         <h4 class="card-title mb-3">Our Vision</h4>
@@ -326,7 +214,7 @@
             </div>
 
             <!-- Mission Card -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="700">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="card-body text-center">
                         <h4 class="card-title mb-3">Our Mission</h4>

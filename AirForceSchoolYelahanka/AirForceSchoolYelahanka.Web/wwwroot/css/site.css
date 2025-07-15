@@ -1,35 +1,97 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Base Typography & Layout */
 body {
-  margin-bottom: 60px;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
+h1, h2, h3, h4, h5 {
+    font-weight: 600;
+}
+
+/* Navbar Styling (White Background, Black Text) */
+.navbar {
+    background: #ffffff;
+    padding: 0.8rem 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.custom-navbar {
+    background-color: #ffffff !important;
+    color: #212529;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #212529 !important;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+        color: #0d6efd !important;
+    }
+
+/* Dropdown Menu */
+.dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+    min-width: 200px;
+}
+
+.dropdown-item {
+    color: #212529;
+    padding: 0.5rem 1rem;
+    transition: background 0.2s;
+}
+
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+        color: #0d6efd;
+    }
+
+/* Buttons */
+.btn {
+    border-radius: 0.4rem;
+    font-weight: 500;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 0.75rem;
+}
+
+.card-header {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+/* Marquee Scroll Box */
 .scroll-marquee {
     height: 200px;
     overflow: hidden;
     position: relative;
+    background: #fff;
+    border-radius: 0.5rem;
 }
 
 .marquee-list {
     list-style: none;
-    padding: 0;
+    padding-left: 1rem;
     margin: 0;
     animation: scrollUp 20s linear infinite;
 }
@@ -37,7 +99,7 @@ body {
     .marquee-list li {
         padding: 6px 0;
         font-size: 0.95rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #f1f1f1;
     }
 
 .scroll-marquee:hover .marquee-list {
@@ -46,11 +108,21 @@ body {
 
 @keyframes scrollUp {
     0% {
-        transform: translateY(0);
+        transform: translateY(0%);
     }
 
     100% {
-        transform: translateY(-50%); /* use -100% if you have enough items */
+        transform: translateY(-50%);
     }
 }
 
+/* Utility */
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.bg-gradient-primary {
+    background: #fff;
+    color: white;
+}
