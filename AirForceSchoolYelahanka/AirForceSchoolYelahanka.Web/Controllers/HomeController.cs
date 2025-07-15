@@ -1,8 +1,8 @@
 using AirForceSchoolYelahanka.Web.Config;
 using AirForceSchoolYelahanka.Web.Models;
-using AirForceSchoolYelahanka.Web.Services;
-using AirForceSchoolYelahanka.Web.Services.Implementations;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
+using AirForceSchoolYelahanka.Web.ViewModel;
+using AirForceSchoolYelahanka.Web.ViewModel.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
@@ -22,9 +22,9 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var pageKey = "Home"; // This can be parameterized later
+            const string pageKey = "Home";
 
-            var viewModel = new Dictionary<string, Dictionary<string, string>>(); // SectionKey ? Content key-values
+            var viewModel = new HomePageViewModel();
 
             try
             {
@@ -37,32 +37,44 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                 foreach (var sectionKey in sectionKeys)
                 {
                     var section = await _cmsService.GetSectionAsync(sectionKey);
-                    var contentDict = new Dictionary<string, string>();
+                    if (section == null || string.IsNullOrWhiteSpace(section.ContentJson))
+                        continue;
 
-                    if (!string.IsNullOrWhiteSpace(section?.ContentJson))
+                    try
                     {
-                        try
+                        switch (sectionKey)
                         {
-                            contentDict = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson)
-                                           ?? new Dictionary<string, string>();
-                        }
-                        catch (JsonException jsonEx)
-                        {
-                            _logger.LogError(jsonEx, $"Failed to deserialize JSON for section '{sectionKey}'.");
+                            case "HomePage_LatestNews":
+                                viewModel.LatestNews = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson) ?? new();
+                                break;
+
+                            case "HomePage_NoticeBoard":
+                                viewModel.NoticeBoard = JsonSerializer.Deserialize<List<NoticeItem>>(section.ContentJson) ?? new();
+                                break;
+
+                            case "HomePage_RecentActivities":
+                                viewModel.RecentActivities = JsonSerializer.Deserialize<List<ActivityItem>>(section.ContentJson) ?? new();
+                                break;
+
+                            default:
+                                // Store generic section content (e.g. title, subtitle) as dictionary
+                                var sectionContent = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson) ?? new();
+                                viewModel.SectionContent[sectionKey] = sectionContent;
+                                break;
                         }
                     }
-
-                    viewModel[sectionKey] = contentDict;
+                    catch (JsonException ex)
+                    {
+                        _logger.LogError(ex, $"Failed to deserialize content for section '{sectionKey}'.");
+                    }
                 }
-
-                return View(viewModel);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error loading home content");
-                return View(new Dictionary<string, Dictionary<string, string>>());
+                _logger.LogError(ex, "Unexpected error loading home page content.");
             }
-        }
 
+            return View(viewModel);
+        }
     }
 }

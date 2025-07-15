@@ -1,16 +1,103 @@
-﻿@model Dictionary<string, Dictionary<string, string>>
+﻿@model AirForceSchoolYelahanka.Web.ViewModel.Home.HomePageViewModel
+@using System.IO
 
+<!-- 1. Dynamic Banner Carousel -->
 @{
-    ViewData["Title"] = "Home Page";
+    var bannerDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/banners");
+    var banners = Directory.Exists(bannerDir)
+        ? Directory.GetFiles(bannerDir).Select(f => "/images/banners/" + System.IO.Path.GetFileName(f)).ToList()
+        : new List<string>();
+}
+@if (banners.Any())
+{
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @for (int i = 0; i < banners.Count; i++)
+            {
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <img src="@banners[i]" class="d-block w-100" style="height:500px; object-fit:cover;" />
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
 }
 
-@foreach (var section in Model)
-{
-    <h3>@(section.Key)</h3>
-    <ul>
-        @foreach (var kv in section.Value)
-        {
-            <li><strong>@kv.Key</strong>: @kv.Value</li>
-        }
-    </ul>
-}
+<!-- 2. CMS-driven Hero Section -->
+<section class="hero text-center text-white py-5 bg-primary">
+    <div class="container">
+        <h1 class="display-4">@Model.SectionContent["HomePageHero"]["Title"]</h1>
+        <p class="lead">@Model.SectionContent["HomePageHero"]["Subtitle"]</p>
+        <a href="/about" class="btn btn-light mt-3">Learn More</a>
+    </div>
+</section>
+
+<!-- 3. Static Info Grid -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm text-center">
+                    <img src="/images/junior.jpg" class="card-img-top" alt="Junior Wing">
+                    <div class="card-body">
+                        <h5 class="card-title">Junior Wing</h5>
+                        <p class="card-text">LKG to Class II – project‑based learning.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm text-center">
+                    <img src="/images/senior.jpg" class="card-img-top" alt="Senior Wing">
+                    <div class="card-body">
+                        <h5 class="card-title">Senior Wing</h5>
+                        <p class="card-text">Class III to XII with CBSE focus.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm text-center">
+                    <img src="/images/facilities.jpg" class="card-img-top" alt="Facilities">
+                    <div class="card-body">
+                        <h5 class="card-title">Lab & Facilities</h5>
+                        <p class="card-text">Modern science & IT labs to support learning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. CMS Latest News, Notices, Activities -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">@await Html.PartialAsync("~/Views/Home/Sections/_LatestNews.cshtml", Model.LatestNews)</div>
+            <div class="col-md-6">@await Html.PartialAsync("~/Views/Home/Sections/_NoticeBoard.cshtml", Model.NoticeBoard)</div>
+        </div>
+        <div class="mt-5">@await Html.PartialAsync("~/Views/Home/Sections/_RecentActivities.cshtml", Model.RecentActivities)</div>
+    </div>
+</section>
+
+<!-- 5. Stats Counter -->
+<section class="py-5 bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col"><h3 class="display-6">46+</h3><p>Years of Legacy</p></div>
+            <div class="col"><h3 class="display-6">900+</h3><p>Institutions</p></div>
+            <div class="col"><h3 class="display-6">600,000+</h3><p>Students Annually</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Call to Action -->
+<section class="py-5 text-white text-center" style="background:#003366;">
+    <div class="container">
+        <h2>Admissions Open for 2025–26</h2>
+        <a href="/apply" class="btn btn-light btn-lg mt-3">Apply Now</a>
+    </div>
+</section>
