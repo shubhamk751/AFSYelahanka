@@ -2,6 +2,7 @@
 using AirForceSchoolYelahanka.Web.Data;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using AirForceSchoolYelahanka.Web.ViewModel;
+using AirForceSchoolYelahanka.Web.ViewModel.Home;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -66,17 +67,18 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
             foreach (var key in sectionKeys)
             {
-                string contentJson = "{}";
+                string contentJson = "[]"; // Default as array
 
                 try
                 {
                     var section = await _cmsService.GetSectionAsync(key);
                     if (!string.IsNullOrWhiteSpace(section?.ContentJson))
                     {
-                        var contentDict = JsonSerializer.Deserialize<Dictionary<string, string>>(section.ContentJson)
-                                          ?? new Dictionary<string, string>();
+                        // Deserialize to validate it matches the expected List<NewsItem> format
+                        var parsed = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson);
 
-                        contentJson = JsonSerializer.Serialize(contentDict, new JsonSerializerOptions
+                        // If successful, pretty-print it
+                        contentJson = JsonSerializer.Serialize(parsed, new JsonSerializerOptions
                         {
                             WriteIndented = true
                         });

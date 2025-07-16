@@ -1,14 +1,20 @@
 ﻿@model List<AirForceSchoolYelahanka.Web.ViewModel.Home.NewsItem>
 
-<div class="latest-news">
-    <h3>Latest News</h3>
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li>
-                <a href="@item.Link">@item.Title</a>
-                <small class="text-muted d-block">@item.Date.ToString("dd MMM yyyy")</small>
-            </li>
-        }
-    </ul>
+<div class="col-md-4">
+    <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <i class="bi bi-newspaper me-2"></i>
+            <h5 class="mb-0">Latest News</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="scroll-marquee p-3">
+                <ul class="marquee-list">
+                    @foreach (var item in Model)
+                    {
+                        <li><strong>@item.Title – @item.Date.ToString("dd MMM yyyy")</strong></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

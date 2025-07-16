@@ -38,11 +38,9 @@
         <div class="form-group mt-4">
             <label for="section-@i"><strong>@cmsSection.Key</strong></label>
             <input type="hidden" name="Sections[@i].Key" value="@cmsSection.Key" />
-            <textarea id="section-@i"
-                      name="Sections[@i].ContentJson"
-                      class="form-control"
-                      rows="6"
-                      aria-label="Content for @cmsSection.Key">@cmsSection.ContentJson</textarea>
+            <textarea name="Sections[@i].ContentJson" class="form-control font-monospace" rows="10" spellcheck="false">@cmsSection.ContentJson</textarea>
+            <small class="text-muted">Enter valid JSON array of objects: [ {{ "key": "value" }} ]</small>
+
 
             @if (ViewData.ModelState[$"Sections[{i}].ContentJson"]?.Errors.Count > 0)
             {
