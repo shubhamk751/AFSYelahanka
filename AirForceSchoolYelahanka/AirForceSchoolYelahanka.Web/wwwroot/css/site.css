@@ -179,3 +179,50 @@ footer {
     background: #fff;
     color: white;
 }
+
+/* Responsive Enhancements */
+
+/* Fix carousel image height on small devices */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 250px !important;
+        object-fit: cover;
+    }
+}
+
+/* Fix navbar brand logo on smaller devices */
+@media (max-width: 576px) {
+    .navbar-brand img.school-logo {
+        height: 40px;
+        max-width: 90%;
+    }
+}
+
+/* Adjust text alignment in leadership cards on small devices */
+@media (max-width: 768px) {
+    #leadership .card-body p.card-text {
+        text-align: center !important;
+    }
+}
+
+/* Adjust hero section button spacing */
+@media (max-width: 768px) {
+    #hero-combined .btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+/* Align vision/mission/objectives text properly on smaller screens */
+@media (max-width: 768px) {
+    .custom-card .card-text {
+        text-align: center !important;
+    }
+}
+
+/* Footer text scaling */
+@media (max-width: 576px) {
+    footer .container {
+        font-size: 0.85rem;
+    }
+}
