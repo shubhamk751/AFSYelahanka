@@ -1,14 +1,20 @@
 ﻿@model List<AirForceSchoolYelahanka.Web.ViewModel.Home.NoticeItem>
 
-<div class="notice-board">
-    <h3>Notice Board</h3>
-    <ul>
-        @foreach (var notice in Model)
-        {
-            <li>
-                <strong>@notice.Title</strong><br />
-                <small class="text-muted">@notice.Date.ToString("dd MMM yyyy")</small>
-            </li>
-        }
-    </ul>
+<div class="col-md-4">
+    <div class="card shadow-sm h-100">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            <h5 class="mb-0">Notice Board</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="scroll-marquee p-3">
+                <ul class="marquee-list">
+                    @foreach (var item in Model)
+                    {
+                        <li><strong>@item.Title – @item.Date.ToString("dd MMM yyyy")</strong></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

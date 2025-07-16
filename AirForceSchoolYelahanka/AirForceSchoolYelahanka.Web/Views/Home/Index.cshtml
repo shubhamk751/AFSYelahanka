@@ -32,8 +32,8 @@
 <!-- Hero Section -->
 <section class="text-white text-center py-5 bg-primary" id="hero">
     <div class="container">
-        <h1 class="display-4">@Model.SectionContent["HomePageHero"]["Title"]</h1>
-        <p class="lead">@Model.SectionContent["HomePageHero"]["Subtitle"]</p>
+        <h1 class="display-4">Welcome to Air Force School Yelahanka</h1>
+        <p class="lead">Air Force School, Yelahanka has been successfully imparting quality education for the past 52 years. This school was established initially as Nursery School during 1970-71 in the temporary building (T - 55) to cater to the educational needs of Tiny Tots of the station.</p>
         <a href="/about" class="btn btn-light mt-3">Learn More</a>
     </div>
 </section>
@@ -114,65 +114,14 @@
         <div class="row g-4">
 
             <!-- Latest News -->
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-primary text-white d-flex align-items-center">
-                        <i class="bi bi-newspaper me-2"></i>
-                        <h5 class="mb-0">Latest News</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scroll-marquee p-3">
-                            <ul class="marquee-list">
-                                @foreach (var item in Model.LatestNews.Concat(Model.LatestNews))
-                                {
-                                    <li>@item.Title – @item.Date.ToString("dd MMM yyyy")</li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @await Html.PartialAsync("Sections/_LatestNews", Model.LatestNews)
 
             <!-- Notice Board -->
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-warning text-dark d-flex align-items-center">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
-                        <h5 class="mb-0">Notice Board</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scroll-marquee p-3">
-                            <ul class="marquee-list">
-                                @foreach (var item in Model.NoticeBoard.Concat(Model.NoticeBoard))
-                                {
-                                    <li>@item.Title – @item.Date.ToString("dd MMM yyyy")</li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @await Html.PartialAsync("Sections/_NoticeBoard", Model.NoticeBoard)
 
             <!-- Recent Activities -->
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-success text-white d-flex align-items-center">
-                        <i class="bi bi-calendar-event me-2"></i>
-                        <h5 class="mb-0">Recent Activities</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scroll-marquee p-3">
-                            <ul class="marquee-list">
-                                @foreach (var activity in Model.RecentActivities.Concat(Model.RecentActivities))
-                                {
-                                    <li><strong>@activity.Caption</strong></li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)
+            
         </div>
     </div>
 </section>
