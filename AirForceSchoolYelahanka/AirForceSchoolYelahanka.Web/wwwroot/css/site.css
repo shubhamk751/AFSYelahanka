@@ -93,6 +93,38 @@ h1, h2, h3, h4, h5 {
     font-size: 1.05rem;
 }
 
+.custom-card {
+    background-color: #f9fafb;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+}
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+.card-top-bar {
+    height: 5px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background: linear-gradient(90deg, #3b82f6, #4f46e5);
+}
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: #374151;
+    text-align: justify;
+}
+
 /* Footer */
 footer {
     background-color: #003366;
