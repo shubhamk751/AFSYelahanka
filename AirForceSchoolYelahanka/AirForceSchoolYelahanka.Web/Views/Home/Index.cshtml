@@ -29,7 +29,7 @@
     </div>
 }
 
-<!-- Hero Section -->
+@* <!-- Hero Section -->
 <section class="text-white text-center py-5 bg-primary" id="hero">
     <div class="container">
         <h1 class="display-4">Welcome to Air Force School Yelahanka</h1>
@@ -44,7 +44,7 @@
         <div class="row g-4">
             <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://picsum.photos/seed/junior/400/250" class="card-img-top" alt="Junior Wing" />
+                    <img src="/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Junior Wing</h5>
                         <p class="card-text">LKG to Class II – Fun, engaging & foundational learning.</p>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://picsum.photos/seed/senior/400/250" class="card-img-top" alt="Senior Wing" />
+                    <img src="/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Senior Wing</h5>
                         <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
@@ -71,7 +71,44 @@
             </div>
         </div>
     </div>
+</section> *@
+
+<!-- Combined Hero and Info Cards Section -->
+<section class="py-5 bg-primary text-white text-center" id="hero-combined">
+    <div class="container">
+        <div class="row align-items-stretch g-4">
+            <!-- Hero Text Column -->
+            <div class="col-md-4 d-flex flex-column justify-content-center">
+                <h1 class="fs-2">Welcome to Air Force School Yelahanka</h1>
+                <p class="fs-6">Air Force School, Yelahanka has been successfully imparting quality education for the past 52 years. This school was established initially as Nursery School during 1970-71 in the temporary building (T - 55) to cater to the educational needs of Tiny Tots of the station.</p>
+                <a href="/about" class="btn btn-light mt-3">Learn More</a>
+            </div>
+
+            <!-- Junior Wing Card -->
+            <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+                <div class="card h-100 shadow-sm text-dark">
+                    <img src="/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Junior Wing</h5>
+                        <p class="card-text">LKG to Class II – Fun, engaging & foundational learning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Senior Wing Card -->
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card h-100 shadow-sm text-dark">
+                    <img src="/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Senior Wing</h5>
+                        <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 
 <!-- Leadership Section -->
 <section class="py-5 bg-white" id="leadership">
@@ -125,9 +162,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 @* <!-- Stats Counter -->
 <section class="py-5 bg-light text-center" id="stats">
