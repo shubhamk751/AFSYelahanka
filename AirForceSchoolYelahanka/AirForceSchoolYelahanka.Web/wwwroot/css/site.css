@@ -226,3 +226,25 @@ footer {
         font-size: 0.85rem;
     }
 }
+
+.org-image-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+    .org-image-wrapper img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #dee2e6;
+        background-color: #fff;
+    }
+
+.fixed-width-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+    .fixed-width-table th,
+    .fixed-width-table td {
+        word-wrap: break-word;
+    }

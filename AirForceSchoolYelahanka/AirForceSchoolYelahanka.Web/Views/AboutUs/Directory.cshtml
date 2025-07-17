@@ -1,0 +1,162 @@
+﻿@model AirForceSchoolYelahanka.Web.ViewModel.AboutUs.StaffDirectoryViewModel
+
+<!-- SECTION 1: Staff Strength Overview -->
+<section class="py-5 bg-light" id="staff-summary">
+    <div class="container">
+        <div class="bg-white p-4 shadow rounded-3">
+            <h2 class="mb-4 text-primary fw-bold text-center">Staff Strength Overview</h2>
+            <div class="row g-4 justify-content-center">
+                @foreach (var item in Model.StaffCountByRole)
+                {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase text-muted small">@item.Key</h5>
+                                <h3 class="fw-bold text-primary">@item.Value.ToString("D2")</h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: Staff Details -->
+<section class="py-5 bg-light" id="staff-details">
+    <div class="container">
+        <div class="bg-white p-4 shadow rounded-3">
+            <h2 class="mb-4 text-primary fw-bold text-center">Staff Details</h2>
+
+            <div class="table-responsive" style="max-height: 600px; overflow-y: auto; overflow-x: auto;">
+                <table class="table table-bordered align-middle fixed-width-table">
+                    <thead class="table-primary position-sticky top-0">
+                        <tr>
+                            <th style="width: 60px;">Sl No</th>
+                            <th>Name of the Staff</th>
+                            <th>Qualification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int slNo = 1;
+                            var categoryOrder = new List<string> {
+                                                "Principal", "PGT", "TGT", "Headmistress", "PRT", "NTT", "Admin", "Helpers"
+                                                };
+                            var orderedModel = Model.StaffGroupedByRole.OrderBy(m => categoryOrder.IndexOf(m.Key));
+                        }
+
+                        @foreach (var group in orderedModel)
+                        {
+                            <tr class="table-secondary">
+                                <td colspan="3" class="fw-bold text-center">@group.Key</td>
+                            </tr>
+
+                            @foreach (var staff in group.Value)
+                            {
+                                <tr>
+                                    <td>@slNo</td>
+                                    <td>@staff.Name</td>
+                                    <td>@staff.Qualification</td>
+                                </tr>
+                                slNo++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: Visiting Hours -->
+<section class="py-5 bg-light" id="visiting-hours">
+    <div class="container">
+        <div class="bg-white p-4 shadow rounded-3">
+            <h2 class="text-center text-primary fw-bold mb-4">Visiting Hours</h2>
+
+            <div class="accordion shadow-sm mx-auto" id="visitingHoursAccordion" style="max-width: 900px;">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="vh1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#vh1Content">
+                            <i class="bi bi-person-badge me-2 text-primary"></i> Principal
+                        </button>
+                    </h2>
+                    <div id="vh1Content" class="accordion-collapse collapse show" data-bs-parent="#visitingHoursAccordion">
+                        <div class="accordion-body bg-white">
+                            Wednesday & Saturday — <strong>11:30 AM to 01:30 PM</strong><br />
+                            <em>Appointment required via phone or diary note</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="vh2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh2Content">
+                            <i class="bi bi-person-fill-check me-2 text-primary"></i> Head Mistress
+                        </button>
+                    </h2>
+                    <div id="vh2Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                        <div class="accordion-body bg-white">
+                            Monday & Wednesday — <strong>08:00 AM – 09:00 AM</strong><br />
+                            Saturday — <strong>08:00 AM – 11:30 AM</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="vh3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh3Content">
+                            <i class="bi bi-person-lines-fill me-2 text-primary"></i> Teachers
+                        </button>
+                    </h2>
+                    <div id="vh3Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                        <div class="accordion-body bg-white">
+                            Prior appointment required via diary note.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="vh4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh4Content">
+                            <i class="bi bi-people-fill me-2 text-primary"></i> Nursery
+                        </button>
+                    </h2>
+                    <div id="vh4Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                        <div class="accordion-body bg-white">
+                            Monday & Friday — <strong>12:30 PM to 01:30 PM</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="vh5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh5Content">
+                            <i class="bi bi-people-fill me-2 text-primary"></i> Primary
+                        </button>
+                    </h2>
+                    <div id="vh5Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                        <div class="accordion-body bg-white">
+                            Tuesday & Wednesday — <strong>02:10 PM to 02:30 PM</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="vh6">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh6Content">
+                            <i class="bi bi-people-fill me-2 text-primary"></i> Secondary & Senior Secondary
+                        </button>
+                    </h2>
+                    <div id="vh6Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                        <div class="accordion-body bg-white">
+                            Friday & Saturday — <strong>02:10 PM to 02:30 PM</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
