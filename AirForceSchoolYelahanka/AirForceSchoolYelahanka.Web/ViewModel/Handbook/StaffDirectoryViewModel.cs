@@ -1,6 +1,6 @@
 ﻿using AirForceSchoolYelahanka.Web.Models;
 
-namespace AirForceSchoolYelahanka.Web.ViewModel.AboutUs
+namespace AirForceSchoolYelahanka.Web.ViewModel.Handbook
 {
     public class StaffDirectoryViewModel
     {
