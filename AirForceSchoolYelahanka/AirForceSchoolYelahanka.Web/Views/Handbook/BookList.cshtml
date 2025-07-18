@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Book-List";
+}
+@{
+    ViewData["Title"] = "Book List";
+    var classNames = new List<string> {
+        "LKG & UKG", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "", ""
+    };
+}
+
+<section class="py-5" id="book-list">
+    <div class="container">
+        <div class="text-center section-header mb-4" data-aos="fade-up">
+            <h2 class="fw-bold text-primary">Book List 2024–25</h2>
+            <p class="text-muted">Essential textbooks & notebooks for LKG to XII</p>
+        </div>
+
+        <div class="row g-4">
+            @for (int i = 0; i < classNames.Count; i++)
+            {
+                if (i == 11 || i == 12) { continue; }
+
+                var fileName = $"class-{i + 1}.pdf"; // Skip 0th since it's LKG & UKG
+                if (i == 0) { fileName = "class-lkg-ukg.pdf"; }
+
+                @* <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="@((i + 1) * 100)"> *@
+                <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-primary">@classNames[i]</h5>
+                            <p class="text-muted mb-4 small">View or download book list.</p>
+                            <div class="mt-auto">
+                                <a href="/files/handbook/book-list/@fileName" class="btn btn-outline-primary btn-sm w-100 mb-2" target="_blank">
+                                    <i class="bi bi-eye-fill me-1"></i> View
+                                </a>
+                                <a href="/files/handbook/book-list/@fileName" download class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-download me-1"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Class 11 & 12 Commerce & Science -->
+            @foreach (var stream in new[] { "Commerce", "Science" })
+            {
+                for (int cls = 11; cls <= 12; cls++)
+                {
+                    var file = $"class-{cls}-{stream.ToLower()}.pdf";
+                    @* <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="@((cls - 10) * 100 + (stream == "Science" ? 100 : 0))"> *@
+                    <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-primary">Class @cls – @stream</h5>
+                                <p class="text-muted mb-4 small">Books for @stream stream.</p>
+                                <div class="mt-auto">
+                                    <a href="/files/handbook/book-list/@file" class="btn btn-outline-primary btn-sm w-100 mb-2" target="_blank">
+                                        <i class="bi bi-eye-fill me-1"></i> View
+                                    </a>
+                                    <a href="/files/handbook/book-list/@file" download class="btn btn-primary btn-sm w-100">
+                                        <i class="bi bi-download me-1"></i> Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+

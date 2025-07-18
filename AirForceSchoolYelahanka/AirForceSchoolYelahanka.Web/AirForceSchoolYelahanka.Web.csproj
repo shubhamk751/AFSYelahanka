@@ -21,9 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ViewModel\AboutUs\" />
     <Folder Include="wwwroot\images\banners\" />
     <Folder Include="wwwroot\images\handbook\" />
     <Folder Include="wwwroot\images\infra\junior-wing\" />
+    <Folder Include="wwwroot\images\NewFolder\" />
+    <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 
 </Project>
