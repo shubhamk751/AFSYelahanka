@@ -1,7 +1,9 @@
 ﻿@{
-    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/infra/junior-wing");
+    ViewData["Title"] = "Junior Wing Infra";
+    
+    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "infra", "junior-wing");
     var imageFiles = Directory.Exists(imageDir)
-        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".png")).ToList()
+        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png")).ToList()
         : new List<string>();
     var webImagePaths = imageFiles.Select(f => "/images/infra/junior-wing/" + System.IO.Path.GetFileName(f)).ToList();
 }

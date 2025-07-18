@@ -365,3 +365,12 @@ footer {
     .download-link:hover {
         text-decoration: underline;
     }
+
+
+.gallery-thumb {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* ensures crop without distortion */
+    border-radius: 8px;
+    cursor: pointer;
+}
