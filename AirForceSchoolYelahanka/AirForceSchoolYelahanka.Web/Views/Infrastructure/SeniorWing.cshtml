@@ -1,0 +1,126 @@
+﻿@{
+    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/infra/senior-wing");
+    var imageFiles = Directory.Exists(imageDir)
+        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".png")).ToList()
+        : new List<string>();
+    var webImagePaths = imageFiles.Select(f => "/images/infra/senior-wing/" + System.IO.Path.GetFileName(f)).ToList();
+}
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center text-primary fw-bold mb-4">Senior Wing Facilities</h2>
+        <div class="position-relative">
+            <button class="scroll-btn left" aria-label="Scroll Left">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <div class="dock-gallery d-flex flex-nowrap overflow-auto px-3">
+                @foreach (var imagePath in webImagePaths)
+                {
+                    var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                    var imageName = System.IO.Path.GetFileName(imagePath);
+                    var title = System.Globalization.CultureInfo.CurrentCulture.TextInfo
+                    .ToTitleCase(fileName.Replace("-", " ").Replace("_", " "));
+
+                    <div class="dock-item text-center mx-2">
+                        <div class="dock-inner d-flex flex-column align-items-center">
+                            <img src="@imagePath" alt="@title" class="dock-img" />
+                            <p class="small mt-2 mb-1">@title</p>
+                            <a href="@imagePath" download class="download-link">
+                                <i class="bi bi-download me-1"></i>Download
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="scroll-btn right" aria-label="Scroll Right">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" id="Senior-infra">
+    <div class="container">
+        <!-- Room Summary Table -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold text-primary">Room & Facility Summary</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered mt-3">
+                        <thead class="table-light">
+                            <tr><th>Facility</th><th>Count</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Class Rooms</td><td>14</td></tr>
+                            <tr><td>Activity Room</td><td>1</td></tr>
+                            <tr><td>Computer Lab</td><td>1</td></tr>
+                            <tr><td>Admin Office</td><td>1</td></tr>
+                            <tr><td>Staff Room</td><td>1</td></tr>
+                            <tr><td>Sick Room</td><td>1</td></tr>
+                            <tr><td>Toilets</td><td>4</td></tr>
+                            <tr><td>Fire Appliance Points</td><td>2</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- About/Context -->
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold text-primary">About the Senior Wing</h5>
+                <p class="text-muted">
+                    Air Force School’s Senior Wing is thoughtfully equipped with essential facilities – from interactive traffic and play parks to safety features like CCTV, fire appliances, and AV rooms.
+                </p>
+                <p class="text-muted small"><em>Facilities include Children's Traffic Park, Play Area, Fire Appliance, AV Room & CCTV, Sick & Counselling Room, 3D Activity Room, etc.</em></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const gallery = document.querySelector('.dock-gallery');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Drag scroll for desktop
+    if (window.innerWidth >= 768) {
+        gallery.addEventListener('mousedown', (e) => {
+            isDown = true;
+            gallery.classList.add('dragging');
+            startX = e.pageX - gallery.offsetLeft;
+            scrollLeft = gallery.scrollLeft;
+        });
+
+        gallery.addEventListener('mouseleave', () => {
+            isDown = false;
+            gallery.classList.remove('dragging');
+        });
+
+        gallery.addEventListener('mouseup', () => {
+            isDown = false;
+            gallery.classList.remove('dragging');
+        });
+
+        gallery.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed
+            gallery.scrollLeft = scrollLeft - walk;
+        });
+    }
+
+    // Scroll buttons
+    const leftBtn = document.querySelector('.scroll-btn.left');
+    const rightBtn = document.querySelector('.scroll-btn.right');
+
+    leftBtn.addEventListener('click', () => {
+        gallery.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+
+    rightBtn.addEventListener('click', () => {
+        gallery.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+</script>

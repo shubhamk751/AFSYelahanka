@@ -9,5 +9,10 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             return View();
         }
+        [Route("senior-wing")]
+        public IActionResult SeniorWing()
+        {
+            return View();
+        }
     }
 }
