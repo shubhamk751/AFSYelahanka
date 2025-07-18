@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- 🌊 Global Animated Wave Background -->
     <div class="global-wave-background">
         <svg class="global-waves" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -111,26 +111,31 @@
                                 Activities
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
+                                <!-- First submenu -->
+                                <li class="dropdown-submenu position-relative">
                                     <a class="dropdown-item dropdown-toggle" href="#">Co-Curricular</a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu start-100 top-0 mt-0">
                                         <li><a class="dropdown-item" href="/cca-junior">Junior Wing</a></li>
                                         <li><a class="dropdown-item" href="/cca-senior">Senior Wing</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown-submenu">
+
+                                <!-- Second submenu -->
+                                <li class="dropdown-submenu position-relative">
                                     <a class="dropdown-item dropdown-toggle" href="#">Celebrations</a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu start-100 top-0 mt-0">
                                         <li><a class="dropdown-item" href="/activities-celebrations-junior">Junior Wing</a></li>
                                         <li><a class="dropdown-item" href="/activities/celebrations/senior">Senior Wing</a></li>
                                     </ul>
                                 </li>
+
                                 <li><a class="dropdown-item" href="/activities/sports">Sports</a></li>
                                 <li><a class="dropdown-item" href="/activities/scouts-guides">Scouts & Guides</a></li>
                                 <li><a class="dropdown-item" href="/activities/ncc">NCC</a></li>
                                 <li><a class="dropdown-item" href="/activities/magazine">Magazine</a></li>
                             </ul>
                         </li>
+
 
                         <!-- News -->
                         <li class="nav-item">
@@ -154,7 +159,7 @@
         </main>
     </div>
 
-    <footer class="mt-auto bg-dark text-white py-3">
+    <footer class="bg-dark text-white mt-auto">
         <div class="container text-center small">
             © 2025 Air Force School Yelahanka — All rights reserved.
             <a href="/privacy" class="text-white text-decoration-underline ms-2">Privacy</a>
