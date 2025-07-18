@@ -249,3 +249,119 @@ footer {
         word-wrap: break-word;
     }
 
+/* --- Dock Scroll Container --- */
+.dock-gallery {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding: 1rem;
+    touch-action: pan-x;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: relative;
+}
+
+    .dock-gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+.dock-item {
+    position: relative;
+    overflow: visible;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    text-align: center;
+    padding-bottom: 2rem; /* Ensure room for download button */
+}
+
+.dock-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Zoom on hover — Desktop only */
+@media (min-width: 768px) {
+    .dock-gallery {
+        overflow: visible;
+    }
+
+    .dock-item {
+        z-index: 1;
+    }
+
+        .dock-item:hover {
+            z-index: 10;
+        }
+
+            .dock-item:hover .dock-img {
+                transform: scale(2);
+                transform-origin: center bottom;
+            }
+}
+
+/* Disable zoom on mobile */
+@media (max-width: 767.98px) {
+    .dock-item:hover .dock-img {
+        transform: none !important;
+    }
+}
+
+/* Dragging Cursor */
+.dock-gallery.dragging {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    user-select: none;
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .scroll-btn.left {
+        left: -10px;
+    }
+
+    .scroll-btn.right {
+        right: -10px;
+    }
+
+    .scroll-btn:hover {
+        background: #f1f1f1;
+    }
+
+/* Download link below image */
+.download-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: #0d6efd;
+    margin-top: 0.4rem;
+    text-decoration: none;
+}
+
+    .download-link:hover {
+        text-decoration: underline;
+    }
