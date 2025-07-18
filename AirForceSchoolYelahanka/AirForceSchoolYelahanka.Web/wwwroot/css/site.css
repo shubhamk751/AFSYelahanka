@@ -253,13 +253,14 @@ footer {
 .dock-gallery {
     display: flex;
     overflow-x: auto;
+    overflow-y: visible; /* Allow zoom-outside items */
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 1rem;
     padding: 1rem;
     touch-action: pan-x;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     position: relative;
 }
 
@@ -268,13 +269,11 @@ footer {
     }
 
 .dock-item {
+    position: relative;
+    overflow: visible; /* Allow zoom to overflow */
     flex: 0 0 auto;
     scroll-snap-align: center;
     text-align: center;
-    position: relative;
-    padding: 1rem 0.5rem;
-    overflow: visible; /* Allow zoomed image to expand */
-    z-index: 1;
 }
 
 .dock-img {
@@ -290,8 +289,18 @@ footer {
 
 /* Zoom on hover — Desktop only */
 @media (min-width: 768px) {
+    .dock-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 16px;
+        transition: transform 0.3s ease;
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
     .dock-item:hover {
-        z-index: 5; /* Bring the item above others */
+        z-index: 10; /* Bring forward */
     }
 
         .dock-item:hover .dock-img {
