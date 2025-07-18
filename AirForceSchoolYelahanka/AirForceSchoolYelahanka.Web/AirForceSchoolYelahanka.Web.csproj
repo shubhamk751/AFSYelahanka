@@ -22,7 +22,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\banners\" />
-    <Folder Include="wwwroot\images\NewFolder\" />
+    <Folder Include="wwwroot\images\handbook\" />
+    <Folder Include="wwwroot\images\infra\junior-wing\" />
   </ItemGroup>
 
 </Project>
