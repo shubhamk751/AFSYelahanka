@@ -253,7 +253,7 @@ footer {
 .dock-gallery {
     display: flex;
     overflow-x: auto;
-    overflow-y: visible; /* Allow zoom-outside items */
+    overflow-y: visible;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 1rem;
@@ -265,20 +265,21 @@ footer {
 }
 
     .dock-gallery::-webkit-scrollbar {
-        display: none; /* Chrome, Safari */
+        display: none;
     }
 
 .dock-item {
     position: relative;
-    overflow: visible; /* Allow zoom to overflow */
+    overflow: visible;
     flex: 0 0 auto;
     scroll-snap-align: center;
     text-align: center;
+    padding-bottom: 2rem; /* Ensure room for download button */
 }
 
 .dock-img {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     border-radius: 16px;
     transition: transform 0.3s ease;
@@ -289,23 +290,22 @@ footer {
 
 /* Zoom on hover — Desktop only */
 @media (min-width: 768px) {
-    .dock-img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 16px;
-        transition: transform 0.3s ease;
-        -webkit-user-drag: none;
-        user-select: none;
+    .dock-gallery {
+        overflow: visible;
     }
 
-    .dock-item:hover {
-        z-index: 10; /* Bring forward */
+    .dock-item {
+        z-index: 1;
     }
 
-        .dock-item:hover .dock-img {
-            transform: scale(2);
+        .dock-item:hover {
+            z-index: 10;
         }
+
+            .dock-item:hover .dock-img {
+                transform: scale(2);
+                transform-origin: center bottom;
+            }
 }
 
 /* Disable zoom on mobile */
@@ -322,7 +322,7 @@ footer {
     user-select: none;
 }
 
-/* --- Scroll Buttons --- */
+/* Scroll Buttons */
 .scroll-btn {
     position: absolute;
     top: 50%;
@@ -358,7 +358,7 @@ footer {
     display: inline-block;
     font-size: 0.85rem;
     color: #0d6efd;
-    margin-top: 0.25rem;
+    margin-top: 0.4rem;
     text-decoration: none;
 }
 

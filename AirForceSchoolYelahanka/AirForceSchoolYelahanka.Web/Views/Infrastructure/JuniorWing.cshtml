@@ -22,13 +22,11 @@
                     .ToTitleCase(fileName.Replace("-", " ").Replace("_", " "));
 
                     <div class="dock-item text-center mx-2">
-                        <div class="dock-inner d-flex flex-column align-items-center">
-                            <img src="@imagePath" alt="@title" class="dock-img" />
-                            <p class="small mt-2 mb-1">@title</p>
-                            <a href="@imagePath" download class="download-link">
-                                <i class="bi bi-download me-1"></i>Download
-                            </a>
-                        </div>
+                        <img src="@imagePath" alt="@title" class="dock-img" />
+                        <p class="small mt-2">@title</p>
+                        <a href="@imagePath" download class="small text-primary d-block">
+                            <i class="bi bi-download"></i> Download
+                        </a>
                     </div>
                 }
             </div>
