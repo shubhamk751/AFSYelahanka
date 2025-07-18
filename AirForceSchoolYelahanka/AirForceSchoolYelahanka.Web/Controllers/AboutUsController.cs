@@ -16,11 +16,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             _staffService = staffService;
             _logger = logger;
         }
+        [Route("AboutUs")]
         public IActionResult Index()
         {
             return View();
         }
-        [Route("AboutUs")]
+        [Route("Hierarchy")]
         public IActionResult Hierarchy()
         {
             return View();
@@ -45,6 +46,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             {
                 throw;
             }
+        }
+
+        [Route("Timings")]
+        public IActionResult Timings()
+        {
+            return View();
         }
     }
 }
