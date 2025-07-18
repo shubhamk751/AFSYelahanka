@@ -7,15 +7,15 @@
 @model StaffDirectoryViewModel
 
 <!-- SECTION 1: Staff Strength Overview -->
-<section class="py-5 bg-light" id="staff-summary">
+<section class="py-5" id="staff-summary">
     <div class="container">
+        <h2 class="mb-4 text-primary fw-bold text-center">Staff Strength Overview</h2>
         <div class="bg-white p-4 shadow rounded-3">
-            <h2 class="mb-4 text-primary fw-bold text-center">Staff Strength Overview</h2>
             <div class="row g-4 justify-content-center">
                 @foreach (var item in Model.StaffCountByRole)
                 {
                     <div class="col-6 col-md-4 col-lg-3">
-                        <div class="card text-center shadow-sm">
+                        <div class="card text-center shadow-lg">
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase text-muted small">@item.Key</h5>
                                 <h3 class="fw-bold text-primary">@item.Value.ToString("D2")</h3>
@@ -29,11 +29,10 @@
 </section>
 
 <!-- SECTION 2: Staff Details -->
-<section class="py-5 bg-light" id="staff-details">
+<section class="py-5" id="staff-details">
     <div class="container">
+        <h2 class="mb-4 text-primary fw-bold text-center">Staff Details</h2>
         <div class="bg-white p-4 shadow rounded-3">
-            <h2 class="mb-4 text-primary fw-bold text-center">Staff Details</h2>
-
             <div class="table-responsive" style="max-height: 600px; overflow-y: auto; overflow-x: auto;">
                 <table class="table table-bordered align-middle fixed-width-table">
                     <thead class="table-primary position-sticky top-0">
@@ -76,11 +75,10 @@
 </section>
 
 <!-- SECTION 3: Visiting Hours -->
-<section class="py-5 bg-light" id="visiting-hours">
+<section class="py-5" id="visiting-hours">
     <div class="container">
+        <h2 class="text-center text-primary fw-bold mb-4">Visiting Hours</h2>
         <div class="bg-white p-4 shadow rounded-3">
-            <h2 class="text-center text-primary fw-bold mb-4">Visiting Hours</h2>
-
             <div class="accordion shadow-sm mx-auto" id="visitingHoursAccordion" style="max-width: 900px;">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="vh1">
