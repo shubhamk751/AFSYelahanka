@@ -52,6 +52,10 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return View();
         }
 
-
+        [Route("book-list")]
+        public IActionResult BookList()
+        {
+            return View();
+        }
     }
 }
