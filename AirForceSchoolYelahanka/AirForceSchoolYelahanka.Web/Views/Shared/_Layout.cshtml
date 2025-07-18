@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet" asp-append-version="true" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" asp-append-version="true">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
 </head>
 
 <body>
@@ -76,7 +78,7 @@
                                 <li><a class="dropdown-item" href="/timings">Timings</a></li>
                                 <li><a class="dropdown-item" href="/uniform">Uniform</a></li>
                                 <li><a class="dropdown-item" href="/fees">Fee Structure</a></li>
-                                <li><a class="dropdown-item" href="/books">Book List</a></li>
+                                <li><a class="dropdown-item" href="/book-list">Book List</a></li>
                                 <li><a class="dropdown-item" href="/disclosures">Mandatory Disclosures</a></li>
                             </ul>
                         </li>
@@ -89,7 +91,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/academics/junior">Junior Wing</a></li>
                                 <li><a class="dropdown-item" href="/academics/senior">Senior Wing</a></li>
-                                <li><a class="dropdown-item" href="/staff">Our Staff</a></li>
                             </ul>
                         </li>
 
@@ -99,8 +100,8 @@
                                 Infrastructure
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/infrastructure/junior">Junior Infrastructure</a></li>
-                                <li><a class="dropdown-item" href="/infrastructure/senior">Senior Infrastructure</a></li>
+                                <li><a class="dropdown-item" href="/junior-wing">Junior Wing</a></li>
+                                <li><a class="dropdown-item" href="/senior-wing">Senior Wing</a></li>
                             </ul>
                         </li>
 
@@ -113,14 +114,14 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle" href="#">Co-Curricular</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/activities/cca/junior">Junior Wing</a></li>
-                                        <li><a class="dropdown-item" href="/activities/cca/senior">Senior Wing</a></li>
+                                        <li><a class="dropdown-item" href="/cca-junior">Junior Wing</a></li>
+                                        <li><a class="dropdown-item" href="/cca-senior">Senior Wing</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle" href="#">Celebrations</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/activities/celebrations/junior">Junior Wing</a></li>
+                                        <li><a class="dropdown-item" href="/activities-celebrations-junior">Junior Wing</a></li>
                                         <li><a class="dropdown-item" href="/activities/celebrations/senior">Senior Wing</a></li>
                                     </ul>
                                 </li>
@@ -172,6 +173,10 @@
                 once: false
             });
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({ selector: '.glightbox' });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
