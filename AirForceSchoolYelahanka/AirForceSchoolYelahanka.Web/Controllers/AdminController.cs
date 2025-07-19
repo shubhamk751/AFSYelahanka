@@ -128,7 +128,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                         // Try to deserialize as List<NewsItem>
                         try
                         {
-                            var newsList = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson);
+                            var newsList = JsonSerializer.Deserialize<List<HomeInsertGeneric>>(section.ContentJson);
                             if (newsList != null)
                             {
                                 contentJson = JsonSerializer.Serialize(newsList, new JsonSerializerOptions

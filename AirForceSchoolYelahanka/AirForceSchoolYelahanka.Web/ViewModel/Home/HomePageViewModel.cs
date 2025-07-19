@@ -7,23 +7,24 @@
         public List<NoticeItem> NoticeBoard { get; set; } = new();
         public List<ActivityItem> RecentActivities { get; set; } = new();
     }
-    public class NewsItem
+
+    public class HomeInsertGeneric
     {
         public string Title { get; set; }
+        
+        public DateTime Date { get; set; }
+    }
+    public class NewsItem : HomeInsertGeneric
+    {
         public string Link { get; set; }
-        public DateTime Date { get; set; }
     }
 
-    public class NoticeItem
+    public class NoticeItem : HomeInsertGeneric
     {
-        public string Title { get; set; }
-        public DateTime Date { get; set; }
     }
 
-    public class ActivityItem
+    public class ActivityItem : HomeInsertGeneric
     {
-        public string Title { get; set; }
-        public DateTime Date { get; set; }
     }
 }
 
