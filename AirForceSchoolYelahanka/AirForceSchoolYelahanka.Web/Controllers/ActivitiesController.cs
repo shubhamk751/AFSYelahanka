@@ -40,8 +40,40 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             return View();
         }
-        [Route("activity")]
-        public async Task<IActionResult> Activity(string slug)
+        [Route("activity-junior")]
+        public async Task<IActionResult> ActivityJunior(string slug)
+        {
+            string sectionKey = $"CCA.Junior.{slug}";
+
+            var section = await _cmsService.GetSectionAsync(sectionKey);
+            if (section == null)
+                return NotFound();
+
+            var content = JsonConvert.DeserializeObject<ActivityContentBlockViewModel>(section.ContentJson);
+            if (content == null)
+                return NotFound();
+
+            var folderPath = Path.Combine(_env.WebRootPath, "images", "activities", "cca", "junior", slug);
+            var imageUrls = Directory.Exists(folderPath)
+                ? Directory.GetFiles(folderPath)
+                    .Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png"))
+                    .Select(f => $"/images/activities/cca/junior/{slug}/{Path.GetFileName(f)}")
+                    .ToList()
+                : new List<string>();
+
+            var model = new ActivityContentBlockViewModel
+            {
+                Title = content.Title,
+                HtmlMainContent = content.HtmlMainContent,
+                HtmlSidebarContent = content.HtmlSidebarContent,
+                SidebarImageUrls = imageUrls
+            };
+
+            return View(model);
+        }
+
+        [Route("activity-senior")]
+        public async Task<IActionResult> ActivitySenior(string slug)
         {
             string sectionKey = $"CCA.Junior.{slug}";
 
