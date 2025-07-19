@@ -2,6 +2,7 @@
 using AirForceSchoolYelahanka.Web.Data;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using AirForceSchoolYelahanka.Web.ViewModel;
+using AirForceSchoolYelahanka.Web.ViewModel.Activities;
 using AirForceSchoolYelahanka.Web.ViewModel.Home;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -51,6 +52,54 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return View();
         }
 
+        //[HttpGet]
+        //public async Task<IActionResult> Index(string page = "Home")
+        //{
+        //    if (!CmsPages.PageSections.ContainsKey(page))
+        //    {
+        //        return NotFound($"Page '{page}' not configured in CMS.");
+        //    }
+
+        //    var sectionKeys = CmsPages.PageSections[page];
+        //    var model = new CMSEditViewModel
+        //    {
+        //        Page = page
+        //    };
+
+        //    foreach (var key in sectionKeys)
+        //    {
+        //        string contentJson = "[]"; // Default as array
+
+        //        try
+        //        {
+        //            var section = await _cmsService.GetSectionAsync(key);
+        //            if (!string.IsNullOrWhiteSpace(section?.ContentJson))
+        //            {
+        //                // Deserialize to validate it matches the expected List<NewsItem> format
+        //                var parsed = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson);
+
+        //                // If successful, pretty-print it
+        //                contentJson = JsonSerializer.Serialize(parsed, new JsonSerializerOptions
+        //                {
+        //                    WriteIndented = true
+        //                });
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            _logger.LogError(ex, $"Error loading section {key}");
+        //        }
+
+        //        model.Sections.Add(new SingleCmsSectionViewModel
+        //        {
+        //            Key = key,
+        //            ContentJson = contentJson
+        //        });
+        //    }
+
+        //    return View(model);
+        //}
+
         [HttpGet]
         public async Task<IActionResult> Index(string page = "Home")
         {
@@ -67,26 +116,59 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
             foreach (var key in sectionKeys)
             {
-                string contentJson = "[]"; // Default as array
-
+                string contentJson = "[]"; // Default value
                 try
                 {
                     var section = await _cmsService.GetSectionAsync(key);
+
                     if (!string.IsNullOrWhiteSpace(section?.ContentJson))
                     {
-                        // Deserialize to validate it matches the expected List<NewsItem> format
-                        var parsed = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson);
+                        bool parsedSuccessfully = false;
 
-                        // If successful, pretty-print it
-                        contentJson = JsonSerializer.Serialize(parsed, new JsonSerializerOptions
+                        // Try to deserialize as List<NewsItem>
+                        try
                         {
-                            WriteIndented = true
-                        });
+                            var newsList = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson);
+                            if (newsList != null)
+                            {
+                                contentJson = JsonSerializer.Serialize(newsList, new JsonSerializerOptions
+                                {
+                                    WriteIndented = true
+                                });
+                                parsedSuccessfully = true;
+                            }
+                        }
+                        catch { /* Try next */ }
+
+                        // If not List<NewsItem>, try as ActivityHtmlViewModel
+                        if (!parsedSuccessfully)
+                        {
+                            try
+                            {
+                                var activity = JsonSerializer.Deserialize<ActivityContentBlockViewModel>(section.ContentJson);
+                                if (activity != null)
+                                {
+                                    contentJson = JsonSerializer.Serialize(activity, new JsonSerializerOptions
+                                    {
+                                        WriteIndented = true
+                                    });
+                                    parsedSuccessfully = true;
+                                }
+                            }
+                            catch { /* Fall back */ }
+                        }
+
+                        // If nothing worked, keep the raw ContentJson
+                        if (!parsedSuccessfully)
+                        {
+                            _logger.LogWarning("Section '{Key}' content format could not be parsed as known types.", key);
+                            contentJson = section.ContentJson;
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"Error loading section {key}");
+                    _logger.LogError(ex, $"Error loading section '{key}'");
                 }
 
                 model.Sections.Add(new SingleCmsSectionViewModel
@@ -98,6 +180,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Save(CMSEditViewModel model)
