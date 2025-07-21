@@ -1,16 +1,4 @@
-﻿@* @{
-    ViewData["Title"] = "CCA Junior";
-    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "activities", "cca", "junior", "diwali");
-    var imageFiles = Directory.Exists(imageDir)
-        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png")).ToList()
-        : new List<string>();
-
-    var webImagePaths = imageFiles
-        .Select(f => "/images/activities/cca/junior/diwali/" + System.IO.Path.GetFileName(f))
-        .ToList();
-} *@
-
-@{
+﻿@{
     ViewData["Title"] = "CCA Junior"; 
     var baseFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "activities", "cca", "junior");
     var folderImageMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); // folderName => imageUrl
