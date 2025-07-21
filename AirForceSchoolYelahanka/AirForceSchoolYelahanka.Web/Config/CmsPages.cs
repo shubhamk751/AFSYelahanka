@@ -5,7 +5,7 @@
         public static readonly Dictionary<string, List<string>> PageSections = new()
         {
             { "Home", new List<string> { "HomePage_LatestNews", "HomePage_NoticeBoard", "HomePage_RecentActivity" } },
-            { "About", new List<string> { "AboutPageIntro", "AboutPageTeam" } },
+            { "CCA-Junior-Wing", new List<string> { "CCA.Junior.Plantation", "CCA.Junior.Diwali", "CCA.Junior.CCA" } },
             { "Contact", new List<string> { "ContactHeader", "ContactFormInfo" } },
         };
     }
