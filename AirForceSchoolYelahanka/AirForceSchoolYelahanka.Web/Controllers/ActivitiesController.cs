@@ -4,6 +4,7 @@ using AirForceSchoolYelahanka.Web.ViewModel.Activities;
 using AirForceSchoolYelahanka.Web.ViewModel.Home;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Globalization;
 using System.Text.Json;
 using static System.Collections.Specialized.BitVector32;
 
@@ -23,6 +24,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
         [Route("cca-junior")]
         public IActionResult CCAJunior()
+        {
+            return View();
+        }
+
+        [Route("cca-senior")]
+        public IActionResult CCASenior()
         {
             return View();
         }
@@ -47,9 +54,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                     .Select(f => $"/images/activities/{type}/{division}/{slug}/{Path.GetFileName(f)}")
                     .ToList()
                 : new List<string>();
-
+            var textInfo = CultureInfo.CurrentCulture.TextInfo;
             var model = new ActivityContentBlockViewModel
             {
+                Division = textInfo.ToTitleCase(division.ToLower()),
+                Type = textInfo.ToTitleCase(type.ToLower()),
+                Slug = textInfo.ToTitleCase(slug.ToLower()),
                 Title = content.Title,
                 HtmlMainContent = content.HtmlMainContent,
                 HtmlSidebarContent = content.HtmlSidebarContent,
