@@ -20,26 +20,13 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             _logger = logger;
             _env = env;
         }
+
         [Route("cca-junior")]
         public IActionResult CCAJunior()
         {
             return View();
         }
-        [Route("cca-junior-plantation")]
-        public IActionResult CCAJuniorPlantation()
-        {
-            return View();
-        }
-        [Route("cca-junior-diwali")]
-        public IActionResult CCAJuniorDiwali()
-        {
-            return View();
-        }
-        [Route("cca-junior-othercca")]
-        public IActionResult CCAJuniorOtherCCA()
-        {
-            return View();
-        }
+
         [Route("activity")]
         public async Task<IActionResult> Activity( string type, string division, string slug)
         {
