@@ -1,5 +1,6 @@
 ﻿@model AirForceSchoolYelahanka.Web.ViewModel.CMSEditViewModel
 @using AirForceSchoolYelahanka.Web.Config
+@using System.Text.Json
 
 @{
     ViewData["Title"] = "CMS Editor";
@@ -26,7 +27,6 @@
         </select>
     </div>
 </form>
-
 <!-- CMS Sections Form -->
 <form method="post" asp-action="Save">
     <input type="hidden" name="Page" value="@Model.Page" />
@@ -38,9 +38,30 @@
         <div class="form-group mt-4">
             <label for="section-@i"><strong>@cmsSection.Key</strong></label>
             <input type="hidden" name="Sections[@i].Key" value="@cmsSection.Key" />
-            <textarea name="Sections[@i].ContentJson" class="form-control font-monospace" rows="10" spellcheck="false">@cmsSection.ContentJson</textarea>
-            <small class="text-muted">Enter valid JSON array of objects: [ {{ "key": "value" }} ]</small>
 
+            @{
+                string jsonFormatted = cmsSection.ContentJson;
+
+                try
+                {
+                    // Try parsing and pretty-printing the JSON with relaxed escaping
+                    using var doc = JsonDocument.Parse(cmsSection.ContentJson);
+                    jsonFormatted = JsonSerializer.Serialize(doc.RootElement, new JsonSerializerOptions
+                    {
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                        WriteIndented = true
+                    });
+                }
+                catch
+                {
+                    // If the content is not valid JSON, keep it as-is
+                    jsonFormatted = cmsSection.ContentJson;
+                }
+            }
+
+            <textarea name="Sections[@i].ContentJson" class="form-control font-monospace" rows="10" spellcheck="false">@Html.Raw(jsonFormatted)</textarea>
+
+            <small class="text-muted">Enter valid JSON object: { "key": "value" }</small>
 
             @if (ViewData.ModelState[$"Sections[{i}].ContentJson"]?.Errors.Count > 0)
             {
