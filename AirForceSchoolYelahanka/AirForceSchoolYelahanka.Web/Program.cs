@@ -61,8 +61,8 @@ using (var scope = app.Services.CreateScope())
     {
         var adminUser = new AdminUser
         {
-            Username = "admin",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("YourStrongPassword123")
+            Username = "AFSchoolAdmin",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("P@$$w0rd@123")
         };
 
         db.AdminUsers.Add(adminUser);
