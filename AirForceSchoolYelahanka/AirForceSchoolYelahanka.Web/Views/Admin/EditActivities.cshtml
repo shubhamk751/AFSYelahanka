@@ -42,3 +42,17 @@
 {
     <div class="alert alert-success mt-3">@TempData["Success"]</div>
 }
+
+<!-- ✅ TinyMCE Script -->
+<script src="https://cdn.tiny.cloud/1/ynvjmfj0feo8nhvl08iaskwcnqdpl9ud118olaxro4oqj84m/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: '#HtmlMainContent, #HtmlSidebarContent', // or use specific IDs like '#HtmlMainContent'
+        height: 300,
+        menubar: false,
+        plugins: 'link image code lists',
+        toolbar: 'undo redo | formatselect | bold italic underline | bullist numlist | link image | code',
+        branding: false
+    });
+</script>
