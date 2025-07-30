@@ -1,0 +1,92 @@
+﻿@model AirForceSchoolYelahanka.Web.ViewModel.SectionContentViewModel
+
+<h2>Edit Section Content</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form asp-action="EditHomePageRollersSection" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Select Section</label>
+        <select asp-for="SelectedSectionName" class="form-control" asp-items="@(new SelectList(Model.AvailableSectionNames))"
+                onchange="submitChangeSection()"></select>
+    </div>
+
+    <hr />
+    <div id="items-container">
+        @for (int i = 0; i < Model.Items.Count; i++)
+        {
+            <div class="item-group border p-2 mb-2">
+                <label>Title</label>
+                <input asp-for="Items[i].Title" class="form-control" />
+
+                <label>Link</label>
+                <input asp-for="Items[i].Link" class="form-control" />
+
+                <label>Date</label>
+                <input asp-for="Items[i].Date" class="form-control" type="date" />
+
+                <button type="button" class="btn btn-danger mt-2" onclick="removeItem(this)">Remove</button>
+            </div>
+        }
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-3" onclick="addItem()">+ Add Item</button>
+    <br /><br />
+
+    <button type="submit" name="action" value="Save" class="btn btn-primary">Save</button>
+    <input type="hidden" name="action" value="Save" id="form-action" />
+</form>
+
+@section Scripts {
+    <script>
+        function addItem() {
+            const index = document.querySelectorAll('#items-container .item-group').length;
+            const container = document.createElement('div');
+            container.className = 'item-group border p-2 mb-2';
+            container.innerHTML = `
+                <label>Title</label>
+                <input name="Items[${index}].Title" class="form-control" />
+
+                <label>Link</label>
+                <input name="Items[${index}].Link" class="form-control" />
+
+                <label>Date</label>
+                <input name="Items[${index}].Date" class="form-control" type="date" />
+
+                <button type="button" class="btn btn-danger mt-2" onclick="removeItem(this)">Remove</button>
+            `;
+            document.getElementById('items-container').appendChild(container);
+        }
+
+                function removeItem(button) {
+            const container = button.closest('.item-group');
+            container.remove();
+
+            // Re-index all remaining item inputs
+            const itemGroups = document.querySelectorAll('#items-container .item-group');
+            itemGroups.forEach((group, index) => {
+                group.querySelectorAll('input').forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (name.includes("Title")) {
+                        input.setAttribute('name', `Items[${index}].Title`);
+                    } else if (name.includes("Link")) {
+                        input.setAttribute('name', `Items[${index}].Link`);
+                    } else if (name.includes("Date")) {
+                        input.setAttribute('name', `Items[${index}].Date`);
+                    }
+                });
+            });
+        }
+
+
+        function submitChangeSection() {
+            document.getElementById("form-action").value = "ChangeSection";
+            document.forms[0].submit();
+        }
+    </script>
+}

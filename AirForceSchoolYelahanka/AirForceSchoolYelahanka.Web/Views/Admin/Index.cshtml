@@ -2,13 +2,26 @@
 @using AirForceSchoolYelahanka.Web.Config
 @using System.Text.Json
 
+
 @{
     ViewData["Title"] = "CMS Editor";
 }
+<div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="bg-light border-end p-3" style="width: 220px; min-height: 100vh;">
+        <h5 class="text-primary mb-4">CMS Admin</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="/Admin/EditHomePageRollersSection">Rollersection</a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="/Admin/EditActivities">Activities</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
-<h2 class="mb-4">Edit CMS Sections</h2>
-
-@if (TempData["SuccessMessage"] != null)
+@* @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">@TempData["SuccessMessage"]</div>
 }
@@ -77,3 +90,4 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+ *@
