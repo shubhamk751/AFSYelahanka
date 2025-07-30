@@ -1,5 +1,6 @@
 ﻿using AirForceSchoolYelahanka.Web.Config;
 using AirForceSchoolYelahanka.Web.Data;
+using AirForceSchoolYelahanka.Web.Models;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using AirForceSchoolYelahanka.Web.ViewModel;
 using AirForceSchoolYelahanka.Web.ViewModel.Activities;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -52,6 +53,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(string page = "Home")
+        {
+            return View();
+        }
+
         //[HttpGet]
         //public async Task<IActionResult> Index(string page = "Home")
         //{
@@ -68,26 +75,59 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
         //    foreach (var key in sectionKeys)
         //    {
-        //        string contentJson = "[]"; // Default as array
-
+        //        string contentJson = "[]"; // Default value
         //        try
         //        {
         //            var section = await _cmsService.GetSectionAsync(key);
+
         //            if (!string.IsNullOrWhiteSpace(section?.ContentJson))
         //            {
-        //                // Deserialize to validate it matches the expected List<NewsItem> format
-        //                var parsed = JsonSerializer.Deserialize<List<NewsItem>>(section.ContentJson);
+        //                bool parsedSuccessfully = false;
 
-        //                // If successful, pretty-print it
-        //                contentJson = JsonSerializer.Serialize(parsed, new JsonSerializerOptions
+        //                // Try to deserialize as List<NewsItem>
+        //                try
         //                {
-        //                    WriteIndented = true
-        //                });
+        //                    var newsList = System.Text.Json.JsonSerializer.Deserialize<List<HomeInsertGeneric>>(section.ContentJson);
+        //                    if (newsList != null)
+        //                    {
+        //                        contentJson = System.Text.Json.JsonSerializer.Serialize(newsList, new JsonSerializerOptions
+        //                        {
+        //                            WriteIndented = true
+        //                        });
+        //                        parsedSuccessfully = true;
+        //                    }
+        //                }
+        //                catch { /* Try next */ }
+
+        //                // If not List<NewsItem>, try as ActivityContentBlockViewModel
+        //                if (!parsedSuccessfully)
+        //                {
+        //                    try
+        //                    {
+        //                        var activity = System.Text.Json.JsonSerializer.Deserialize<ActivityContentBlockViewModel>(section.ContentJson);
+        //                        if (activity != null)
+        //                        {
+        //                            contentJson = System.Text.Json.JsonSerializer.Serialize(activity, new JsonSerializerOptions
+        //                            {
+        //                                WriteIndented = true
+        //                            });
+        //                            parsedSuccessfully = true;
+        //                        }
+        //                    }
+        //                    catch { /* Fall back */ }
+        //                }
+
+        //                // If nothing worked, keep the raw ContentJson
+        //                if (!parsedSuccessfully)
+        //                {
+        //                    _logger.LogWarning("Section '{Key}' content format could not be parsed as known types.", key);
+        //                    contentJson = section.ContentJson;
+        //                }
         //            }
         //        }
         //        catch (Exception ex)
         //        {
-        //            _logger.LogError(ex, $"Error loading section {key}");
+        //            _logger.LogError(ex, $"Error loading section '{key}'");
         //        }
 
         //        model.Sections.Add(new SingleCmsSectionViewModel
@@ -100,117 +140,155 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         //    return View(model);
         //}
 
-        [HttpGet]
-        public async Task<IActionResult> Index(string page = "Home")
-        {
-            if (!CmsPages.PageSections.ContainsKey(page))
-            {
-                return NotFound($"Page '{page}' not configured in CMS.");
-            }
 
-            var sectionKeys = CmsPages.PageSections[page];
-            var model = new CMSEditViewModel
+        //[HttpPost]
+        //public async Task<IActionResult> Save(CMSEditViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View("Index", model);
+
+        //    for (int i = 0; i < model.Sections.Count; i++)
+        //    {
+        //        var section = model.Sections[i];
+        //        try
+        //        {
+        //            JsonDocument.Parse(section.ContentJson); // Validate
+        //            await _cmsService.UpdateSectionAsync(section.Key, section.ContentJson);
+        //        }
+        //        catch (System.Text.Json.JsonException)
+        //        {
+        //            ModelState.AddModelError($"Sections[{i}].ContentJson", $"Invalid JSON for section: {section.Key}");
+        //            return View("Index", model);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            _logger.LogError(ex, $"Failed to update section: {section.Key}");
+        //            ModelState.AddModelError($"Sections[{i}].ContentJson", $"Unexpected error saving section: {section.Key}");
+        //            return View("Index", model);
+        //        }
+        //    }
+
+        //    TempData["SuccessMessage"] = "All sections updated successfully.";
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        [HttpGet]
+        public IActionResult EditHomePageRollersSection(string sectionName = "HomePage_LatestNews")
+        {
+            var section = _context.CmsSections.FirstOrDefault(x => x.SectionName == sectionName);
+            var items = section != null
+                ? JsonConvert.DeserializeObject<List<SectionItemViewModel>>(section.ContentJson)
+                : new List<SectionItemViewModel>();
+
+            var model = new SectionContentViewModel
             {
-                Page = page
+                Id = section?.Id ?? 0,
+                SelectedSectionName = sectionName,
+                Items = items,
+                AvailableSectionNames = new List<string>
+        {
+            "HomePage_LatestNews",
+            "HomePage_NoticeBoard",
+            "HomePage_RecentActivity"
+        }
             };
 
-            foreach (var key in sectionKeys)
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditHomePageRollersSection(SectionContentViewModel model, string action)
+        {
+            if (action == "ChangeSection")
             {
-                string contentJson = "[]"; // Default value
-                try
+                // Just reload with selected section, do not save
+                return RedirectToAction("EditHomePageRollersSection", new { sectionName = model.SelectedSectionName });
+            }
+
+            // Save logic
+            var section = _context.CmsSections.FirstOrDefault(x => x.SectionName == model.SelectedSectionName);
+            var json = JsonConvert.SerializeObject(model.Items);
+
+            if (section == null)
+            {
+                section = new CmsSection
                 {
-                    var section = await _cmsService.GetSectionAsync(key);
+                    SectionName = model.SelectedSectionName,
+                    ContentJson = json
+                };
+                _context.CmsSections.Add(section);
+            }
+            else
+            {
+                section.ContentJson = json;
+                _context.CmsSections.Update(section);
+            }
 
-                    if (!string.IsNullOrWhiteSpace(section?.ContentJson))
-                    {
-                        bool parsedSuccessfully = false;
+            _context.SaveChanges();
 
-                        // Try to deserialize as List<NewsItem>
-                        try
-                        {
-                            var newsList = JsonSerializer.Deserialize<List<HomeInsertGeneric>>(section.ContentJson);
-                            if (newsList != null)
-                            {
-                                contentJson = JsonSerializer.Serialize(newsList, new JsonSerializerOptions
-                                {
-                                    WriteIndented = true
-                                });
-                                parsedSuccessfully = true;
-                            }
-                        }
-                        catch { /* Try next */ }
+            TempData["Success"] = "Content saved successfully.";
+            return RedirectToAction("EditHomePageRollersSection", new { sectionName = model.SelectedSectionName });
+        }
 
-                        // If not List<NewsItem>, try as ActivityHtmlViewModel
-                        if (!parsedSuccessfully)
-                        {
-                            try
-                            {
-                                var activity = JsonSerializer.Deserialize<ActivityContentBlockViewModel>(section.ContentJson);
-                                if (activity != null)
-                                {
-                                    contentJson = JsonSerializer.Serialize(activity, new JsonSerializerOptions
-                                    {
-                                        WriteIndented = true
-                                    });
-                                    parsedSuccessfully = true;
-                                }
-                            }
-                            catch { /* Fall back */ }
-                        }
+        [HttpGet]
+        public async Task<IActionResult> EditActivities(string? itemKey)
+        {
+            // 1. Build the list of keys from your config or from the DB
+            var allKeys = CmsPages.PageSections
+                               .Where(x=> x.Key != "Home")
+                              .SelectMany(kv => kv.Value)
+                              .Distinct()
+                              .OrderBy(k => k)
+                              .ToList();
 
-                        // If nothing worked, keep the raw ContentJson
-                        if (!parsedSuccessfully)
-                        {
-                            _logger.LogWarning("Section '{Key}' content format could not be parsed as known types.", key);
-                            contentJson = section.ContentJson;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, $"Error loading section '{key}'");
-                }
+            // 2. If none supplied, default to first
+            itemKey ??= allKeys.FirstOrDefault();
 
-                model.Sections.Add(new SingleCmsSectionViewModel
-                {
-                    Key = key,
-                    ContentJson = contentJson
-                });
+            // 3. Load existing JSON for that key
+            var section = await _cmsService.GetSectionAsync(itemKey);
+            CmsContentFormViewModel model = new()
+            {
+                AvailableItemKeys = allKeys,
+                ItemKey = itemKey,
+            };
+
+            if (section != null)
+            {
+                // Deserialize to your structured object
+                var content = System.Text.Json.JsonSerializer.Deserialize<ActivityContentBlockViewModel>(section.ContentJson)
+                              ?? new ActivityContentBlockViewModel();
+                model.Title = content.Title;
+                model.HtmlMainContent = content.HtmlMainContent;
+                model.HtmlSidebarContent = content.HtmlSidebarContent;
+                model.SidebarImageUrls = content.SidebarImageUrls;
             }
 
             return View(model);
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> Save(CMSEditViewModel model)
+        public async Task<IActionResult> EditActivities(CmsContentFormViewModel model, string imageUrls)
         {
-            if (!ModelState.IsValid)
-                return View("Index", model);
-
-            for (int i = 0; i < model.Sections.Count; i++)
+            // 1. Build the JSON from the form
+            var content = new ActivityContentBlockViewModel
             {
-                var section = model.Sections[i];
-                try
-                {
-                    JsonDocument.Parse(section.ContentJson); // Validate
-                    await _cmsService.UpdateSectionAsync(section.Key, section.ContentJson);
-                }
-                catch (JsonException)
-                {
-                    ModelState.AddModelError($"Sections[{i}].ContentJson", $"Invalid JSON for section: {section.Key}");
-                    return View("Index", model);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, $"Failed to update section: {section.Key}");
-                    ModelState.AddModelError($"Sections[{i}].ContentJson", $"Unexpected error saving section: {section.Key}");
-                    return View("Index", model);
-                }
-            }
+                Title = model.Title,
+                HtmlMainContent = model.HtmlMainContent,
+                HtmlSidebarContent = model.HtmlSidebarContent,
+                SidebarImageUrls = imageUrls?
+                                       .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                       .Select(u => u.Trim())
+                                       .ToList()
+                                   ?? new List<string>()
+            };
 
-            TempData["SuccessMessage"] = "All sections updated successfully.";
-            return RedirectToAction(nameof(Index));
+            var json = System.Text.Json.JsonSerializer.Serialize(content, new JsonSerializerOptions { WriteIndented = true });
+
+            // 2. Save back via your service
+            await _cmsService.UpdateSectionAsync(model.ItemKey, json);
+
+            TempData["Success"] = "Content saved!";
+            return RedirectToAction(nameof(EditActivities), new { itemKey = model.ItemKey });
         }
 
         [HttpGet]
