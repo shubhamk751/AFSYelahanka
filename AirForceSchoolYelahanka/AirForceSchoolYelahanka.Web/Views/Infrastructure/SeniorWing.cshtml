@@ -1,10 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Senior Wing Infra";
-    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "infra", "senior-wing");
+    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "infra", "senior-wing");
     var imageFiles = Directory.Exists(imageDir)
         ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png")).ToList()
         : new List<string>();
-    var webImagePaths = imageFiles.Select(f => "/images/infra/senior-wing/" + System.IO.Path.GetFileName(f)).ToList();
+    var webImagePaths = imageFiles.Select(f => "/assets/images/infra/senior-wing/" + System.IO.Path.GetFileName(f)).ToList();
 }
 
 <section class="py-5 bg-light">

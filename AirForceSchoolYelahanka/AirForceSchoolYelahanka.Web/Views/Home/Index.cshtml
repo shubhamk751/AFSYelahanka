@@ -3,9 +3,9 @@
 
 <!-- Dynamic Banner Carousel -->
 @{
-    var bannerDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/banners");
+    var bannerDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/assets/images/banners");
     var banners = Directory.Exists(bannerDir)
-        ? Directory.GetFiles(bannerDir).Select(f => "/images/banners/" + System.IO.Path.GetFileName(f)).ToList()
+        ? Directory.GetFiles(bannerDir).Select(f => "/assets/images/banners/" + System.IO.Path.GetFileName(f)).ToList()
         : new List<string>();
 }
 
@@ -44,7 +44,7 @@
         <div class="row g-4">
             <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
                 <div class="card h-100 shadow-sm">
-                    <img src="/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
+                    <img src="/assets/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Junior Wing</h5>
                         <p class="card-text">LKG to Class II – Fun, engaging & foundational learning.</p>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                 <div class="card h-100 shadow-sm">
-                    <img src="/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
+                    <img src="/assets/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Senior Wing</h5>
                         <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
@@ -87,7 +87,7 @@
             <!-- Junior Wing Card -->
             <div class="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="100">
                 <div class="card h-100 shadow-sm text-dark">
-                    <img src="/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
+                    <img src="/assets/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Junior Wing</h5>
                         <p class="card-text">LKG to Class II – Fun, engaging & foundational learning.</p>
@@ -98,7 +98,7 @@
             <!-- Senior Wing Card -->
             <div class="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="200">
                 <div class="card h-100 shadow-sm text-dark">
-                    <img src="/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
+                    <img src="/assets/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Senior Wing</h5>
                         <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
@@ -118,7 +118,7 @@
             <!-- Principal -->
             <div class="col-md-5" data-aos="fade-right" data-aos-delay="400">
                 <div class="card shadow h-100">
-                    <img src="/images/home/principal.jpg" class="card-img-top" alt="Smt. Shalini Narayan">
+                    <img src="/assets/images/home/principal.jpg" class="card-img-top" alt="Smt. Shalini Narayan">
                     <div class="card-body text-center">
                         <h5 class="card-title mb-1">Smt. Shalini Narayan</h5>
                         <p class="text-muted small">Principal</p>
@@ -132,7 +132,7 @@
             <!-- Executive Director -->
             <div class="col-md-5" data-aos="fade-left" data-aos-delay="500">
                 <div class="card shadow h-100">
-                    <img src="/images/home/ed.jpg" class="card-img-top" alt="Wg Cdr PS Gujral">
+                    <img src="/assets/images/home/ed.jpg" class="card-img-top" alt="Wg Cdr PS Gujral">
                     <div class="card-body text-center">
                         <h5 class="card-title mb-1">Wg Cdr PS Gujral</h5>
                         <p class="text-muted small">Executive Director</p>

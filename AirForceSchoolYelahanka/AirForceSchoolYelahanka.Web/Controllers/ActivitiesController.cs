@@ -47,11 +47,11 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             if (content == null)
                 return NotFound();
 
-            var folderPath = Path.Combine(_env.WebRootPath, "images", "activities", type, division, slug);
+            var folderPath = Path.Combine(_env.WebRootPath, "assets", "images", "activities", type, division, slug);
             var imageUrls = Directory.Exists(folderPath)
                 ? Directory.GetFiles(folderPath)
                     .Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png"))
-                    .Select(f => $"/images/activities/{type}/{division}/{slug}/{Path.GetFileName(f)}")
+                    .Select(f => $"/assets/images/activities/{type}/{division}/{slug}/{Path.GetFileName(f)}")
                     .ToList()
                 : new List<string>();
             var textInfo = CultureInfo.CurrentCulture.TextInfo;
