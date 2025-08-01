@@ -45,7 +45,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -57,12 +57,13 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 
-    if (!db.AdminUsers.Any())
+    if (db.AdminUsers.Any())
     {
         var adminUser = new AdminUser
         {
             Username = "AFSchoolAdmin",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("P@$$w0rd@123")
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("P@$$w0rd@123"),
+            Role = "Admin"
         };
 
         db.AdminUsers.Add(adminUser);

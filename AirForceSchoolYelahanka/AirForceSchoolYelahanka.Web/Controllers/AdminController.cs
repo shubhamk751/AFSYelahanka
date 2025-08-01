@@ -41,7 +41,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             var user = await _context.AdminUsers.FirstOrDefaultAsync(u => u.Username == username);
             if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, user.Role)
+                };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
