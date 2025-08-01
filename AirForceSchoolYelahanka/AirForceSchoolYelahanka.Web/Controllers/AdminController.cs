@@ -16,7 +16,7 @@ using System.Text.Json;
 
 namespace AirForceSchoolYelahanka.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly AppDbContext _context;
