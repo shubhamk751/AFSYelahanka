@@ -1,8 +1,10 @@
 ﻿using AirForceSchoolYelahanka.Web.ViewModel.AdminAsset;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirForceSchoolYelahanka.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminAssetController : Controller
     {
         private readonly string _rootFolder = "wwwroot/assets";

@@ -38,119 +38,133 @@
     </div>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm sticky-top">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase" href="/">
-                    <img src="/assets/images/shared/logo.png" alt="Logo" class="school-logo me-2" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Home -->
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/">Home</a>
-                        </li>
-
-                        <!-- About Us -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
-                                About Us
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#our-vision">Our Vision</a></li>
-                                <li><a class="dropdown-item" href="#our-mission">Our Mission</a></li>
-                                <li><a class="dropdown-item" href="#objectives">Objectives</a></li>
-                                <li><a class="dropdown-item" href="#leadership">Leadership</a></li>
-                                <li><a class="dropdown-item" href="/hierarchy">Institutional Hierarchy</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- School Info -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                School Handbook
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/team-&-visiting-hours">Team</a></li>
-                                <li><a class="dropdown-item" href="/timings">Timings</a></li>
-                                <li><a class="dropdown-item" href="/uniform">Uniform</a></li>
-                                <li><a class="dropdown-item" href="/fees">Fee Structure</a></li>
-                                <li><a class="dropdown-item" href="/book-list">Book List</a></li>
-                                <li><a class="dropdown-item" href="/disclosures">Mandatory Disclosures</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Academics -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Academics
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/academics/junior">Junior Wing</a></li>
-                                <li><a class="dropdown-item" href="/academics/senior">Senior Wing</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Infrastructure -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Infrastructure
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/junior-wing">Junior Wing</a></li>
-                                <li><a class="dropdown-item" href="/senior-wing">Senior Wing</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Activities -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Activities
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- First submenu -->
-                                <li class="dropdown-submenu position-relative">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Co-Curricular</a>
-                                    <ul class="dropdown-menu start-100 top-0 mt-0">
-                                        <li><a class="dropdown-item" href="/cca-junior">Junior Wing</a></li>
-                                        <li><a class="dropdown-item" href="/cca-senior">Senior Wing</a></li>
-                                    </ul>
+        
+            <nav class="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm sticky-top">
+                <div class="container">
+                    <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase" href="/">
+                        <img src="/assets/images/shared/logo.png" alt="Logo" class="school-logo me-2" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="collapse navbar-collapse" id="mainNavbar">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Admin/Logout">Logout</a>
                                 </li>
-
-                                <!-- Second submenu -->
-                                <li class="dropdown-submenu position-relative">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Celebrations</a>
-                                    <ul class="dropdown-menu start-100 top-0 mt-0">
-                                        <li><a class="dropdown-item" href="/activities-celebrations-junior">Junior Wing</a></li>
-                                        <li><a class="dropdown-item" href="/activities/celebrations/senior">Senior Wing</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a class="dropdown-item" href="/activities/sports">Sports</a></li>
-                                <li><a class="dropdown-item" href="/activities/scouts-guides">Scouts & Guides</a></li>
-                                <li><a class="dropdown-item" href="/activities/ncc">NCC</a></li>
-                                <li><a class="dropdown-item" href="/activities/magazine">Magazine</a></li>
                             </ul>
-                        </li>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="collapse navbar-collapse" id="mainNavbar">
+                        <ul class="navbar-nav ms-auto">
+                            <!-- Home -->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/">Home</a>
+                            </li>
+
+                            <!-- About Us -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
+                                    About Us
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#our-vision">Our Vision</a></li>
+                                    <li><a class="dropdown-item" href="#our-mission">Our Mission</a></li>
+                                    <li><a class="dropdown-item" href="#objectives">Objectives</a></li>
+                                    <li><a class="dropdown-item" href="#leadership">Leadership</a></li>
+                                    <li><a class="dropdown-item" href="/hierarchy">Institutional Hierarchy</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- School Info -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    School Handbook
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/team-&-visiting-hours">Team</a></li>
+                                    <li><a class="dropdown-item" href="/timings">Timings</a></li>
+                                    <li><a class="dropdown-item" href="/uniform">Uniform</a></li>
+                                    <li><a class="dropdown-item" href="/fees">Fee Structure</a></li>
+                                    <li><a class="dropdown-item" href="/book-list">Book List</a></li>
+                                    <li><a class="dropdown-item" href="/disclosures">Mandatory Disclosures</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Academics -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Academics
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/academics/junior">Junior Wing</a></li>
+                                    <li><a class="dropdown-item" href="/academics/senior">Senior Wing</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Infrastructure -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Infrastructure
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/junior-wing">Junior Wing</a></li>
+                                    <li><a class="dropdown-item" href="/senior-wing">Senior Wing</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Activities -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    Activities
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- First submenu -->
+                                    <li class="dropdown-submenu position-relative">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Co-Curricular</a>
+                                        <ul class="dropdown-menu start-100 top-0 mt-0">
+                                            <li><a class="dropdown-item" href="/cca-junior">Junior Wing</a></li>
+                                            <li><a class="dropdown-item" href="/cca-senior">Senior Wing</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- Second submenu -->
+                                    <li class="dropdown-submenu position-relative">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Celebrations</a>
+                                        <ul class="dropdown-menu start-100 top-0 mt-0">
+                                            <li><a class="dropdown-item" href="/activities-celebrations-junior">Junior Wing</a></li>
+                                            <li><a class="dropdown-item" href="/activities/celebrations/senior">Senior Wing</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="/activities/sports">Sports</a></li>
+                                    <li><a class="dropdown-item" href="/activities/scouts-guides">Scouts & Guides</a></li>
+                                    <li><a class="dropdown-item" href="/activities/ncc">NCC</a></li>
+                                    <li><a class="dropdown-item" href="/activities/magazine">Magazine</a></li>
+                                </ul>
+                            </li>
 
 
-                        <!-- News -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#news-notices">News</a>
-                        </li>
+                            <!-- News -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#news-notices">News</a>
+                            </li>
 
-                        <!-- Contact -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact">Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+                            <!-- Contact -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </nav>
     </header>
 
     <div class="container">

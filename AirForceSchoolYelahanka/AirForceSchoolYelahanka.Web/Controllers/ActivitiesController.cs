@@ -1,12 +1,8 @@
-﻿using AirForceSchoolYelahanka.Web.Models;
-using AirForceSchoolYelahanka.Web.Services.Interfaces;
+﻿using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using AirForceSchoolYelahanka.Web.ViewModel.Activities;
-using AirForceSchoolYelahanka.Web.ViewModel.Home;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Globalization;
-using System.Text.Json;
-using static System.Collections.Specialized.BitVector32;
 
 namespace AirForceSchoolYelahanka.Web.Controllers
 {
