@@ -44,27 +44,41 @@
                     </thead>
                     <tbody>
                         @{
-                            int slNo = 1;
                             var categoryOrder = new List<string> {
                                                 "Principal", "PGT", "TGT", "Headmistress", "PRT", "NTT", "Admin", "Helpers"
                                                 };
-                            var orderedModel = Model.StaffGroupedByRole.OrderBy(m => categoryOrder.IndexOf(m.Key));
-                        }
 
-                        @foreach (var group in orderedModel)
+                            var flattened = Model.StaffGroupedByRole
+                            .SelectMany(g => g.Value.Select(staff => new
+                            {
+                                Role = g.Key,
+                                Staff = staff
+                            }))
+                            .OrderBy(item => item.Staff.Id) // Global sort by ID
+                            .ToList();
+
+                            // Now group by role after sorting
+                            var grouped = flattened
+                            .GroupBy(item => item.Role)
+                            .OrderBy(g =>
+                            {
+                                var index = categoryOrder.FindIndex(role => role.Equals(g.Key, StringComparison.OrdinalIgnoreCase));
+                                return index == -1 ? int.MaxValue : index;
+                            });
+                        }
+                        @foreach (var roleGroup in grouped)
                         {
                             <tr class="table-secondary">
-                                <td colspan="3" class="fw-bold text-center">@group.Key</td>
+                                <td colspan="3" class="fw-bold text-center">@roleGroup.Key</td>
                             </tr>
 
-                            @foreach (var staff in group.Value)
+                            @foreach (var item in roleGroup)
                             {
                                 <tr>
-                                    <td>@slNo</td>
-                                    <td>@staff.Name</td>
-                                    <td>@staff.Qualification</td>
+                                    <td>@item.Staff.Id</td>
+                                    <td>@item.Staff.Name</td>
+                                    <td>@item.Staff.Qualification</td>
                                 </tr>
-                                slNo++;
                             }
                         }
                     </tbody>
