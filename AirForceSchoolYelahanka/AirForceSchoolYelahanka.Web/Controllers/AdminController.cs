@@ -58,6 +58,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             return View();
         }
 
+        [Route("dashboard")]
         [HttpGet]
         public async Task<IActionResult> Index(string page = "Home")
         {

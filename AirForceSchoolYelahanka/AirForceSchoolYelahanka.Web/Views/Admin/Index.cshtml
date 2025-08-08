@@ -1,93 +1,81 @@
 ﻿@model AirForceSchoolYelahanka.Web.ViewModel.CMSEditViewModel
 @using AirForceSchoolYelahanka.Web.Config
 @using System.Text.Json
-
-
 @{
-    ViewData["Title"] = "CMS Editor";
-}
-<div class="d-flex">
-    <!-- Sidebar -->
-    <nav class="bg-light border-end p-3" style="width: 220px; min-height: 100vh;">
-        <h5 class="text-primary mb-4">CMS Admin</h5>
-        <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-                <a class="nav-link" href="/Admin/EditHomePageRollersSection">Rollersection</a>
-            </li>
-            <li class="nav-item mb-2">
-                <a class="nav-link" href="/Admin/EditActivities">Activities</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-@* @if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    ViewData["Title"] = "Admin Dashboard";
 }
 
-<!-- Page Selector -->
-<form method="get" asp-action="Index" class="mb-4">
-    <div class="form-group">
-        <label for="page">Select Page:</label>
-        <select id="page" name="page" class="form-control w-auto d-inline-block" onchange="this.form.submit()">
-            @foreach (var page in CmsPages.PageSections.Keys)
-            {
-                <option value="@(page)" selected="@(page == Model.Page ? "selected" : null)">
-                    @(page)
-                </option>
-            }
-        </select>
-    </div>
-</form>
-<!-- CMS Sections Form -->
-<form method="post" asp-action="Save">
-    <input type="hidden" name="Page" value="@Model.Page" />
+<div class="container my-4">
+    <h1 class="mb-4">Admin Dashboard</h1>
 
-    @for (int i = 0; i < Model.Sections.Count; i++)
-    {
-        var cmsSection = Model.Sections[i];
-
-        <div class="form-group mt-4">
-            <label for="section-@i"><strong>@cmsSection.Key</strong></label>
-            <input type="hidden" name="Sections[@i].Key" value="@cmsSection.Key" />
-
-            @{
-                string jsonFormatted = cmsSection.ContentJson;
-
-                try
-                {
-                    // Try parsing and pretty-printing the JSON with relaxed escaping
-                    using var doc = JsonDocument.Parse(cmsSection.ContentJson);
-                    jsonFormatted = JsonSerializer.Serialize(doc.RootElement, new JsonSerializerOptions
-                    {
-                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                        WriteIndented = true
-                    });
-                }
-                catch
-                {
-                    // If the content is not valid JSON, keep it as-is
-                    jsonFormatted = cmsSection.ContentJson;
-                }
-            }
-
-            <textarea name="Sections[@i].ContentJson" class="form-control font-monospace" rows="10" spellcheck="false">@Html.Raw(jsonFormatted)</textarea>
-
-            <small class="text-muted">Enter valid JSON object: { "key": "value" }</small>
-
-            @if (ViewData.ModelState[$"Sections[{i}].ContentJson"]?.Errors.Count > 0)
-            {
-                <span class="text-danger">
-                    @ViewData.ModelState[$"Sections[{i}].ContentJson"].Errors[0].ErrorMessage
-                </span>
-            }
+    <div class="row g-3">
+        <!-- Manage Pages -->
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card admin-card text-center shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <div class="icon-wrapper bg-primary text-white mb-3">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <h6 class="card-title">News, Notice and Activities</h6>
+                    <p class="small text-muted">Author content for News, Notice and Activities sections</p>
+                    <a href="/Admin/EditHomePageRollersSection" class="stretched-link"></a>
+                </div>
+            </div>
         </div>
-    }
 
-    <button type="submit" class="btn btn-primary mt-4">Save Changes</button>
-</form>
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
- *@
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card admin-card text-center shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <div class="icon-wrapper bg-primary text-white mb-3">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <h6 class="card-title">Activities</h6>
+                    <p class="small text-muted">Author content for activities menu sections for junior and senior</p>
+                    <a href="/Admin/EditActivities" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Assets -->
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card admin-card text-center shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <div class="icon-wrapper bg-success text-white mb-3">
+                        <i class="bi bi-cloud-upload"></i>
+                    </div>
+                    <h6 class="card-title">Upload Assets</h6>
+                    <p class="small text-muted">Add images, PDFs, and other files.</p>
+                    <a href="/Admin/Assets" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+
+      @*   <!-- User Management -->
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card admin-card text-center shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <div class="icon-wrapper bg-warning text-dark mb-3">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h6 class="card-title">User Management</h6>
+                    <p class="small text-muted">Add, edit, or remove admin users.</p>
+                    <a href="/Admin/Users" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Site Settings -->
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card admin-card text-center shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <div class="icon-wrapper bg-danger text-white mb-3">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                    <h6 class="card-title">Site Settings</h6>
+                    <p class="small text-muted">Manage global website preferences.</p>
+                    <a href="/Admin/Settings" class="stretched-link"></a>
+                </div>
+            </div>
+        </div> *@
+    </div>
+</div>

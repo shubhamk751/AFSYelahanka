@@ -22,17 +22,17 @@
 
     <!-- Upload and Folder Creation -->
     <div class="row mb-4">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <form method="post" asp-action="Upload" enctype="multipart/form-data">
                 <input type="hidden" name="currentPath" value="@currentPath" />
                 <div class="input-group">
-                    <input type="file" name="file" class="form-control" />
+                    <input type="file" name="files" class="form-control" multiple />
                     <button type="submit" class="btn btn-success">Upload</button>
                 </div>
             </form>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <form method="post" asp-action="CreateFolder">
                 <input type="hidden" name="currentPath" value="@currentPath" />
                 <div class="input-group">
