@@ -639,3 +639,9 @@ h1.mb-4 {
         background-color: #212529;
         color: #fbbf24;
     }
+
+/* Highlight active accordion header */
+.accordion-header.active > .accordion-button {
+    background-color: #ffc107; /* Bootstrap warning color */
+    color: #212529;
+}
