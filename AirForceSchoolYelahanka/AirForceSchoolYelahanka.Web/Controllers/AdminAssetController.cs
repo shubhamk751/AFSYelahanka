@@ -9,6 +9,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
     {
         private readonly string _rootFolder = "wwwroot/assets";
 
+        [Route("admin/assets")]
         [HttpGet]
         public IActionResult Index(string path = "")
         {
@@ -79,17 +80,20 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(string currentPath, IFormFile file)
+        public async Task<IActionResult> Upload(string currentPath, List<IFormFile> files)
         {
-            if (file != null)
+            if (files != null && files.Any())
             {
                 var folderPath = Path.Combine(_rootFolder, currentPath ?? "");
                 if (!Directory.Exists(folderPath))
                     Directory.CreateDirectory(folderPath);
 
-                var filePath = Path.Combine(folderPath, file.FileName);
-                using var stream = new FileStream(filePath, FileMode.Create);
-                await file.CopyToAsync(stream);
+                foreach (var file in files)
+                {
+                    var filePath = Path.Combine(folderPath, file.FileName);
+                    using var stream = new FileStream(filePath, FileMode.Create);
+                    await file.CopyToAsync(stream);
+                }
             }
 
             return RedirectToAction("Index", new { path = currentPath });
