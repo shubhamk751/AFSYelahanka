@@ -495,12 +495,16 @@ footer {
 }*/
 
 .footer-school {
-    position: relative;
+    position: fixed; /* Stick to viewport */
+    left: 0;
+    bottom: 0; /* Align bottom edge */
+    width: 100%; /* Full width */
     background-color: #eaf3f8;
     text-align: center;
     padding: 0.5rem 0;
     overflow: hidden;
-    color: #000; /* Black text */
+    color: #000;
+    z-index: 1000; /* Ensure it’s on top of content */
 }
 
 .animated-bus {
@@ -530,4 +534,20 @@ footer {
     color: #0056b3;
     text-decoration: underline;
     margin-left: 0.5rem;
+}
+
+h1.mb-4 {
+    font-size: 2rem; /* Bigger, but not too big */
+    font-weight: 700; /* Bold for emphasis */
+    color: #0d6efd; /* Bootstrap primary blue */
+    display: inline-block;
+    padding-bottom: 0.4rem;
+    border-bottom: 3px solid #0d6efd; /* Underline accent */
+    letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+    h1.mb-4 {
+        font-size: 2.5rem;
+    }
 }
