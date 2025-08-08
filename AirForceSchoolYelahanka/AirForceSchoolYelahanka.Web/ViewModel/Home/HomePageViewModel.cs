@@ -21,6 +21,7 @@
 
     public class NoticeItem : HomeInsertGeneric
     {
+        public string Link { get; set; }
     }
 
     public class ActivityItem : HomeInsertGeneric
