@@ -38,15 +38,15 @@
     </div>
 
     <header>
-        
-            <nav class="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm sticky-top">
-                <div class="container">
-                    <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase" href="/">
-                        <img src="/assets/images/shared/logo.png" alt="Logo" class="school-logo me-2" />
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+
+        <nav class="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm sticky-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase" href="/">
+                    <img src="/assets/images/shared/logo.png" alt="Logo" class="school-logo me-2" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 @if (User.Identity.IsAuthenticated)
                 {
                     @if (User.IsInRole("Admin"))
@@ -166,12 +166,13 @@
 
                             <!-- Contact -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/contact">Contact Us</a>
+                                <a class="nav-link" href="/contact-us">Contact Us</a>
                             </li>
                         </ul>
                     </div>
                 }
-            </nav>
+        </nav>
+
     </header>
 
     <div class="container">
@@ -180,11 +181,45 @@
         </main>
     </div>
 
+    @* for later *@
+    @* <div class="social-bookmark">
+        <ul>
+            <li>
+                <a href="https://www.youtube.com/channel/UCVOklMUYfwGtxKFUbjUZr3A" target="_blank" title="Youtube">
+                    <i class="fab fa-youtube"></i> Youtube
+                </a>
+            </li>
+            <li>
+                <a href="https://facebook.com/YourPage" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/YourPage" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+            </li>
+            <li>
+                <a href="https://instagram.com/YourPage" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </li>
+            <li>
+                <a href="https://linkedin.com/in/YourPage" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+            </li>
+        </ul>
+    </div> *@
+
+    <button id="btnGoTop" title="Go to top" aria-label="Go to top">
+        <i class="bi bi-arrow-up-short" style="font-size: 1.5rem;"></i>
+    </button>
     <footer class="footer-school">
         <img src="/assets/images/shared/school-bus.svg" alt="School Bus" class="animated-bus" />
         <div class="footer-text">
             © 2025 Air Force School Yelahanka — All rights reserved.
-            <a href="/privacy" class="privacy-link">Privacy</a>
+            @* <a href="/privacy" class="privacy-link">Privacy</a> *@
         </div>
     </footer>
 
@@ -199,6 +234,26 @@
                 easing: 'ease-in-out',
                 once: true
             });
+        });
+
+              //Get the button
+        const btnGoTop = document.getElementById("btnGoTop");
+
+        // When the user scrolls down 100px from the top, show the button
+        window.onscroll = function() {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            btnGoTop.style.display = "block";
+          } else {
+            btnGoTop.style.display = "none";
+          }
+        };
+
+        // When the user clicks on the button, scroll to the top smoothly
+        btnGoTop.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>

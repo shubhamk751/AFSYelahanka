@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+<section class="contact-hero py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- Contact Info -->
+            <div class="col-lg-6">
+                <h1 class="contact-heading mb-4">
+                    Get in Touch
+                </h1>
+                <p class="lead text-muted mb-5">
+                    Whether you’re a parent, student, or just curious — we’re here to help.
+                </p>
+
+                <div class="contact-card glass-effect p-4 mb-4">
+                    <i class="bi bi-geo-alt-fill contact-icon"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold mb-1">Address</h6>
+                        <address class="mb-0" id="copy-address">
+                            Air Force Station,<br />
+                            KIAL Road, Yelahanka,<br />
+                            Bangalore - 560063
+                        </address>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-target="copy-address" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+
+                <div class="contact-card glass-effect p-4 mb-4">
+                    <i class="bi bi-telephone-fill contact-icon"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold mb-1">Phone</h6>
+                        <a href="tel:+919035272410" id="copy-phone" class="contact-link">+91 90352 72410</a>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-target="copy-phone" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+
+                <div class="contact-card glass-effect p-4 mb-4">
+                    <i class="bi bi-envelope-fill contact-icon"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold mb-1">Email</h6>
+                        <a href="mailto:afschoolyel06386@gmail.com" id="copy-email" class="contact-link">afschoolyel06386@gmail.com</a>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-target="copy-email" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+
+                <div class="contact-card glass-effect p-4">
+                    <i class="bi bi-globe2 contact-icon"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold mb-1">Website</h6>
+                        <a href="https://www.airforceschoolyel.net" id="copy-website" target="_blank" rel="noopener" class="contact-link">www.airforceschoolyel.net</a>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-target="copy-website" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="col-lg-6">
+                <div class="map-card shadow-lg rounded-4 overflow-hidden">
+                    <iframe title="Air Force School Yelahanka - Map"
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31083.778943416477!2d77.62365100000001!3d13.132577!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae193bf55e42b3%3A0x1eb475ddd4a9b035!2sAir%20Force%20School%2C%20Yelahanka!5e0!3m2!1sen!2sin!4v1754670668314!5m2!1sen!2sin"
+                            width="100%"
+                            height="400"
+                            style="border:0;"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                const textToCopy = targetElement.innerText || targetElement.textContent;
+
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    button.innerHTML = '<i class="bi bi-check-lg text-success"></i>';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="bi bi-clipboard"></i>';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                });
+            });
+        });
+    </script>
+}
