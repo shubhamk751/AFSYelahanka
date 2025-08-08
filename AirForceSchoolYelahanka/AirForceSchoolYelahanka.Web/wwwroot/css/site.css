@@ -554,3 +554,88 @@ h1.mb-4 {
     }
 }
 
+.social-bookmark {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: #fbbf24; /* Matching your wave fill color */
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    z-index: 1050;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+    .social-bookmark ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 45px; /* Collapsed width */
+        transition: width 0.3s ease;
+        overflow: hidden;
+    }
+
+    .social-bookmark:hover ul {
+        width: 180px; /* Expanded width */
+    }
+
+    .social-bookmark ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+        .social-bookmark ul li:last-child {
+            border-bottom: none;
+        }
+
+        .social-bookmark ul li a {
+            display: flex;
+            align-items: center;
+            color: #212529;
+            text-decoration: none;
+            padding: 12px 10px;
+            white-space: nowrap;
+            font-weight: 600;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+            .social-bookmark ul li a i {
+                font-size: 20px;
+                width: 25px;
+                text-align: center;
+                margin-right: 8px;
+                color: #212529;
+            }
+
+            .social-bookmark ul li a:hover {
+                background-color: #212529;
+                color: #fbbf24;
+            }
+
+                .social-bookmark ul li a:hover i {
+                    color: #fbbf24;
+                }
+
+#btnGoTop {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: none; /* Hidden by default */
+    background-color: #fbbf24; /* matching your theme */
+    border: none;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: #212529;
+    transition: background-color 0.3s ease;
+    z-index: 1100;
+}
+
+    #btnGoTop:hover {
+        background-color: #212529;
+        color: #fbbf24;
+    }
