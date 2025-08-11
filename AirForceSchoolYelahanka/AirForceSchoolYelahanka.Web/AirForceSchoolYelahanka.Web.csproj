@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\images\handbook\**" />
+    <Content Remove="wwwroot\assets\images\handbook\**" />
+    <EmbeddedResource Remove="wwwroot\assets\images\handbook\**" />
+    <None Remove="wwwroot\assets\images\handbook\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
@@ -24,8 +31,7 @@
   <ItemGroup>
     <Folder Include="ViewModel\AboutUs\" />
 	  <Folder Include="wwwroot\assets\files\" />
-	  <Folder Include="wwwroot\assets\images\" />
-	  <Folder Include="wwwroot\assets\images\handbook\" />
+	  <Folder Include="wwwroot\assets\images\academics\junior\banner\" />
 	  <Folder Include="wwwroot\assets\images\infra\junior-wing\" />
   </ItemGroup>
 

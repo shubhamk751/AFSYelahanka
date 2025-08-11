@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Senior Wing Academics";
+
+    var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "academics", "senior", "gallery");
+    var imageFiles = Directory.Exists(imageDir)
+        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png")).ToList()
+        : new List<string>();
+    var webImagePaths = imageFiles.Select(f => "/assets/images/academics/senior/gallery/" + System.IO.Path.GetFileName(f)).ToList();
+}
+
+<!-- GLightbox CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+<section class="container my-4">
+
+    <!-- Banner -->
+    <div class="position-relative rounded overflow-hidden shadow-sm mb-4"
+         data-aos="zoom-in" data-aos-delay="100">
+        <img src="/assets/images/academics/senior/banner/senior-wing.jpg"
+             alt="Senior Wing Banner"
+             class="img-fluid w-100" style="max-height: 320px; object-fit: cover;">
+        <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-3"
+             data-aos="fade-down" data-aos-duration="800">
+            <h1 class="fw-bold display-6" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
+                Senior Wing (Class III to XII)
+            </h1>
+        </div>
+    </div>
+
+    <!-- Card -->
+    <div class="card border-0 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-body">
+
+            <!-- About -->
+            <h2 class="h4 text-primary fw-bold mb-3" data-aos="fade-right">
+                About Senior Wing
+            </h2>
+            <p class="mb-4" data-aos="fade-up" data-aos-delay="100">
+                The academic system follows the syllabus prescribed by the Air HQ, New Delhi.
+                Teaching is student-centric, project-based, and incorporates embedded learning.
+                Students engage in hands-on experiences to deepen their understanding. Alongside the general curriculum, students can develop talents in academics, sports, theatre, music, and dance—supported by outstanding facilities.
+            </p>
+            <p data-aos="fade-up" data-aos-delay="150">
+                New teaching techniques, combined with technology, create a conducive learning environment tailored to modern educational needs.
+            </p>
+
+            <!-- Gallery -->
+            <h3 class="h5 text-primary fw-bold mb-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+                Senior Wing Gallery
+            </h3>
+
+            <div class="dock-gallery d-flex flex-nowrap overflow-auto px-3">
+                @foreach (var imagePath in webImagePaths)
+                {
+                    var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                    var title = System.Globalization.CultureInfo.CurrentCulture.TextInfo
+                    .ToTitleCase(fileName.Replace("-", " ").Replace("_", " "));
+
+                    <div class="dock-item text-center mx-2" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="dock-inner d-flex flex-column align-items-center">
+                            <a href="@imagePath" class="glightbox" data-gallery="senior-gallery" data-title="@title">
+                                <img src="@imagePath" alt="@title" class="dock-img" />
+                            </a>
+                            <p class="small mt-2 mb-1">@title</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+
