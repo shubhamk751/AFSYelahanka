@@ -4,8 +4,22 @@ using AirForceSchoolYelahanka.Web.Services.Implementations;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug() // capture Debug and above
+    .WriteTo.Console()
+    .WriteTo.File(
+        "logs/app-log-.txt",           // file location (relative to project root)
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 10,    // keep last 10 log files
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+    )
+    .CreateLogger();
+
+builder.Host.UseSerilog(); // replace default logging with Serilog
 
 builder.Services.AddScoped<ICmsService, CmsService>();
 builder.Services.AddScoped<IStaffService, StaffService>();

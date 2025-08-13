@@ -36,9 +36,6 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                 case 404:
                     ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found.";
                     break;
-                case 500:
-                    ViewBag.ErrorMessage = "Oops! Something went wrong on our end.";
-                    break;
             }
 
             _logger.LogWarning("Status code: {StatusCode} at path: {OriginalPath}, TraceId: {TraceId}",
