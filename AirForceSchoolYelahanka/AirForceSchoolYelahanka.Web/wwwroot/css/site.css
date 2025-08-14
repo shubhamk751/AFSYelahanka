@@ -203,6 +203,8 @@ footer {
 section {
     border-radius: 1rem; /* 16px rounded corners */
     overflow: hidden; /* ensures child content also follows the rounding */
+    margin-top: 2rem;
+    margin-bottom: 2rem
 }
 
 /* Carousel Container */
