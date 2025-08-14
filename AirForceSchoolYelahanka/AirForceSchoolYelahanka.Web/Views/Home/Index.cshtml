@@ -80,30 +80,34 @@
             <!-- Hero Text Column -->
             <div class="col-lg-4 col-md-12 d-flex flex-column justify-content-center" data-aos="flip-left" data-aos-delay="100">
                 <h1 class="fs-2">Welcome to Air Force School Yelahanka</h1>
-                <p class="fs-6">Air Force School, Yelahanka has been successfully imparting quality education...</p>
+                <p class="fs-6">Air Force School, Yelahanka has been successfully imparting quality education for the past 52 years. This school was established initially as Nursery School during 1970-71 in the temporary building (T - 55) to cater to the educational needs of Tiny Tots of the station.</p>
                 <a href="/about-us" class="btn btn-light mt-3">Learn More</a>
             </div>
 
             <!-- Junior Wing Card -->
             <div class="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="100">
-                <div class="card h-100 shadow-sm text-dark">
-                    <img src="/assets/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Junior Wing</h5>
-                        <p class="card-text">LKG to Class II – Fun, engaging & foundational learning.</p>
+                <a href="/academics/junior" class="text-decoration-none text-dark d-block h-100">
+                    <div class="card h-100 shadow-sm text-dark">
+                        <img src="/assets/images/home/jw.jpg" class="card-img-top" alt="Junior Wing" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Junior Wing</h5>
+                            <p class="card-text">LKG to Class II – Fun, engaging & foundational learning.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Senior Wing Card -->
             <div class="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="200">
-                <div class="card h-100 shadow-sm text-dark">
-                    <img src="/assets/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Senior Wing</h5>
-                        <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
+                <a href="/academics/senior" class="text-decoration-none text-dark d-block h-100">
+                    <div class="card h-100 shadow-sm text-dark">
+                        <img src="/assets/images/home/sw.jpg" class="card-img-top" alt="Senior Wing" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Senior Wing</h5>
+                            <p class="card-text">Class III to XII – Strong academic focus, CBSE-aligned.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -158,7 +162,7 @@
 
             <!-- Recent Activities -->
             @await Html.PartialAsync("Sections/_RecentActivities", Model.RecentActivities)
-            
+
         </div>
     </div>
 </section>
