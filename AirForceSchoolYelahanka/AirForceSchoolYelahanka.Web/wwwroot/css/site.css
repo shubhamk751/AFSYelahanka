@@ -57,6 +57,28 @@ h1, h2, h3, h4, h5 {
         color: #0d6efd !important;
     }
 
+/* Dropdown submenu */
+.dropdown-submenu .dropdown-menu {
+    left: 100%;
+    top: 0;
+    margin-top: 0;
+}
+
+/* Make submenu show on mobile click */
+.dropdown-menu.show {
+    display: block !important;
+}
+
+/* Responsive submenu for small screens */
+@media (max-width: 991px) {
+    .dropdown-submenu .dropdown-menu {
+        position: static;
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 /* Dropdown Menu */
 .dropdown-menu {
     background-color: #ffffff;
@@ -193,11 +215,18 @@ footer {
     }
 }
 
-/* Fix navbar brand logo on smaller devices */
+/* Navbar brand logo for all devices */
+.navbar-brand img.school-logo {
+    height: 83px; /* default height for desktop */
+    width: auto; /* maintain aspect ratio */
+    transition: all 0.3s ease-in-out; /* smooth resizing */
+}
+
+/* Smaller logo on mobile devices */
 @media (max-width: 576px) {
     .navbar-brand img.school-logo {
-        height: 40px;
-        max-width: 90%;
+        height: 35px; /* smaller height for mobile */
+        max-width: 80%; /* ensure it doesn't overflow */
     }
 }
 section {
@@ -751,3 +780,188 @@ h1.mb-4 {
     border-radius: 10px;
 }
 /*END OF MODERN CARD ON HOME PAGE*/
+}
+
+.alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* space between cards */
+    padding-bottom: 50px; /* adds space at the bottom */
+}
+
+.alumni-card {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.alumni-card-inner {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Flip on click (works everywhere) */
+.alumni-card.flipped .alumni-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Optional: flip on hover (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+    .alumni-card:hover .alumni-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
+.alumni-card-front,
+.alumni-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 20px;
+}
+
+    .alumni-card-front img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .alumni-card-front h3 {
+        margin: 5px 0;
+        color: #333;
+    }
+
+    .alumni-card-front p {
+        color: #777;
+    }
+
+.alumni-card-back {
+    background: #004080;
+    color: #fff;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-style: italic;
+}
+
+/* ---------------------------- */
+/* Left Side Bookmark Container */
+/* ---------------------------- */
+#left-achievers-bookmark {
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 40px; /* collapsed width */
+    background: #004080;
+    border-radius: 0 10px 10px 0;
+    overflow: hidden;
+    z-index: 9999;
+    transition: width 0.3s;
+    cursor: pointer;
+    max-height: 60vh; /* prevents overlapping footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+    /* ---------------------------- */
+    /* Expand on Hover              */
+    /* ---------------------------- */
+    #left-achievers-bookmark:hover {
+        width: 220px; /* expanded width */
+    }
+
+    /* Label */
+    #left-achievers-bookmark .bookmark-label {
+        color: #fff;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: center;
+        font-weight: bold;
+        padding: 10px 0;
+        font-size: 0.85rem;
+    }
+
+    /* Content (Initially hidden) */
+    #left-achievers-bookmark .bookmark-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 15px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        overflow-y: auto; /* scroll if content exceeds height */
+    }
+
+    /* Show content on hover */
+    #left-achievers-bookmark:hover .bookmark-content {
+        opacity: 1;
+    }
+
+    /* Achiever Cards */
+    #left-achievers-bookmark .achiever {
+        background: #fff;
+        padding: 8px;
+        border-radius: 8px;
+        text-align: center;
+        width: 180px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        transition: transform 0.3s;
+    }
+
+        #left-achievers-bookmark .achiever:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Images */
+        #left-achievers-bookmark .achiever img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        /* Text */
+        #left-achievers-bookmark .achiever p {
+            margin: 0;
+            font-size: 0.7rem;
+        }
+
+        /* See More Button */
+        #left-achievers-bookmark .achiever.see-more a {
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+    /* Hide Scrollbar (Webkit) */
+    #left-achievers-bookmark .bookmark-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    #left-achievers-bookmark .bookmark-content::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 2px;
+    }
+
+/* Responsive: hide on mobile */
+@media (max-width: 768px) {
+    #left-achievers-bookmark {
+        display: none;
+    }
+}

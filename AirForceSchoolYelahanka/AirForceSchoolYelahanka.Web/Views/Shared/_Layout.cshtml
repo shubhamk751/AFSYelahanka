@@ -44,36 +44,28 @@
                 <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase" href="/">
                     <img src="/assets/images/shared/logo.png" alt="Logo" class="school-logo me-2" />
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div class="collapse navbar-collapse" id="mainNavbar">
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="collapse navbar-collapse" id="mainNavbar">
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/admin/logout">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <div class="collapse navbar-collapse" id="mainNavbar">
-                        <ul class="navbar-nav ms-auto">
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
                             <li class="nav-item">
                                 <a class="nav-link active" href="/">Home</a>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
                                     About Us
@@ -87,9 +79,10 @@
                                     <li><a class="dropdown-item" href="/hierarchy">Institutional Hierarchy</a></li>
                                 </ul>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    School Handbook
+                                    The Almanac
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/team-&-visiting-hours">Team</a></li>
@@ -100,6 +93,11 @@
                                     <li><a class="dropdown-item" href="/mandatory-public-disclosure">Mandatory Disclosures</a></li>
                                 </ul>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/alumni">School Alumni</a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     Academics
@@ -109,6 +107,7 @@
                                     <li><a class="dropdown-item" href="/academics/senior">Senior Wing</a></li>
                                 </ul>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     Infrastructure
@@ -118,6 +117,7 @@
                                     <li><a class="dropdown-item" href="/senior-wing">Senior Wing</a></li>
                                 </ul>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     Activities
@@ -125,32 +125,31 @@
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-submenu position-relative">
                                         <a class="dropdown-item dropdown-toggle" href="#">Co-Curricular</a>
-                                        <ul class="dropdown-menu start-100 top-0 mt-0">
+                                        <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="/cca-junior">Junior Wing</a></li>
                                             <li><a class="dropdown-item" href="/cca-senior">Senior Wing</a></li>
                                         </ul>
                                     </li>
-
                                     <li class="dropdown-submenu position-relative">
                                         <a class="dropdown-item dropdown-toggle" href="#">Celebrations</a>
-                                        <ul class="dropdown-menu start-100 top-0 mt-0">
+                                        <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="/activities-celebrations-junior">Junior Wing</a></li>
                                             <li><a class="dropdown-item" href="/activities/celebrations/senior">Senior Wing</a></li>
                                         </ul>
                                     </li>
-
                                     <li><a class="dropdown-item" href="/activities/sports">Sports</a></li>
                                     <li><a class="dropdown-item" href="/activities/scouts-guides">Scouts & Guides</a></li>
                                     <li><a class="dropdown-item" href="/activities/ncc">NCC</a></li>
                                     <li><a class="dropdown-item" href="/activities/magazine">Magazine</a></li>
                                 </ul>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact-us">Contact Us</a>
                             </li>
-                        </ul>
-                    </div>
-                }
+                        }
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -234,6 +233,16 @@
             top: 0,
             behavior: 'smooth'
           });
+        });
+
+             // Handle nested dropdowns on mobile
+        document.querySelectorAll('.dropdown-submenu .dropdown-toggle').forEach(function(element){
+            element.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                const submenu = this.nextElementSibling;
+                submenu.classList.toggle('show');
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
