@@ -42,3 +42,19 @@ leftBtn.addEventListener('click', () => {
 rightBtn.addEventListener('click', () => {
     gallery.scrollBy({ left: 200, behavior: 'smooth' });
 });
+
+        .alumni - cta {
+    background: #f0f8ff; /* light blue background */
+    padding: 40px 20px;
+    border - radius: 10px;
+    box - shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alumni - cta h2 {
+    margin - bottom: 15px;
+}
+
+.alumni - cta p {
+    margin - bottom: 25px;
+    color: #555;
+}
