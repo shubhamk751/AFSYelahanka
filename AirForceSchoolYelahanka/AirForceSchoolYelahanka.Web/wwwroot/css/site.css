@@ -57,6 +57,28 @@ h1, h2, h3, h4, h5 {
         color: #0d6efd !important;
     }
 
+/* Dropdown submenu */
+.dropdown-submenu .dropdown-menu {
+    left: 100%;
+    top: 0;
+    margin-top: 0;
+}
+
+/* Make submenu show on mobile click */
+.dropdown-menu.show {
+    display: block !important;
+}
+
+/* Responsive submenu for small screens */
+@media (max-width: 991px) {
+    .dropdown-submenu .dropdown-menu {
+        position: static;
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 /* Dropdown Menu */
 .dropdown-menu {
     background-color: #ffffff;
@@ -191,11 +213,18 @@ footer {
     }
 }
 
-/* Fix navbar brand logo on smaller devices */
+/* Navbar brand logo for all devices */
+.navbar-brand img.school-logo {
+    height: 83px; /* default height for desktop */
+    width: auto; /* maintain aspect ratio */
+    transition: all 0.3s ease-in-out; /* smooth resizing */
+}
+
+/* Smaller logo on mobile devices */
 @media (max-width: 576px) {
     .navbar-brand img.school-logo {
-        height: 40px;
-        max-width: 90%;
+        height: 35px; /* smaller height for mobile */
+        max-width: 80%; /* ensure it doesn't overflow */
     }
 }
 
