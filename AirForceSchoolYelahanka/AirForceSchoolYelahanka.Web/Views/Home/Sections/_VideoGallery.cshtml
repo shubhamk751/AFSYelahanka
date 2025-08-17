@@ -3,7 +3,7 @@
 <div class="col-md-4" data-aos="fade-left" data-aos-delay="800">
     <div class="card shadow-sm h-100">
         <div class="card-header bg-success text-white d-flex align-items-center">
-            <i class="bi bi-calendar-event me-2"></i>
+            <i class="bi bi-camera-video me-2"></i>
             <h5 class="mb-0">Video Gallery</h5>
         </div>
         <div class="card-body p-0">
@@ -12,8 +12,9 @@
                     @foreach (var video in Model)
                     {
                         <li>
-                            <a href="@video.Link">
-                                <strong>@video.Title</strong>
+                            <a href="#" class="video-link" data-bs-toggle="modal" data-bs-target="#videoModal"
+                               data-video="@video.Link">
+                                🎥 <strong>@video.Title</strong>
                             </a>
                         </li>
                     }
@@ -22,3 +23,41 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9">
+                    <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var videoModal = document.getElementById('videoModal');
+    var videoFrame = document.getElementById('videoFrame');
+
+        videoModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var videoUrl = button.getAttribute('data-video');
+
+        //Extract video ID safely
+        let videoId = "";
+        if (videoUrl.includes("watch?v=")) {
+            videoId = videoUrl.split("watch?v=")[1].split("&")[0];
+        } else if (videoUrl.includes("youtu.be/")) {
+            videoId = videoUrl.split("youtu.be/")[1].split("?")[0];
+        }
+
+        var embedUrl = "https://www.youtube.com/embed/" + videoId;
+        videoFrame.src = embedUrl + "?autoplay=1";
+    });
+
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        videoFrame.src = "";
+    });
+</script>
