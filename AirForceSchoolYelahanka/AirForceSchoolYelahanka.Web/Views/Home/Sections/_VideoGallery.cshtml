@@ -1,19 +1,19 @@
-﻿@model List<AirForceSchoolYelahanka.Web.ViewModel.Home.ActivityItem>
+﻿@model List<AirForceSchoolYelahanka.Web.ViewModel.Home.VideoItem>
 
 <div class="col-md-4" data-aos="fade-left" data-aos-delay="800">
     <div class="card shadow-sm h-100">
         <div class="card-header bg-success text-white d-flex align-items-center">
             <i class="bi bi-calendar-event me-2"></i>
-            <h5 class="mb-0">Recent Activities</h5>
+            <h5 class="mb-0">Video Gallery</h5>
         </div>
         <div class="card-body p-0">
             <div class="scroll-marquee p-3">
                 <ul class="marquee-list">
-                    @foreach (var activity in Model)
+                    @foreach (var video in Model)
                     {
                         <li>
-                            <a href="@activity.Link">
-                                <strong>@activity.Title</strong>
+                            <a href="@video.Link">
+                                <strong>@video.Title</strong>
                             </a>
                         </li>
                     }

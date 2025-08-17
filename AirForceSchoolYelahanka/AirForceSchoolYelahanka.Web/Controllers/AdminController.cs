@@ -195,7 +195,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             "HomePage_LatestNews",
             "HomePage_NoticeBoard",
-            "HomePage_RecentActivity"
+            "HomePage_VideoGallery"
         }
             };
 
