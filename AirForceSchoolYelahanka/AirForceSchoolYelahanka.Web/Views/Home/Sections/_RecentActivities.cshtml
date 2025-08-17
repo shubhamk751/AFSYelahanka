@@ -11,7 +11,11 @@
                 <ul class="marquee-list">
                     @foreach (var activity in Model)
                     {
-                        <li><strong>@activity.Title - @activity.Date.ToString("dd MMM yyyy")</strong></li>
+                        <li>
+                            <a href="@activity.Link">
+                                <strong>@activity.Title</strong>
+                            </a>
+                        </li>
                     }
                 </ul>
             </div>

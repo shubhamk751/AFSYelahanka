@@ -26,6 +26,7 @@
 
     public class ActivityItem : HomeInsertGeneric
     {
+        public string Link { get; set; }
     }
 }
 
