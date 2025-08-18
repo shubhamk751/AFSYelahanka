@@ -41,5 +41,10 @@ namespace AirForceSchoolYelahanka.Web.Controllers
 
             return View(vmList);
         }
+        [Route("/curriculum")]
+        public IActionResult Curriculum()
+        {
+            return View();
+        }
     }
 }

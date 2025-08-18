@@ -973,18 +973,6 @@ h1.mb-4 {
    Transfer Certificates Page CSS
    =============================== */
 
-/* Heading */
-h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #0d47a1; /* Deep blue */
-    text-transform: uppercase;
-    border-bottom: 2px solid #0d47a1;
-    display: inline-block;
-    padding-bottom: 4px;
-    margin-bottom: 1rem;
-}
-
 /* Table general */
 .table {
     width: 100%;
@@ -1070,3 +1058,83 @@ h2 {
         margin-top: 5px;
     }
 }
+
+/*curriculum*/
+.section-heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1e3a8a;
+}
+
+.accordion-item {
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #0d6efd;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+    .accordion-header:hover {
+        background-color: #1e3a8a;
+    }
+
+.accordion-body {
+    padding: 1rem 1.5rem;
+    display: none;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+}
+
+    .accordion-body ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .accordion-body li {
+        padding: 0.5rem 0;
+    }
+
+    .accordion-body a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .accordion-body a:hover {
+            text-decoration: underline;
+        }
+
+.accordion-header::after {
+    content: '\25BC';
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active::after {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 600px) {
+    .section-heading {
+        font-size: 1.5rem;
+    }
+
+    .accordion-header, .accordion-body {
+        padding: 0.75rem 1rem;
+    }
+}
+/*curriculum*/
