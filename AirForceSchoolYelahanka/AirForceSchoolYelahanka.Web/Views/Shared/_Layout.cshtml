@@ -12,6 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" asp-append-version="true">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
 </head>
 
@@ -104,7 +105,7 @@
                                     <li><a class="dropdown-item" href="/curriculum">Curriculum</a></li>
                                     <li><a class="dropdown-item" href="/split-up-syllabus">Split Up Syllabus</a></li>
                                     <li><a class="dropdown-item" href="/examination-schedule">Examination Schedule</a></li>
-                                    <li><a class="dropdown-item" href="/tc-issued">TC Issued</a></li>
+                                    <li><a class="dropdown-item" href="/tcs-issued">TCs Issued</a></li>
                                 </ul>
                             </li>
 
@@ -208,6 +209,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script asp-append-version="true">
         document.addEventListener("DOMContentLoaded", function () {
             AOS.init({

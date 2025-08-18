@@ -1,0 +1,99 @@
+﻿@model AirForceSchoolYelahanka.Web.ViewModel.TCUpload.TCUploadViewModel
+
+@{
+    ViewData["Title"] = "Upload Transfer Certificate";
+}
+
+<section>
+    <div class="card p-4 shadow-sm">
+        <h3 class="mb-3">Upload Transfer Certificate</h3>
+
+        <!-- Validation summary -->
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <!-- Student Info -->
+            <fieldset class="mb-3">
+                <legend class="h6 text-muted">Student Information</legend>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Student Name</label>
+                        <input asp-for="StudentName" class="form-control" />
+                        <span asp-validation-for="StudentName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Admission No</label>
+                        <input asp-for="AdmissionNo" class="form-control" />
+                        <span asp-validation-for="AdmissionNo" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Class</label>
+                        <input asp-for="Class" class="form-control" />
+                        <span asp-validation-for="Class" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Section</label>
+                        <input asp-for="Section" class="form-control" />
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Dates -->
+            <fieldset class="mb-3">
+                <legend class="h6 text-muted">Transfer Certificate Details</legend>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>TC Issued On</label>
+                        <input asp-for="IssuedOn" type="date" class="form-control"
+                               value="@DateTime.Today.ToString("yyyy-MM-dd")"
+                               max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="IssuedOn" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Date of Leaving</label>
+                        <input asp-for="DateOfLeaving" type="date" class="form-control"
+                               value="@DateTime.Today.ToString("yyyy-MM-dd")"
+                               max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="DateOfLeaving" class="text-danger"></span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Remarks -->
+            <div class="mb-3">
+                <label>Reason</label>
+                <textarea asp-for="Remarks" class="form-control" rows="3"></textarea>
+            </div>
+
+            <!-- File Upload -->
+            <div class="mb-3">
+                <label>Upload TC (PDF)</label>
+                <input asp-for="TCFile" type="file" accept="application/pdf" class="form-control" />
+                <span asp-validation-for="TCFile" class="text-danger"></span>
+            </div>
+
+            <!-- Action -->
+            <div class="text-end">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-upload"></i> Upload
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("form").on("submit", function (e) {
+                if (!$(this).valid()) {
+                    e.preventDefault(); // Stop submit
+                    // Force validate all fields
+                    $(this).find(":input").each(function () {
+                        $(this).valid();
+                    });
+                }
+            });
+        });
+    </script>
+}

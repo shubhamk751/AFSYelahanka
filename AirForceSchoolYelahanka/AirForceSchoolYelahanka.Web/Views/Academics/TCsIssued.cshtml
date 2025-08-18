@@ -1,0 +1,79 @@
+﻿<section>
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <h5 class="mb-0">Issued Student Transfer Certificates List</h5>
+        </div>
+        <div class="card-body">
+            <!-- Table Controls -->
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                <div id="tcTable_length"></div>
+                <div id="tcTable_filter"></div>
+            </div>
+
+            <!-- TC Table -->
+            <div class="table-responsive">
+                <table id="tcTable" class="table table-bordered table-hover mb-0">
+                    <thead style="background-color:#0d47a1; color:white;" class="text-center">
+                        <tr>
+                            <th>TC No</th>
+                            <th>Student Name</th>
+                            <th>Admission No</th>
+                            <th>Class</th>
+                            <th>Date of Issue</th>
+                            <th>File</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tc in Model)
+                        {
+                            <tr>
+                                <td>@tc.Id</td>
+                                <td>@tc.StudentName</td>
+                                <td>@tc.AdmissionNo</td>
+                                <td>@tc.Class</td>
+                                <td>@tc.IssuedOn.ToString("dd-MMM-yyyy")</td>
+                                <td class="text-center">
+                                    <a href="@Url.Content(tc.FilePath)"
+                                       target="_blank"
+                                       class="btn btn-sm btn-danger">
+                                        <i class="bi bi-file-earmark-pdf"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#tcTable').DataTable({
+            responsive: true,
+            pageLength: 10,
+            lengthMenu: [5, 10, 25, 50],
+            dom: '<"top"lfr>t<"bottom"ip>',
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search TC by Name, Admission No, etc."
+            },
+            initComplete: function () {
+                $('.dataTables_filter input').css({
+                    'width': '300px',
+                    'max-width': '100%',
+                    'padding': '6px 10px',
+                    'font-size': '14px'
+                });
+            }
+        });
+
+            // Move search + length into our custom divs
+            $('#tcTable_length').html($('.dataTables_length'));
+            $('#tcTable_filter').html($('.dataTables_filter'));
+        });
+    </script>
+}

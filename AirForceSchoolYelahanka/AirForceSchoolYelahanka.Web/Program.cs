@@ -1,5 +1,6 @@
 using AirForceSchoolYelahanka.Web.Data;
 using AirForceSchoolYelahanka.Web.Models;
+using AirForceSchoolYelahanka.Web.Services;
 using AirForceSchoolYelahanka.Web.Services.Implementations;
 using AirForceSchoolYelahanka.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -23,6 +24,7 @@ builder.Host.UseSerilog(); // replace default logging with Serilog
 
 builder.Services.AddScoped<ICmsService, CmsService>();
 builder.Services.AddScoped<IStaffService, StaffService>();
+builder.Services.AddScoped<ITCService, TCService>();
 // SQL Server DB
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
