@@ -150,6 +150,9 @@ h1, h2, h3, h4, h5 {
     text-align: justify;
 }
 
+.text-justify {
+    text-align: justify;
+}
 /* Footer */
 footer {
     background-color: #003366;

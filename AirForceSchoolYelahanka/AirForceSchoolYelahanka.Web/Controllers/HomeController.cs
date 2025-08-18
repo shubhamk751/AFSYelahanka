@@ -52,8 +52,8 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                                 viewModel.NoticeBoard = JsonSerializer.Deserialize<List<NoticeItem>>(section.ContentJson) ?? new();
                                 break;
 
-                            case "HomePage_RecentActivity":
-                                viewModel.RecentActivities = JsonSerializer.Deserialize<List<ActivityItem>>(section.ContentJson) ?? new();
+                            case "HomePage_VideoGallery":
+                                viewModel.VideoItem = JsonSerializer.Deserialize<List<VideoItem>>(section.ContentJson) ?? new();
                                 break;
 
                             default:

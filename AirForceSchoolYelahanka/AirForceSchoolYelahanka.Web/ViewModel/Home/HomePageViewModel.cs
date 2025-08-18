@@ -5,7 +5,7 @@
         public Dictionary<string, Dictionary<string, string>> SectionContent { get; set; } = new();
         public List<NewsItem> LatestNews { get; set; } = new();
         public List<NoticeItem> NoticeBoard { get; set; } = new();
-        public List<ActivityItem> RecentActivities { get; set; } = new();
+        public List<VideoItem> VideoItem { get; set; } = new();
     }
 
     public class HomeInsertGeneric
@@ -24,8 +24,9 @@
         public string Link { get; set; }
     }
 
-    public class ActivityItem : HomeInsertGeneric
+    public class VideoItem : HomeInsertGeneric
     {
+        public string Link { get; set; }
     }
 }
 
