@@ -150,7 +150,7 @@ h1, h2, h3, h4, h5 {
     text-align: justify;
 }
 
-p {
+.text-justify {
     text-align: justify;
 }
 /* Footer */
