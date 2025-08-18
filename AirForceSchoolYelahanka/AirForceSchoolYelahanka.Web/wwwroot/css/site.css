@@ -968,3 +968,105 @@ h1.mb-4 {
         display: none;
     }
 }
+
+/* ===============================
+   Transfer Certificates Page CSS
+   =============================== */
+
+/* Heading */
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0d47a1; /* Deep blue */
+    text-transform: uppercase;
+    border-bottom: 2px solid #0d47a1;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Table general */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #dee2e6;
+    }
+
+    /* Table header */
+    .table thead th {
+        background-color: #0d47a1; /* Deep navy */
+        color: #fff;
+        font-weight: 600;
+    }
+
+/* Hover effect */
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Action buttons */
+.btn-danger {
+    background-color: #b71c1c;
+    border: none;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+    .btn-danger:hover {
+        background-color: #880e0e;
+    }
+
+/* DataTables controls alignment */
+#tcTable_length,
+#tcTable_filter {
+    margin: 5px 0;
+}
+
+/* Search input styling */
+.dataTables_filter input {
+    border-radius: 20px;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    width: 220px;
+    outline: none;
+}
+
+/* Pagination buttons */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 4px;
+    padding: 4px 10px;
+    margin: 0 2px;
+    border: 1px solid #dee2e6;
+    background: #fff;
+    color: #0d47a1 !important;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #0d47a1 !important;
+        color: #fff !important;
+        border: 1px solid #0d47a1;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #tcTable_length,
+    #tcTable_filter {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dataTables_filter input {
+        width: 100%;
+        max-width: 280px;
+        margin-top: 5px;
+    }
+}
