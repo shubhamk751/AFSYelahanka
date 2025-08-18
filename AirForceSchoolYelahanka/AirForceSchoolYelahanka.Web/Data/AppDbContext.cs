@@ -10,5 +10,6 @@ namespace AirForceSchoolYelahanka.Web.Data
         public DbSet<CmsSection> CmsSections => Set<CmsSection>();
         public DbSet<AdminUser> AdminUsers => Set<AdminUser>();
         public DbSet<Staff> Staff => Set<Staff>();
+        public DbSet<TCUpload> TCUpload => Set<TCUpload>();
     }
 }
