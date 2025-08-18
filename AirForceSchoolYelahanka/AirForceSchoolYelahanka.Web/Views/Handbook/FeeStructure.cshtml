@@ -2,110 +2,109 @@
     ViewData["Title"] = "Fee-Structure";
 }
 
-<section id="fee-structure">
+@* side by side *@
+@* <section id="fee-images" class="py-5">
     <div class="container">
-        <div class="text-center section-header mb-4">
-            <h2 class="fw-bold text-primary">Fee Structure 2024–25 (Existing Students)</h2>
-            <p class="text-muted">Quarter I Fee Details for LKG to Class XII</p>
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Fee Structure 2025–26</h2>
+            <p class="text-muted">Click on images for detailed PDF</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- New Admission -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">New Admission</h5>
+                        <a href="/assets/images/almanac/fees/fee1.jpg" target="_blank" class="btn btn-primary btn-sm mt-2">View PDF</a>
+                    </div>
+                    <img src="/assets/images/almanac/fees/fee1.jpg" class="card-img-top" alt="New Admission Fee">
+                </div>
+            </div>
+
+            <!-- Existing Students -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Existing Students</h5>
+                        <a href="/assets/images/almanac/fees/fee2.jpg" target="_blank" class="btn btn-primary btn-sm mt-2">View PDF</a>
+                    </div>
+                    <img src="/assets/images/almanac/fees/fee2.jpg" class="card-img-top" alt="Existing Students Fee">
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+
+@* <section id="fee-images" class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Fee Structure 2025–26</h2>
+            <p class="text-muted">Click on images for detailed PDF</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- New Admission -->
+            <div class="col-12">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">New Admission</h5>
+                        <a href="/assets/images/almanac/fees/fee1.jpg" target="_blank" class="btn btn-primary btn-sm mt-2">Open</a>
+                    </div>
+                    <img src="/assets/images/almanac/fees/fee1.jpg" class="card-img-top" alt="New Admission Fee">
+                </div>
+            </div>
+
+            <!-- Existing Students -->
+            <div class="col-12">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Existing Students</h5>
+                        <a href="/assets/images/almanac/fees/fee2.jpg" target="_blank" class="btn btn-primary btn-sm mt-2">Open</a>
+                    </div>
+                    <img src="/assets/images/almanac/fees/fee2.jpg" class="card-img-top" alt="Existing Students Fee">
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+
+<section id="fee-accordion" class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Fee Structure 2025–26</h2>
+            <p class="text-muted">Click to expand and view the fees</p>
         </div>
 
         <div class="accordion" id="feeAccordion">
+            <!-- New Admission -->
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingLkg">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLkg">
-                        Class LKG to UKG
+                <h2 class="accordion-header" id="headingNew">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNew" aria-expanded="false" aria-controls="collapseNew">
+                        New Admission
                     </button>
                 </h2>
-                <div id="collapseLkg" class="accordion-collapse collapse show" data-bs-parent="#feeAccordion">
-                    <div class="accordion-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead class="table-light">
-                                    <tr><th>Category</th><th>Adm Fee</th><th>Caution</th><th>Dev</th><th>Tuition</th><th>Lab</th><th>Sports</th><th>Library</th><th>Diary & Mag</th><th>Exam</th><th>Activity</th><th>Gp Ins</th><th>Total</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>A (Officers)</td><td>3300</td><td>3300</td><td>2620</td><td>9900</td><td>0</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>21540</td></tr>
-                                    <tr><td>B (PBOR's)</td><td>3075</td><td>3075</td><td>2440</td><td>9225</td><td>0</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>20235</td></tr>
-                                    <tr><td>NC(E)s/AF Civilian</td><td>2645</td><td>2645</td><td>2100</td><td>7935</td><td>0</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>17745</td></tr>
-                                    <tr><td>Pure Civilian</td><td>3970</td><td>3970</td><td>3150</td><td>11910</td><td>0</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>25420</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div id="collapseNew" class="accordion-collapse collapse" aria-labelledby="headingNew" data-bs-parent="#feeAccordion">
+                    <div class="accordion-body text-center">
+                        <img src="/assets/images/almanac/fees/fee1.jpg" class="img-fluid mb-2" alt="New Admission Fee">
+                        <br>
+                        <a href="/assets/images/almanac/fees/fee1.jpg" target="_blank" class="btn btn-primary btn-sm">Open</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Existing Students -->
             <div class="accordion-item">
-                <h2 class="accordion-header" id="heading1to5">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1to5">
-                        Class I to V
+                <h2 class="accordion-header" id="headingExisting">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExisting" aria-expanded="false" aria-controls="collapseExisting">
+                        Existing Students
                     </button>
                 </h2>
-                <div id="collapse1to5" class="accordion-collapse collapse" data-bs-parent="#feeAccordion">
-                    <div class="accordion-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead class="table-light">
-                                    <tr><th>Category</th><th>Adm Fee</th><th>Caution</th><th>Dev</th><th>Tuition</th><th>Lab</th><th>Sports</th><th>Library</th><th>Diary & Mag</th><th>Exam</th><th>Activity</th><th>Gp Ins</th><th>Total</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>A (Officers)</td><td>3300</td><td>3300</td><td>2620</td><td>9900</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>21600</td></tr>
-                                    <tr><td>B (PBOR's)</td><td>3075</td><td>3075</td><td>2440</td><td>9225</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>20295</td></tr>
-                                    <tr><td>NC(E)s/AF Civilian</td><td>2645</td><td>2645</td><td>2100</td><td>7935</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>17805</td></tr>
-                                    <tr><td>Pure Civilian</td><td>3970</td><td>3970</td><td>3150</td><td>11910</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>25480</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading6to8">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6to8">
-                        Class VI to VIII
-                    </button>
-                </h2>
-                <div id="collapse6to8" class="accordion-collapse collapse" data-bs-parent="#feeAccordion">
-                    <div class="accordion-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead class="table-light">
-                                    <tr><th>Category</th><th>Adm Fee</th><th>Caution</th><th>Dev</th><th>Tuition</th><th>Lab</th><th>Sports</th><th>Library</th><th>Diary & Mag</th><th>Exam</th><th>Activity</th><th>Gp Ins</th><th>Total</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>A (Officers)</td><td>3740</td><td>3740</td><td>2970</td><td>11220</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>24150</td></tr>
-                                    <tr><td>B (PBOR's)</td><td>3530</td><td>3530</td><td>2800</td><td>10590</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>22930</td></tr>
-                                    <tr><td>NC(E)s/AF Civilian</td><td>2865</td><td>2865</td><td>2280</td><td>8595</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>19085</td></tr>
-                                    <tr><td>Pure Civilian</td><td>4400</td><td>4400</td><td>3490</td><td>13200</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>27970</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading9to12">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9to12">
-                        Class IX to XII
-                    </button>
-                </h2>
-                <div id="collapse9to12" class="accordion-collapse collapse" data-bs-parent="#feeAccordion">
-                    <div class="accordion-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead class="table-light">
-                                    <tr><th>Category</th><th>Adm Fee</th><th>Caution</th><th>Dev</th><th>Tuition</th><th>Lab</th><th>Sports</th><th>Library</th><th>Diary & Mag</th><th>Exam</th><th>Activity</th><th>Gp Ins</th><th>Total</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>A (Officers)</td><td>4400</td><td>4400</td><td>3490</td><td>13200</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>27970</td></tr>
-                                    <tr><td>B (PBOR's)</td><td>3970</td><td>3970</td><td>3150</td><td>11910</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>25480</td></tr>
-                                    <tr><td>NC(E)s/AF Civilian</td><td>3075</td><td>3075</td><td>2440</td><td>9225</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>20295</td></tr>
-                                    <tr><td>Pure Civilian</td><td>5070</td><td>5070</td><td>4020</td><td>15210</td><td>60</td><td>100</td><td>50</td><td>400</td><td>300</td><td>1500</td><td>70</td><td>31850</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div id="collapseExisting" class="accordion-collapse collapse" aria-labelledby="headingExisting" data-bs-parent="#feeAccordion">
+                    <div class="accordion-body text-center">
+                        <img src="/assets/images/almanac/fees/fee2.jpg" class="img-fluid mb-2" alt="Existing Students Fee">
+                        <br>
+                        <a href="/assets/images/almanac/fees/fee2.jpg" target="_blank" class="btn btn-primary btn-sm">Open</a>
                     </div>
                 </div>
             </div>
