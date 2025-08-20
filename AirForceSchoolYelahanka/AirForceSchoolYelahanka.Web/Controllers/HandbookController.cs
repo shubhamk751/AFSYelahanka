@@ -57,10 +57,5 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             return View();
         }
-        [Route("code-of-conduct")]
-        public IActionResult CodeOfConduct()
-        {
-            return View();
-        }
     }
 }

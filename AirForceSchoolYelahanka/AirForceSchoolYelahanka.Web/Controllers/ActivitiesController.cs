@@ -18,22 +18,31 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             _env = env;
         }
 
-        [Route("cca-junior")]
-        public IActionResult CCAJunior()
+        //saving this if seperate view is required
+        //[Route("/cca")]
+        //public IActionResult CCA()
+        //{
+        //    return View();
+        //}
+
+        //[Route("celebrations")]
+        //public IActionResult Celebrations()
+        //{
+        //    return View();
+        //}
+
+        [Route("activity-lp")]
+        public IActionResult ActivityLP(string pageSlug)
         {
+            ViewData["PageSlug"] = pageSlug;
             return View();
         }
 
-        [Route("cca-senior")]
-        public IActionResult CCASenior()
-        {
-            return View();
-        }
 
         [Route("activity")]
-        public async Task<IActionResult> Activity( string type, string division, string slug)
+        public async Task<IActionResult> Activity( string type, string slug)
         {
-            string sectionKey = $"{type}.{division}.{slug}";
+            string sectionKey = $"{type}.{slug}";
 
             var section = await _cmsService.GetSectionAsync(sectionKey);
             if (section == null)
@@ -43,17 +52,16 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             if (content == null)
                 return NotFound();
 
-            var folderPath = Path.Combine(_env.WebRootPath, "assets", "images", "activities", type, division, slug);
+            var folderPath = Path.Combine(_env.WebRootPath, "assets", "images", "activities", type,  slug);
             var imageUrls = Directory.Exists(folderPath)
                 ? Directory.GetFiles(folderPath)
                     .Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png"))
-                    .Select(f => $"/assets/images/activities/{type}/{division}/{slug}/{Path.GetFileName(f)}")
+                    .Select(f => $"/assets/images/activities/{type}/{slug}/{Path.GetFileName(f)}")
                     .ToList()
                 : new List<string>();
             var textInfo = CultureInfo.CurrentCulture.TextInfo;
             var model = new ActivityContentBlockViewModel
             {
-                Division = textInfo.ToTitleCase(division.ToLower()),
                 Type = textInfo.ToTitleCase(type.ToLower()),
                 Slug = textInfo.ToTitleCase(slug.ToLower()),
                 Title = content.Title,

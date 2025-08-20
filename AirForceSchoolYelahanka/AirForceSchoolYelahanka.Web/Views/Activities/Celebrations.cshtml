@@ -1,0 +1,85 @@
+﻿@* saving this if additional view is required *@
+@* @using System.Globalization
+@{
+    ViewData["Title"] = "Activities";
+
+    string type = (string)ViewData["Type"] ?? "celebrations"; // passed key, e.g., "cca" or "celebrations"
+    string baseFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "activities", type);
+
+    // Dictionary to store folder key => latest image URL
+    var folderImageMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+    if (Directory.Exists(baseFolder))
+    {
+        // Get all leaf folders recursively
+        List<string> GetLeafFolders(string root, string prefix = "")
+        {
+            var keys = new List<string>();
+            var subDirs = Directory.GetDirectories(root);
+
+            if (subDirs.Length == 0)
+            {
+                if (!string.IsNullOrEmpty(prefix))
+                    keys.Add(prefix);
+            }
+            else
+            {
+                foreach (var dir in subDirs)
+                {
+                    string folderName = System.IO.Path.GetFileName(dir);
+                    string key = string.IsNullOrEmpty(prefix) ? folderName : $"{prefix}.{folderName}";
+                    keys.AddRange(GetLeafFolders(dir, key));
+                }
+            }
+            return keys;
+        }
+
+        var leafFolders = GetLeafFolders(baseFolder);
+
+        foreach (var folderKey in leafFolders)
+        {
+            string folderPath = System.IO.Path.Combine(baseFolder, folderKey.Replace('.', System.IO.Path.DirectorySeparatorChar));
+
+            var latestImage = Directory.GetFiles(folderPath)
+                .Where(f => f.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+                         || f.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase)
+                         || f.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                .Select(f => new FileInfo(f))
+                .OrderByDescending(f => f.CreationTime)
+                .FirstOrDefault();
+
+            if (latestImage != null)
+            {
+                string webPath = $"/assets/images/activities/{type}/{folderKey.Replace('.', '/')}/{latestImage.Name}";
+                folderImageMap[folderKey] = webPath;
+            }
+        }
+    }
+
+    string GetImage(string folderKey, string fallback = "/assets/images/activities/default.jpg") =>
+        folderImageMap.ContainsKey(folderKey) ? folderImageMap[folderKey] : fallback;
+}
+
+<section class="py-5 bg-light" id="@type">
+    <div class="container">
+        <h2 class="text-center mb-4">@type.ToUpper()</h2>
+        <p class="text-center mb-5 text-muted">Explore our @type activities</p>
+
+        <div class="row g-4">
+            @foreach (var folderKey in folderImageMap.Keys.OrderBy(k => k))
+            {
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="/activity?type=@type&slug=@folderKey" class="text-decoration-none">
+                        <div class="card border-0 shadow-sm h-100 hover-shadow">
+                            <img src="@GetImage(folderKey)" class="card-img-top" alt="@folderKey">
+                            <div class="card-body text-center">
+                                <h5 class="card-title"> @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(folderKey.Split('.').Last().Replace('-', ' '))</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+ *@

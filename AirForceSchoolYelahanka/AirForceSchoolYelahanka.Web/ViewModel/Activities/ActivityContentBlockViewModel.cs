@@ -2,7 +2,6 @@
 {
     public class ActivityContentBlockViewModel
     {
-        public string? Division { get; set; }
         public string? Type { get; set; }
         public string? Slug { get; set; }
         public string? Title { get; set; }
