@@ -32,8 +32,8 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             return View();
         }
-        [Route("leave-absent-rule")]
-        public IActionResult LeaveAbsentRule()
+        [Route("leave-absence-rule")]
+        public IActionResult LeaveAbsenceRule()
         {
             return View();
         }
