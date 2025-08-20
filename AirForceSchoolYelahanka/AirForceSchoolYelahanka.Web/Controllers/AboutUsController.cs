@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AirForceSchoolYelahanka.Web.Controllers
 {
@@ -18,6 +19,21 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         }
         [Route("hierarchy")]
         public IActionResult Hierarchy()
+        {
+            return View();
+        }
+        [Route("code-of-conduct")]
+        public IActionResult CodeOfConduct()
+        {
+            return View();
+        }
+        [Route("admission-guidelines")]
+        public IActionResult AdmissionGuidelines()
+        {
+            return View();
+        }
+        [Route("leave-absent-rule")]
+        public IActionResult LeaveAbsentRule()
         {
             return View();
         }

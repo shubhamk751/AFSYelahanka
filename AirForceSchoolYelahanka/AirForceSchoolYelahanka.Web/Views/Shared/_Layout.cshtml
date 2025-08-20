@@ -68,11 +68,22 @@
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     About Us
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                                     <li><a class="dropdown-item" href="/about-us">Our History</a></li>
+
+                                    <!-- Submenu -->
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">General Guidelines</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="/admission-guidelines">Admission Guidelines</a></li>
+                                            <li><a class="dropdown-item" href="/code-of-conduct">Code of Conduct</a></li>
+                                            <li><a class="dropdown-item" href="/leave-absent-rule">Leave & Absent Rule</a></li>
+                                        </ul>
+                                    </li>
+
                                     <li><a class="dropdown-item" href="/#our-vision">Our Vision</a></li>
                                     <li><a class="dropdown-item" href="/#our-mission">Our Mission</a></li>
                                     <li><a class="dropdown-item" href="/#objectives">Objectives</a></li>
@@ -88,7 +99,6 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/team-&-visiting-hours">Our Staff</a></li>
                                     <li><a class="dropdown-item" href="/timings">School Timings</a></li>
-                                    <li><a class="dropdown-item" href="/code-of-conduct">Code of Conduct</a></li>
                                     <li><a class="dropdown-item" href="/uniform">School Uniform</a></li>
                                     <li><a class="dropdown-item" href="/fees">Fee Structure</a></li>
                                     <li><a class="dropdown-item" href="/book-list">Book List</a></li>
@@ -97,7 +107,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="/mandatory-public-disclosure">Mandatory Disclosures</a>
                             </li>
-                            
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                     Academics
