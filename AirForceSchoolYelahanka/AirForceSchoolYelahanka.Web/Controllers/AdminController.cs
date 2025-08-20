@@ -239,13 +239,48 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> EditActivities(string? itemKey)
         {
-            // 1. Build the list of keys from your config or from the DB
-            var allKeys = CmsPages.PageSections
-                               .Where(x=> x.Key != "Home")
-                              .SelectMany(kv => kv.Value)
-                              .Distinct()
-                              .OrderBy(k => k)
-                              .ToList();
+            //// 1. Build the list of keys from your config or from the DB
+            //var allKeys = CmsPages.PageSections
+            //                   .Where(x => x.Key != "Home")
+            //                  .SelectMany(kv => kv.Value)
+            //                  .Distinct()
+            //                  .OrderBy(k => k)
+            //                  .ToList();
+
+
+            //// Path to your Activities folder
+            string activitiesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "activities");
+
+            if (!Directory.Exists(activitiesPath))
+                throw new DirectoryNotFoundException($"The folder '{activitiesPath}' does not exist.");
+
+            List<string> GetLeafFolderKeys(string rootPath, string prefix = "")
+            {
+                var keys = new List<string>();
+                var subDirs = Directory.GetDirectories(rootPath);
+
+                if (subDirs.Length == 0)
+                {
+                    // Leaf folder — include as key
+                    if (!string.IsNullOrEmpty(prefix))
+                        keys.Add(prefix);
+                }
+                else
+                {
+                    foreach (var dir in subDirs)
+                    {
+                        string folderName = Path.GetFileName(dir);
+                        string key = string.IsNullOrEmpty(prefix) ? folderName : $"{prefix}.{folderName}";
+                        keys.AddRange(GetLeafFolderKeys(dir, key)); // recurse
+                    }
+                }
+
+                return keys;
+            }
+
+            var allKeys = GetLeafFolderKeys(activitiesPath)
+                          .OrderBy(k => k)
+                          .ToList();
 
             // 2. If none supplied, default to first
             itemKey ??= allKeys.FirstOrDefault();

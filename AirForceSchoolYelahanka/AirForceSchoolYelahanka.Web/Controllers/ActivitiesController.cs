@@ -18,17 +18,26 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             _env = env;
         }
 
-        [Route("/cca")]
-        public IActionResult CCA()
+        //saving this if seperate view is required
+        //[Route("/cca")]
+        //public IActionResult CCA()
+        //{
+        //    return View();
+        //}
+
+        //[Route("celebrations")]
+        //public IActionResult Celebrations()
+        //{
+        //    return View();
+        //}
+
+        [Route("activity-lp")]
+        public IActionResult ActivityLP(string pageSlug)
         {
+            ViewData["PageSlug"] = pageSlug;
             return View();
         }
 
-        [Route("cca-senior")]
-        public IActionResult CCASenior()
-        {
-            return View();
-        }
 
         [Route("activity")]
         public async Task<IActionResult> Activity( string type, string slug)

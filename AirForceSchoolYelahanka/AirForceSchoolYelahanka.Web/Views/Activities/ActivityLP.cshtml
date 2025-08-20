@@ -1,10 +1,10 @@
-﻿@* saving this if additional view is required *@
-
-@* @using System.Globalization
+﻿@using System.Globalization
 @{
     ViewData["Title"] = "Activities";
 
-    string type = (string)ViewData["Type"] ?? "cca"; // passed key, e.g., "cca" or "celebrations"
+    
+    string type = (string)(ViewData["Type"] ?? ViewData["PageSlug"]);
+    // passed key, e.g., "cca" or "celebrations"
     string baseFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "activities", type);
 
     // Dictionary to store folder key => latest image URL
@@ -75,6 +75,7 @@
                             <img src="@GetImage(folderKey)" class="card-img-top" alt="@folderKey">
                             <div class="card-body text-center">
                                 <h5 class="card-title"> @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(folderKey.Split('.').Last().Replace('-', ' '))</h5>
+                                @* <p class="text-muted small">@folderKey.Replace('.', ' ')</p> *@
                             </div>
                         </div>
                     </a>
@@ -83,4 +84,3 @@
         </div>
     </div>
 </section>
- *@

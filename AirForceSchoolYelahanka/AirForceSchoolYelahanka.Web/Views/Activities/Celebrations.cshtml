@@ -1,10 +1,9 @@
 ﻿@* saving this if additional view is required *@
-
 @* @using System.Globalization
 @{
     ViewData["Title"] = "Activities";
 
-    string type = (string)ViewData["Type"] ?? "cca"; // passed key, e.g., "cca" or "celebrations"
+    string type = (string)ViewData["Type"] ?? "celebrations"; // passed key, e.g., "cca" or "celebrations"
     string baseFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "activities", type);
 
     // Dictionary to store folder key => latest image URL

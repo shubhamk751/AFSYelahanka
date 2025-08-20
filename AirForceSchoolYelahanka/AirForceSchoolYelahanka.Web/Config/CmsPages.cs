@@ -4,8 +4,9 @@
     {
         public static readonly Dictionary<string, List<string>> PageSections = new()
         {
-            { "Home", new List<string> { "HomePage_LatestNews", "HomePage_NoticeBoard", "HomePage_VideoGallery" } },
-            { "CCA", new List<string> { "CCA.Plantation", "CCA.Diwali", "CCA.CCA","CCA.Career Counselling Orientation" } }
+            { "Home", new List<string> { "HomePage_LatestNews", "HomePage_NoticeBoard", "HomePage_VideoGallery" } }
+            //{ "CCA", new List<string> { "CCA.Plantation", "CCA.Diwali", "CCA.CCA","CCA.Career Counselling Orientation" } },
+            //{ "Celebrations", new List<string> { "Celebrations.1", "Celebrations.2", "Celebrations.3", "Celebrations.4" } }
         };
     }
 }
