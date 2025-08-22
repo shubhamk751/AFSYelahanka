@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Book List";
     var classNames = new List<string> {
-        "Nursery", "LKG & UKG", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "", ""
+        "Nursery", "LKG", "UKG", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"
     };
 }
 
@@ -15,12 +15,11 @@
         <div class="row g-4">
             @for (int i = 0; i < classNames.Count; i++)
             {
-                if (i == 12 || i == 13) { continue; }
-
                 string fileName;
-                if (i == 0) fileName = "class-nursery.pdf";         // Nursery
-                else if (i == 1) fileName = "class-lkg-ukg.pdf";    // LKG & UKG
-                else fileName = $"class-{i - 1}.pdf";             // Class 1–10
+                if (i == 0) fileName = "class-nursery.pdf";     // Nursery
+                else if (i == 1) fileName = "class-lkg.pdf";   // LKG
+                else if (i == 2) fileName = "class-ukg.pdf";   // UKG
+                else fileName = $"class-{i - 2}.pdf";          // Class 1–10
 
                 <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
                     <div class="card shadow-sm h-100">
