@@ -46,5 +46,10 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             return View();
         }
+        [Route("/split-up-syllabus")]
+        public IActionResult SplitUpSyllabus()
+        {
+            return View();
+        }
     }
 }

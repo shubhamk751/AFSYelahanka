@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Split-up Syllabus";
+    var classNames = new List<string> {
+        "Nursery", "LKG", "UKG", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"
+    };
+}
+
+<section id="splitup-syllabus">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="text-center section-header mb-4" data-aos="fade-up">
+            <h2 class="fw-bold text-success">Split-up Syllabus 2025–26</h2>
+            <p class="text-muted">Download syllabus split-ups for all classes</p>
+        </div>
+
+        <div class="row g-4">
+            @for (int i = 0; i < classNames.Count; i++)
+            {
+                string fileName;
+                if (i == 0) fileName = "syllabus-nursery.pdf";     // Nursery
+                else if (i == 1) fileName = "syllabus-lkg.pdf";   // LKG
+                else if (i == 2) fileName = "syllabus-ukg.pdf";   // UKG
+                else fileName = $"syllabus-{i - 2}.pdf";          // Class 1–10
+
+                <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
+                    <div class="card shadow-sm h-100 border-success">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-success">@classNames[i]</h5>
+                            <p class="text-muted mb-4 small">Split-up syllabus PDF.</p>
+                            <div class="mt-auto">
+                                <a href="/assets/files/syllabus/@fileName" class="btn btn-outline-success btn-sm w-100 mb-2" target="_blank">
+                                    <i class="bi bi-file-earmark-text-fill me-1"></i> View
+                                </a>
+                                <a href="/assets/files/syllabus/@fileName" download class="btn btn-success btn-sm w-100">
+                                    <i class="bi bi-download me-1"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Class 11 & 12 Commerce & Science -->
+            @foreach (var stream in new[] { "Commerce", "Science" })
+            {
+                for (int cls = 11; cls <= 12; cls++)
+                {
+                    var file = $"syllabus-class-{cls}-{stream.ToLower()}.pdf";
+                    <div class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
+                        <div class="card shadow-sm h-100 border-success">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-success">Class @cls – @stream</h5>
+                                <p class="text-muted mb-4 small">Split-up syllabus for @stream.</p>
+                                <div class="mt-auto">
+                                    <a href="/assets/files/syllabus/@file" class="btn btn-outline-success btn-sm w-100 mb-2" target="_blank">
+                                        <i class="bi bi-file-earmark-text-fill me-1"></i> View
+                                    </a>
+                                    <a href="/assets/files/syllabus/@file" download class="btn btn-success btn-sm w-100">
+                                        <i class="bi bi-download me-1"></i> Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
