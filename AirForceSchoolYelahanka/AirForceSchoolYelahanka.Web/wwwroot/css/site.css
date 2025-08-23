@@ -220,7 +220,7 @@ footer {
 
 /* Navbar brand logo for all devices */
 .navbar-brand img.school-logo {
-    height: 83px; /* default height for desktop */
+    height: 70px; /* default height for desktop */
     width: auto; /* maintain aspect ratio */
     transition: all 0.3s ease-in-out; /* smooth resizing */
 }
