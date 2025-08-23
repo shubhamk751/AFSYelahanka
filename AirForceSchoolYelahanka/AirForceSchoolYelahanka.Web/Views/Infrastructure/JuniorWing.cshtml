@@ -3,8 +3,13 @@
     
     var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "infra", "junior-wing");
     var imageFiles = Directory.Exists(imageDir)
-        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png")).ToList()
-        : new List<string>();
+    ? Directory.GetFiles(imageDir)
+        .Where(f =>
+            f.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+            f.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+            f.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+        .ToList()
+    : new List<string>();
     var webImagePaths = imageFiles.Select(f => "/assets/images/infra/junior-wing/" + System.IO.Path.GetFileName(f)).ToList();
 }
 
@@ -24,8 +29,8 @@
                     .ToTitleCase(fileName.Replace("-", " ").Replace("_", " "));
 
                     <div class="dock-item text-center mx-2">
-                        <img src="@imagePath" alt="@title" class="dock-img glightbox" />
-                        <p class="small mt-2">@title</p>
+                        <img src="@imagePath" class="dock-img glightbox" />
+                        @* <p class="small mt-2">@title</p> *@
                         <a href="@imagePath" download class="small text-primary d-block">
                             <i class="bi bi-download"></i> Download
                         </a>
@@ -44,7 +49,7 @@
         <!-- Room Summary Table -->
         <div class="card shadow-sm border-0 mb-5">
             <div class="card-body">
-                <h5 class="card-title fw-semibold text-primary">Room & Facility Summary</h5>
+                <h5 class="card-title text-center fw-semibold text-primary">Room & Facility Summary</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered mt-3">
                         <thead class="table-light">
@@ -68,7 +73,7 @@
         <!-- About/Context -->
         <div class="card shadow-sm border-0 mb-5">
             <div class="card-body">
-                <h5 class="card-title fw-semibold text-primary">About the Junior Wing</h5>
+                <h5 class="card-title text-center fw-semibold text-primary">About the Junior Wing</h5>
                 <p class="text-muted">
                     Air Force School’s Junior Wing is thoughtfully equipped with essential facilities – from interactive traffic and play parks to safety features like CCTV, fire appliances, and AV rooms.
                 </p>

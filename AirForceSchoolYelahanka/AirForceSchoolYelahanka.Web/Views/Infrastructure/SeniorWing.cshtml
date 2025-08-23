@@ -2,8 +2,13 @@
     ViewData["Title"] = "Senior Wing Infra";
     var imageDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assets", "images", "infra", "senior-wing");
     var imageFiles = Directory.Exists(imageDir)
-        ? Directory.GetFiles(imageDir).Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png")).ToList()
-        : new List<string>();
+    ? Directory.GetFiles(imageDir)
+        .Where(f =>
+            f.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+            f.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+            f.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+        .ToList()
+    : new List<string>();
     var webImagePaths = imageFiles.Select(f => "/assets/images/infra/senior-wing/" + System.IO.Path.GetFileName(f)).ToList();
 }
 
@@ -24,8 +29,8 @@
 
                     <div class="dock-item text-center mx-2">
                         <div class="dock-inner d-flex flex-column align-items-center">
-                            <img src="@imagePath" alt="@title" class="dock-img glightbox" />
-                            <p class="small mt-2 mb-1">@title</p>
+                            <img src="@imagePath" class="dock-img glightbox" /> @* put alt="@title" in need image name in enlarged form *@
+                            @* <p class="small mt-2 mb-1">@title</p> *@ @* uncomment if need the image name *@
                             <a href="@imagePath" download class="download-link">
                                 <i class="bi bi-download me-1"></i>Download
                             </a>
@@ -45,7 +50,7 @@
         <!-- Room Summary Table -->
         <div class="card shadow-sm border-0 mb-5">
             <div class="card-body">
-                <h5 class="card-title fw-semibold text-primary">Room & Facility Summary</h5>
+                <h5 class="card-title text-center fw-semibold text-primary">Room & Facility Summary</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered mt-3">
                         <thead class="table-light">
@@ -69,7 +74,7 @@
         <!-- About/Context -->
         <div class="card shadow-sm border-0 mb-5">
             <div class="card-body">
-                <h5 class="card-title fw-semibold text-primary">About the Senior Wing</h5>
+                <h5 class="card-title text-center fw-semibold text-primary">About the Senior Wing</h5>
                 <p class="text-muted">
                     Air Force School’s Senior Wing is thoughtfully equipped with essential facilities – from interactive traffic and play parks to safety features like CCTV, fire appliances, and AV rooms.
                 </p>
