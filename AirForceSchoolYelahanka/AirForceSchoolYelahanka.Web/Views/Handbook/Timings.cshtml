@@ -4,11 +4,75 @@
 
 <section id="school-schedule">
     <div class="container">
-        <div class="row g-4">
-            <!-- LEFT COLUMN -->
-            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="400">
+        <div class="row g-4 justify-content-center">
+            <!-- LEFT COLUMN: Period Timeline Nursery - UKG -->
+            <div class="col-lg-3 col-md-4 col-12" data-aos="fade-up" data-aos-delay="800">
+                <div class="bg-white p-4 shadow rounded-3 h-100">
+                    <h3 class="text-primary fw-bold mb-4 text-center">Period Timeline Nursery - UKG</h3>
+                    <div class="timeline position-relative ps-3">
+                        <!-- Timeline items -->
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">07:45 AM</div>
+                            <div class="text-muted">First Bell</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">07:50 AM</div>
+                            <div class="text-muted">Second Bell for Assembly</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">07:50 AM – 08:20 AM</div>
+                            <div class="text-muted">Assembly</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">08:20 AM – 08:50 AM</div>
+                            <div class="text-muted">0 Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">08:50 AM – 09:20 AM</div>
+                            <div class="text-muted">I Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">09:20 AM – 09:50 AM</div>
+                            <div class="text-muted">II Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">09:50 AM – 10:00 AM</div>
+                            <div class="text-muted">SHORT BREAK</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">10:00 AM – 10:30 AM</div>
+                            <div class="text-muted">III Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-success">
+                            <div class="fw-bold text-success">10:30 AM – 11:00 AM</div>
+                            <div class="text-muted">IV Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">11:00 AM – 11:30 AM</div>
+                            <div class="text-muted">BREAK</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">11:30 AM – 12:00 PM</div>
+                            <div class="text-muted">V Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
+                            <div class="fw-bold">12:00 PM – 12:30 PM</div>
+                            <div class="text-muted">VI Period</div>
+                        </div>
+                        <div class="mb-4 position-relative ps-4 border-start border-3 border-danger">
+                            <div class="fw-bold">12:35 PM</div>
+                            <div class="text-muted">Last Bell / Dispersal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CENTER COLUMN: School Timings, Visiting Hours, PTM & PTA -->
+            <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="600">
+
+                <!-- School Timings -->
                 <div class="bg-white p-4 shadow rounded-3 mb-4">
-                    <h3 class="text-primary fw-bold mb-3">School Timings</h3>
+                    <h3 class="text-primary fw-bold mb-3 text-center">School Timings</h3>
                     <ul class="list-unstyled">
                         <li><strong>Nursery:</strong> 07:45 AM – 12:30 PM</li>
                         <li><strong>Primary:</strong> 07:45 AM – 02:10 PM</li>
@@ -21,17 +85,101 @@
                     </div>
                 </div>
 
+                <!-- Visiting Hours Accordion -->
                 <div class="bg-white p-4 shadow rounded-3 mb-4">
-                    <h3 class="text-primary fw-bold mb-3">Visiting Hours</h3>
-                    <ul class="list-unstyled">
-                        <li><strong>Nursery:</strong> Mon & Fri – 12:30 PM to 01:30 PM</li>
-                        <li><strong>Primary:</strong> Tue & Wed – 02:10 PM to 03:00 PM</li>
-                        <li><strong>Secondary & Senior Secondary:</strong> Fri & Sat – 02:10 PM to 03:00 PM</li>
-                    </ul>
+                    <h3 class="text-primary fw-bold mb-3 text-center">Visiting Hours</h3>
+                    <div class="accordion" id="visitingHoursAccordion">
+                        <!-- Principal -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="vh1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#vh1Content">
+                                    <i class="bi bi-person-badge me-2 text-primary"></i> Principal
+                                </button>
+                            </h2>
+                            <div id="vh1Content" class="accordion-collapse collapse show" data-bs-parent="#visitingHoursAccordion">
+                                <div class="accordion-body bg-white">
+                                    Wednesday & Saturday — <strong>11:30 AM to 01:30 PM</strong><br />
+                                    <em>Appointment required via phone or diary note</em>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Head Mistress -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="vh2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh2Content">
+                                    <i class="bi bi-person-fill-check me-2 text-primary"></i> Head Mistress
+                                </button>
+                            </h2>
+                            <div id="vh2Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                                <div class="accordion-body bg-white">
+                                    Monday & Wednesday — <strong>08:00 AM – 09:00 AM</strong><br />
+                                    Saturday — <strong>08:00 AM – 11:30 AM</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Teachers -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="vh3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh3Content">
+                                    <i class="bi bi-person-lines-fill me-2 text-primary"></i> Teachers
+                                </button>
+                            </h2>
+                            <div id="vh3Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                                <div class="accordion-body bg-white">
+                                    Prior appointment required via diary note.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nursery -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="vh4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh4Content">
+                                    <i class="bi bi-people-fill me-2 text-primary"></i> Nursery
+                                </button>
+                            </h2>
+                            <div id="vh4Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                                <div class="accordion-body bg-white">
+                                    Monday & Friday — <strong>12:30 PM to 01:30 PM</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Primary -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="vh5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh5Content">
+                                    <i class="bi bi-people-fill me-2 text-primary"></i> Primary
+                                </button>
+                            </h2>
+                            <div id="vh5Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                                <div class="accordion-body bg-white">
+                                    Tuesday & Wednesday — <strong>02:10 PM to 02:30 PM</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary & Senior Secondary -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="vh6">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#vh6Content">
+                                    <i class="bi bi-people-fill me-2 text-primary"></i> Secondary & Senior Secondary
+                                </button>
+                            </h2>
+                            <div id="vh6Content" class="accordion-collapse collapse" data-bs-parent="#visitingHoursAccordion">
+                                <div class="accordion-body bg-white">
+                                    Friday & Saturday — <strong>02:10 PM to 02:30 PM</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- PTM & PTA -->
                 <div class="bg-white p-4 shadow rounded-3">
-                    <h3 class="text-primary fw-bold mb-3">PTM & PTA</h3>
+                    <h3 class="text-primary fw-bold mb-3 text-center">PTM & PTA</h3>
                     <p>
                         Parent Teacher Meetings are scheduled during the academic session to discuss students' academic and behavioral development.
                     </p>
@@ -39,25 +187,23 @@
                         Parent Teacher Association meetings are regularly held to discuss organizational matters.
                     </p>
                 </div>
+
             </div>
 
-            <!-- RIGHT COLUMN (Vertical Timeline) -->
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="1000">
+            <!-- RIGHT COLUMN: Period Timeline I - XII -->
+            <div class="col-lg-3 col-md-4 col-12" data-aos="fade-up" data-aos-delay="400">
                 <div class="bg-white p-4 shadow rounded-3 h-100">
-                    <h3 class="text-primary fw-bold mb-4 text-center">Period Timeline</h3>
-                    <div class="timeline position-relative ps-4">
-                        <!-- Timeline item -->
+                    <h3 class="text-primary fw-bold mb-4 text-center">Period Timeline I - XII</h3>
+                    <div class="timeline position-relative ps-3">
+                        <!-- Timeline items -->
                         <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
                             <div class="fw-bold">07:45 AM</div>
                             <div class="text-muted">First Bell</div>
                         </div>
-
                         <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
                             <div class="fw-bold">07:50 AM – 08:10 AM</div>
                             <div class="text-muted">Assembly</div>
                         </div>
-
-                        <!-- Periods -->
                         <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
                             <div class="fw-bold">08:15 AM – 08:55 AM</div>
                             <div class="text-muted">0 Period</div>
@@ -74,13 +220,10 @@
                             <div class="fw-bold">10:10 AM – 10:45 AM</div>
                             <div class="text-muted">III Period</div>
                         </div>
-
-                        <!-- Break -->
                         <div class="mb-4 position-relative ps-4 border-start border-3 border-success">
                             <div class="fw-bold text-success">10:45 AM – 11:15 AM</div>
                             <div class="text-muted">BREAK</div>
                         </div>
-
                         <div class="mb-4 position-relative ps-4 border-start border-3 border-primary">
                             <div class="fw-bold">11:15 AM – 11:50 AM</div>
                             <div class="text-muted">IV Period</div>
@@ -101,8 +244,6 @@
                             <div class="fw-bold">01:35 PM – 02:10 PM</div>
                             <div class="text-muted">VIII Period</div>
                         </div>
-
-                        <!-- Last Bell -->
                         <div class="mb-0 position-relative ps-4 border-start border-3 border-danger">
                             <div class="fw-bold text-danger">02:10 PM</div>
                             <div class="text-muted">Last Bell / Dispersal</div>
