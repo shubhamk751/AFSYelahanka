@@ -40,17 +40,35 @@ h1, h2, h3, h4, h5 {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.custom-navbar {
-    background-color: #ffffff !important;
-    color: #212529;
-    padding: 6px;
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: block !important
+    }
 }
+@media (max-width: 991px) {
+    .custom-navbar {
+        background-color: #ffffff !important;
+        color: #212529;
+        padding: 6px 36px;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-navbar {
+        background-color: #ffffff !important;
+        color: #212529;
+        padding: 6px;
+    }
+}
+
 
 .navbar-brand,
 .navbar-nav .nav-link {
     color: #212529 !important;
     font-weight: 500;
     transition: color 0.2s ease-in-out;
+    font-size: 13px;
+
 }
 
     .navbar-nav .nav-link:hover,
@@ -93,6 +111,7 @@ h1, h2, h3, h4, h5 {
     color: #212529;
     padding: 0.5rem 1rem;
     transition: background 0.2s;
+    font-size: 13px;
 }
 
     .dropdown-item:hover {
@@ -230,7 +249,7 @@ footer {
 @media (max-width: 576px) {
     .navbar-brand img.school-logo {
         height: 35px; /* smaller height for mobile */
-        max-width: 80%; /* ensure it doesn't overflow */
+        max-width: 100%; /* ensure it doesn't overflow */
     }
 }
 section {
