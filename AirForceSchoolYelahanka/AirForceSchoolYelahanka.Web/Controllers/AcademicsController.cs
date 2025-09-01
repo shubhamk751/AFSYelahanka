@@ -51,5 +51,10 @@ namespace AirForceSchoolYelahanka.Web.Controllers
         {
             return View();
         }
+        [Route("/examination-schedule")]
+        public IActionResult ExamSchedule()
+        {
+            return View();
+        }
     }
 }
