@@ -55,7 +55,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             var folderPath = Path.Combine(_env.WebRootPath, "assets", "images", "activities", type,  slug);
             var imageUrls = Directory.Exists(folderPath)
                 ? Directory.GetFiles(folderPath)
-                    .Where(f => f.EndsWith(".jpg") || f.EndsWith(".jpeg") || f.EndsWith(".png"))
+                    .Where(f => f.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || f.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) || f.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                     .Select(f => $"/assets/images/activities/{type}/{slug}/{Path.GetFileName(f)}")
                     .ToList()
                 : new List<string>();
