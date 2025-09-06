@@ -29,7 +29,7 @@
                     .ToTitleCase(fileName.Replace("-", " ").Replace("_", " "));
 
                     <div class="dock-item text-center mx-2">
-                        <img src="@imagePath" class="dock-img glightbox" />
+                        <img src="@imagePath" loading="lazy" class="dock-img glightbox" />
                         @* <p class="small mt-2">@title</p> *@
                         <a href="@imagePath" download class="small text-primary d-block">
                             <i class="bi bi-download"></i> Download

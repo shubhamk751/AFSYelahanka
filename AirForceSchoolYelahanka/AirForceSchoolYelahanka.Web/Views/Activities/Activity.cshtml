@@ -43,7 +43,7 @@
                                     @foreach (var imagePath in Model.SidebarImageUrls)
                                     {
                                         <a href="@imagePath" class="glightbox" data-gallery="event-gallery">
-                                            <img src="@imagePath" class="img-thumbnail gallery-thumb"
+                                            <img src="@imagePath" loading="lazy" class="img-thumbnail gallery-thumb"
                                                  alt="Event Image" style="width: 100px; height: auto;">
                                         </a>
                                     }

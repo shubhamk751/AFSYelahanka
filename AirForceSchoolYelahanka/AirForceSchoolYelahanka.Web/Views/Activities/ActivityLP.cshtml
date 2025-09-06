@@ -72,7 +72,7 @@
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <a href="/activity?type=@type&slug=@folderKey" class="text-decoration-none">
                         <div class="card border-0 shadow-sm h-100 hover-shadow">
-                            <img src="@GetImage(folderKey)" class="card-img-top fixed-thumb" alt="@folderKey">
+                            <img src="@GetImage(folderKey)" loading="lazy" class="card-img-top fixed-thumb" alt="@folderKey">
                             <div class="card-body text-center">
                                 <h5 class="card-title"> @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(folderKey.Split('.').Last().Replace('-', ' '))</h5>
                                 @* <p class="text-muted small">@folderKey.Replace('.', ' ')</p> *@

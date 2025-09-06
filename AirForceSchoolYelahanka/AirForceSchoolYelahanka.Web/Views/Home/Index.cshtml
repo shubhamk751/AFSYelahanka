@@ -34,7 +34,7 @@
             @for (int i = 0; i < banners.Count; i++)
             {
                 <div class="carousel-item @(i == 0 ? "active" : "")">
-                    <img src="@banners[i]" class="d-block w-100 banner-img" alt="Banner @(i + 1)" />
+                    <img src="@banners[i]" loading="lazy" class="d-block w-100 banner-img" alt="Banner @(i + 1)" />
                     <div class="carousel-overlay"></div>
                 </div>
             }
@@ -142,7 +142,7 @@
                 <a href="/academics/junior" class="card-link">
                     <div class="modern-card">
                         <div class="card-img-wrapper">
-                            <img src="/assets/images/home/jw.jpg" class="fixed-thumb" alt="Junior Wing" />
+                            <img src="/assets/images/home/jw.jpg" loading="lazy" class="fixed-thumb" alt="Junior Wing" />
                         </div>
                         <div class="card-body text-center p-4">
                             <h5 class="fw-bold mb-2">Junior Wing</h5>
@@ -157,7 +157,7 @@
                 <a href="/academics/senior" class="card-link">
                     <div class="modern-card">
                         <div class="card-img-wrapper">
-                            <img src="/assets/images/home/sw.jpg" class="fixed-thumb" alt="Senior Wing" />
+                            <img src="/assets/images/home/sw.jpg" loading="lazy" class="fixed-thumb" alt="Senior Wing" />
                         </div>
                         <div class="card-body text-center p-4">
                             <h5 class="fw-bold mb-2">Senior Wing</h5>
@@ -182,7 +182,7 @@
                 <div class="card shadow h-100">
                     <!-- Heading above image -->
                     <h4 class="text-center mt-3 fw-semibold">Executive Director's Message</h4>
-                    <img src="/assets/images/home/ed.jpg" class="card-img-top leadership-img" alt="Wg Cdr PS Gujral">
+                    <img src="/assets/images/home/ed.jpg" loading="lazy" class="card-img-top leadership-img" alt="Wg Cdr PS Gujral">
                     <div class="card-body">
                         <h5 class="card-title text-center mb-1">Wg Cdr Sreeprakas J</h5>
                         <p class="text-muted text-center">Executive Director</p>
@@ -198,7 +198,7 @@
                 <div class="card shadow h-100">
                     <!-- Heading above image -->
                     <h4 class="text-center mt-3 fw-semibold">Principal's Message</h4>
-                    <img src="/assets/images/home/principal.jpg" class="card-img-top leadership-img" alt="Smt. Shalini Narayan">
+                    <img src="/assets/images/home/principal.jpg" loading="lazy" class="card-img-top leadership-img" alt="Smt. Shalini Narayan">
                     <div class="card-body text-center">
                         <h5 class="card-title mb-1">Smt. Shalini Narayan</h5>
                         <p class="text-muted text-center">Principal</p>
