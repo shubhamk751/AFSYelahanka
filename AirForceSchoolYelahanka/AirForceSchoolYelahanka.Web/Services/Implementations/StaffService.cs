@@ -31,7 +31,7 @@ namespace AirForceSchoolYelahanka.Web.Services.Implementations
         public async Task<Dictionary<string, int>> GetStaffStrengthAsync()
         {
             // Display roles (what you want to show)
-            var displayCategories = new[] { "Principal", "PGT", "TGT", "HM", "PRT", "NTT", "Admin", "Helpers" };
+            var displayCategories = new[] { "Principal", "PGT", "TGT", "HM", "PRT", "Health and Wellness Teacher", "Special Educator", "NTT", "Admin", "Helpers" };
 
             // Map DB roles to display names
             var roleMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -40,6 +40,8 @@ namespace AirForceSchoolYelahanka.Web.Services.Implementations
         { "PGT", "PGT" },
         { "TGT", "TGT" },
         { "Headmistress", "HM" }, // map Headmistress -> HM
+        { "Health and Wellness Teacher", "HWT" },
+        { "Special Educator","Special Educator"},
         { "PRT", "PRT" },
         { "NTT", "NTT" },
         { "Admin", "Admin" },
