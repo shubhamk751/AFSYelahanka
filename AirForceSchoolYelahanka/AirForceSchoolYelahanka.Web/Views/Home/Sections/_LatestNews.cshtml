@@ -4,7 +4,7 @@
     <div class="card shadow-sm h-100">
         <div class="card-header bg-primary text-white d-flex align-items-center">
             <i class="bi bi-newspaper me-2"></i>
-            <h5 class="mb-0">Latest News</h5>
+            <h5 class="mb-0">Newsletter</h5>
         </div>
         <div class="card-body p-0">
             <div class="scroll-marquee p-3">
@@ -13,7 +13,8 @@
                     {
                         <li>
                             <a href="@item.Link">
-                                <strong>@item.Title – @item.Date.ToString("dd MMM yyyy")</strong>
+                                @* <strong>@item.Title – @item.Date.ToString("dd MMM yyyy")</strong> *@
+                                <strong>@item.Title</strong>
                             </a>
                         </li>
                     }
