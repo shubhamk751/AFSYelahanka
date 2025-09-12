@@ -10,7 +10,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center bg-transparent mb-0">
                 <li class="breadcrumb-item"><a href="/" class="text-white text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="/@Model.Type" class="text-white text-decoration-none">@Model.Type</a></li>
+                <li class="breadcrumb-item"><a href="/activity-lp?pageSlug=@Model.Type" class="text-white text-decoration-none">@Model.Type</a></li>
                 <li class="breadcrumb-item active text-white" aria-current="page">@Model.Title</li>
             </ol>
         </nav>
@@ -27,8 +27,8 @@
 
             <!-- Sidebar -->
             <div class="col-lg-4">
-                <!-- Sidebar content from CMS -->
-                @Html.Raw(Model.HtmlSidebarContent)
+                @* <!-- Sidebar content from CMS -->
+                @Html.Raw(Model.HtmlSidebarContent) *@
 
                 <!-- Dynamic gallery from folder -->
                 @if (Model.SidebarImageUrls.Any())
@@ -39,7 +39,7 @@
                                 <h6 class="card-title mb-3">Event Snippets</h6>
 
                                 <!-- Scrollable thumbnail gallery -->
-                                <div style="max-height: 250px; overflow-y: auto;" class="d-flex flex-wrap gap-2">
+                                <div style="max-height: 550px; overflow-y: auto;" class="d-flex flex-wrap gap-2">
                                     @foreach (var imagePath in Model.SidebarImageUrls)
                                     {
                                         <a href="@imagePath" class="glightbox" data-gallery="event-gallery">
