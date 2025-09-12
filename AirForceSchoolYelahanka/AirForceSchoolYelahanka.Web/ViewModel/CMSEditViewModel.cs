@@ -11,8 +11,8 @@ namespace AirForceSchoolYelahanka.Web.ViewModel
     public class CmsListItem
     {
         public string Title { get; set; }
-        public string Link { get; set; }
-        public string Date { get; set; }
+        public string? Link { get; set; }
+        public string? Date { get; set; }
     }
 
 

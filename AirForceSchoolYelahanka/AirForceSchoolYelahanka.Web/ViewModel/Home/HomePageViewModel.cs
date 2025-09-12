@@ -16,17 +16,17 @@
     }
     public class NewsItem : HomeInsertGeneric
     {
-        public string Link { get; set; }
+        public string? Link { get; set; }
     }
 
     public class NoticeItem : HomeInsertGeneric
     {
-        public string Link { get; set; }
+        public string? Link { get; set; }
     }
 
     public class VideoItem : HomeInsertGeneric
     {
-        public string Link { get; set; }
+        public string? Link { get; set; }
     }
 }
 
