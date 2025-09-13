@@ -63,9 +63,9 @@ namespace AirForceSchoolYelahanka.Web.Controllers
             string[] keywords = { "CCA", "NCC" };
             var model = new ActivityContentBlockViewModel
             {
-                Type = keywords.Any(k => slug.Contains(k, StringComparison.OrdinalIgnoreCase))
-                            ? slug.ToUpper()
-                            : textInfo.ToTitleCase(slug.ToLower()),
+                Type = keywords.Any(k => type.Contains(k, StringComparison.OrdinalIgnoreCase))
+                            ? type.ToUpper()
+                            : textInfo.ToTitleCase(type.ToLower()),
                 Slug = textInfo.ToTitleCase(slug.ToLower()),
                 Title = content.Title,
                 HtmlMainContent = content.HtmlMainContent,
