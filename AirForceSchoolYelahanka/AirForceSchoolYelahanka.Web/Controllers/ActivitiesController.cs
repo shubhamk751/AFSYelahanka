@@ -60,9 +60,12 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                     .ToList()
                 : new List<string>();
             var textInfo = CultureInfo.CurrentCulture.TextInfo;
+            string[] keywords = { "CCA", "NCC" };
             var model = new ActivityContentBlockViewModel
             {
-                Type = textInfo.ToTitleCase(type.ToLower()),
+                Type = keywords.Any(k => slug.Contains(k, StringComparison.OrdinalIgnoreCase))
+                            ? slug.ToUpper()
+                            : textInfo.ToTitleCase(slug.ToLower()),
                 Slug = textInfo.ToTitleCase(slug.ToLower()),
                 Title = content.Title,
                 HtmlMainContent = content.HtmlMainContent,
