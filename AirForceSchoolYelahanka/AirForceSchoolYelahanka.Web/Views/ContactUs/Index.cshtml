@@ -13,6 +13,7 @@
                     Whether you’re a parent, student, or just curious — we’re here to help.
                 </p>
 
+                <!-- Address -->
                 <div class="contact-card glass-effect p-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <i class="bi bi-geo-alt-fill contact-icon"></i>
                     <div class="flex-grow-1">
@@ -28,6 +29,7 @@
                     </button>
                 </div>
 
+                <!-- Phones -->
                 <div class="contact-card glass-effect p-3 mb-3" data-aos="fade-up" data-aos-delay="200">
                     <i class="bi bi-telephone-fill contact-icon me-3"></i>
 
@@ -48,28 +50,37 @@
                     </div>
                 </div>
 
-
-                <div class="contact-card glass-effect p-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <i class="bi bi-envelope-fill contact-icon"></i>
-                    <div class="flex-grow-1">
+                <!-- Email -->
+            <div class="contact-card glass-effect p-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-envelope-fill contact-icon"></i>
+                <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                    <div>
                         <h6 class="fw-bold mb-1">Email</h6>
-                        <a href="mailto:afschoolyel06386@gmail.com" id="copy-email" class="contact-link">afschoolyel06386@gmail.com</a>
+                        <a href="mailto:afschoolyel06386@gmail.com" id="copy-email" class="contact-link">
+                            afschoolyel06386@gmail.com
+                        </a>
                     </div>
                     <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-target="copy-email" title="Copy">
                         <i class="bi bi-clipboard"></i>
                     </button>
                 </div>
-
-                <div class="contact-card glass-effect p-4" data-aos="fade-up" data-aos-delay="400">
-                    <i class="bi bi-globe2 contact-icon"></i>
-                    <div class="flex-grow-1">
+            </div>
+            
+            <!-- Website -->
+            <div class="contact-card glass-effect p-4" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-globe2 contact-icon"></i>
+                <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                    <div>
                         <h6 class="fw-bold mb-1">Website</h6>
-                        <a href="https://www.airforceschoolyel.net" id="copy-website" target="_blank" rel="noopener" class="contact-link">www.airforceschoolyel.net</a>
+                        <a href="https://www.airforceschoolyel.net" id="copy-website" target="_blank" rel="noopener" class="contact-link">
+                            www.airforceschoolyel.net
+                        </a>
                     </div>
                     <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-target="copy-website" title="Copy">
                         <i class="bi bi-clipboard"></i>
                     </button>
                 </div>
+            </div>
             </div>
 
             <!-- Map -->
@@ -94,18 +105,34 @@
     <script>
         document.querySelectorAll('.copy-btn').forEach(button => {
             button.addEventListener('click', () => {
-                const targetId = button.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                const textToCopy = targetElement.innerText || targetElement.textContent;
+                let textToCopy = null;
 
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    button.innerHTML = '<i class="bi bi-check-lg text-success"></i>';
-                    setTimeout(() => {
-                        button.innerHTML = '<i class="bi bi-clipboard"></i>';
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Could not copy text: ', err);
-                });
+                // If phone number
+                if (button.hasAttribute('data-phone')) {
+                    textToCopy = button.getAttribute('data-phone');
+                }
+
+                // If target element (like address, email, website)
+                else if (button.hasAttribute('data-target')) {
+                    const targetId = button.getAttribute('data-target');
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        textToCopy = targetEl.innerText.trim();
+                    }
+                }
+
+                if (textToCopy) {
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        button.innerHTML = '<i class="bi bi-check-lg text-success"></i>';
+                        setTimeout(() => {
+                            button.innerHTML = '<i class="bi bi-clipboard"></i>';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+                } else {
+                    console.error("No text found to copy");
+                }
             });
         });
     </script>
