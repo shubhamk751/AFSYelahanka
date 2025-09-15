@@ -12,7 +12,7 @@
     {
         public string Title { get; set; }
         
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
     }
     public class NewsItem : HomeInsertGeneric
     {

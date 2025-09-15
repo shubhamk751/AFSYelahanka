@@ -301,7 +301,7 @@ namespace AirForceSchoolYelahanka.Web.Controllers
                 model.Title = content.Title;
                 model.HtmlMainContent = content.HtmlMainContent;
                 model.HtmlSidebarContent = content.HtmlSidebarContent;
-                model.SidebarImageUrls = content.SidebarImageUrls;
+                model.SidebarImageUrls = content.SidebarImageUrls;  //commented this is html for now as it's not required.
             }
 
             return View(model);

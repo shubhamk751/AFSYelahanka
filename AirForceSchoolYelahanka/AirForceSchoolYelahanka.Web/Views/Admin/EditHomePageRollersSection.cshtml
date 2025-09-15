@@ -1,46 +1,50 @@
 ﻿@model AirForceSchoolYelahanka.Web.ViewModel.SectionContentViewModel
+<section class="py-5">
+    <div class="container">
+        <h2>Edit Section Content</h2>
 
-<h2>Edit Section Content</h2>
-
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">@TempData["Success"]</div>
-}
-
-<form asp-action="EditHomePageRollersSection" method="post">
-    <input type="hidden" asp-for="Id" />
-
-    <div class="form-group">
-        <label>Select Section</label>
-        <select asp-for="SelectedSectionName" class="form-control" asp-items="@(new SelectList(Model.AvailableSectionNames))"
-                onchange="submitChangeSection()"></select>
-    </div>
-
-    <hr />
-    <div id="items-container">
-        @for (int i = 0; i < Model.Items.Count; i++)
+        @if (TempData["Success"] != null)
         {
-            <div class="item-group border p-2 mb-2">
-                <label>Title <sup class="text-danger">*</sup></label>
-                <input asp-for="Items[i].Title" class="form-control" />
-
-                <label>Link</label>
-                <input asp-for="Items[i].Link" class="form-control" />
-
-                <label>Date</label>
-                <input asp-for="Items[i].Date" class="form-control" type="date" />
-
-                <button type="button" class="btn btn-danger mt-2" onclick="removeItem(this)">Remove</button>
-            </div>
+            <div class="alert alert-success">@TempData["Success"]</div>
         }
+
+        <form asp-action="EditHomePageRollersSection" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label>Select Section</label>
+                <select asp-for="SelectedSectionName" class="form-control" asp-items="@(new SelectList(Model.AvailableSectionNames))"
+                        onchange="submitChangeSection()"></select>
+            </div>
+
+            <hr />
+            <div id="items-container">
+                @for (int i = 0; i < Model.Items.Count; i++)
+                {
+                    <div class="item-group border p-2 mb-2">
+                        <label>Title <sup class="text-danger">*</sup></label>
+                        <input asp-for="Items[i].Title" class="form-control" />
+
+                        <label>Link</label>
+                        <input asp-for="Items[i].Link" class="form-control" />
+
+                        <label>Date</label>
+                        <input asp-for="Items[i].Date" class="form-control" type="date" />
+
+                        <button type="button" class="btn btn-danger mt-2" onclick="removeItem(this)">Remove</button>
+                    </div>
+                }
+            </div>
+
+            <button type="button" class="btn btn-secondary mt-3" onclick="addItem()">+ Add Item</button>
+            <br /><br />
+
+            <button type="submit" name="action" value="Save" class="btn btn-primary">Save</button>
+            <input type="hidden" name="action" value="Save" id="form-action" />
+        </form>
+
     </div>
-
-    <button type="button" class="btn btn-secondary mt-3" onclick="addItem()">+ Add Item</button>
-    <br /><br />
-
-    <button type="submit" name="action" value="Save" class="btn btn-primary">Save</button>
-    <input type="hidden" name="action" value="Save" id="form-action" />
-</form>
+</section>
 
 @section Scripts {
     <script>
